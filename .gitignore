@@ -1,0 +1,4 @@
+server/coordenadas.txt
+artifacts/*
+!artifacts/6379.zip
+server/server.cfg
