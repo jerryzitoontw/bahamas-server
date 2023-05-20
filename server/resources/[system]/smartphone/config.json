@@ -42,7 +42,7 @@
             }
         },
         "bankType": "fleeca",
-        "uploadServer": "https://canary.discord.com/api/webhooks/1083570306595176478/uqt4iUjDRxUrlofojTFbMa4NcsRdB7IJU9CHOxMwISo0eJWva9ttX9TZKAMo9qhRa_XO",
+        "uploadServer": "https://discord.com/api/webhooks/1109292813713162290/eStEO8pcC89or6bvkmkyFxHJl91kaoljcQhjkHxRiyuDJSsg35nEd-d9FYNo23uk5FWC",
         "allowUnsafeURL": true,
         "videoServer": "ws://189.127.164.154:8080",
         "case": "s9",
@@ -56,7 +56,7 @@
     },
 
     "call_mode": "pma-voice",
-    "webhookURL": "https://canary.discord.com/api/webhooks/1083570306595176478/uqt4iUjDRxUrlofojTFbMa4NcsRdB7IJU9CHOxMwISo0eJWva9ttX9TZKAMo9qhRa_XO",
+    "webhookURL": "https://discord.com/api/webhooks/1109292813713162290/eStEO8pcC89or6bvkmkyFxHJl91kaoljcQhjkHxRiyuDJSsg35nEd-d9FYNo23uk5FWC",
     "instagram_verify": "Verify",
     "instagram_accounts": {
         "*": 1,
