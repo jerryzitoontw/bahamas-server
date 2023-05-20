@@ -6173,7 +6173,8 @@ local List = {
 			["Weight"] = 30,
 			["Price"] = 25000,
 			["Mode"] = "Rental",
-			["Gemstone"] = 150
+			["Gemstone"] = 150,
+			["Class"] = "Importados"
 		},
 		["bt62r"] = {
 			["Name"] = "Brabham BT62",
@@ -6196,7 +6197,8 @@ local List = {
 			["Weight"] = 60,
 			["Price"] = 25000,
 			["Mode"] = "Rental",
-			["Gemstone"] = 150
+			["Gemstone"] = 150,
+			["Class"] = "Importados"
 		},
 		["contss18"] = {
 			["Name"] = "Bentley Continental",
@@ -6451,7 +6453,8 @@ local List = {
 			["Weight"] = 50,
 			["Price"] = 25000,
 			["Mode"] = "Rental",
-			["Gemstone"] = 150
+			["Gemstone"] = 150,
+			["Class"] = "Importados"
 		},
 		["revolution6str2"] = {
 			["Name"] = "Mitsubishi Lancer Evo 8",

@@ -39,6 +39,11 @@ local isPurchaseSuccessful = false
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local bennysLocations = {
+	["LsCustoms01"] = {
+		pos = vec3(-1155.71,-2008.37,12.38),
+		heading = 337.33,
+		permission = "Admin"
+	},
 	["Ottos01"] = {
 		pos = vec3(830.59,-819.99,25.71),
 		heading = 87.88,
