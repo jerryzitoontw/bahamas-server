@@ -40,7 +40,7 @@ end)
 
 CreateThread(function()
     while true do
-        Wait(SalarySeconds)
+        Wait(SalarySeconds * 1000)
         for k, v in pairs(Salary) do
             for Passport, Sources in pairs(Salary[k]) do
                 local id,level = vRP.GetHierarquia(Passport,k)
