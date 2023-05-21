@@ -1,4 +1,54 @@
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- GLOBALSTATE
+-----------------------------------------------------------------------------------------------------------------------------------------
+GlobalState["Blackout"] = 0
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOCALPLAYERS
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- Framework
+LocalPlayer["state"]:set("Route",0,false)
+LocalPlayer["state"]:set("Name","",false)
+LocalPlayer["state"]:set("Passport",0,false)
+LocalPlayer["state"]:set("Rope",false,false)
+LocalPlayer["state"]:set("Cancel",false,true)
+LocalPlayer["state"]:set("Active",false,false)
+LocalPlayer["state"]:set("Handcuff",false,true)
+LocalPlayer["state"]:set("Commands",false,true)
+LocalPlayer["state"]:set("Spectate",false,false)
+LocalPlayer["state"]:set("Invisible",false,false)
+LocalPlayer["state"]:set("Invincible",false,false)
+LocalPlayer["state"]:set("usingPhone",false,false)
+LocalPlayer["state"]:set("Player",GetPlayerServerId(PlayerId()),false)
+LocalPlayer["state"]:set("Admin",false,false)
+LocalPlayer["state"]:set("Premium",false,false)
+-- Public
+LocalPlayer["state"]:set("Paramedic",false,false)
+LocalPlayer["state"]:set("Police",false,false)
+LocalPlayer["state"]:set("Harmony",false,false)
+LocalPlayer["state"]:set("Ottos",false,false)
+LocalPlayer["state"]:set("Tuners",false,false)
+-- Restaurants
+LocalPlayer["state"]:set("Pearls",false,false)
+-- Contraband
+LocalPlayer["state"]:set("Chiliad",false,false)
+LocalPlayer["state"]:set("Families",false,false)
+LocalPlayer["state"]:set("Highways",false,false)
+LocalPlayer["state"]:set("Vagos",false,false)
+-- Favelas
+LocalPlayer["state"]:set("Barragem",false,false)
+LocalPlayer["state"]:set("Farol",false,false)
+LocalPlayer["state"]:set("Parque",false,false)
+LocalPlayer["state"]:set("Sandy",false,false)
+LocalPlayer["state"]:set("Petroleo",false,false)
+LocalPlayer["state"]:set("Praia-1",false,false)
+LocalPlayer["state"]:set("Praia-2",false,false)
+LocalPlayer["state"]:set("Zancudo",false,false)
+-- Mafias
+LocalPlayer["state"]:set("Madrazzo",false,true)
+LocalPlayer["state"]:set("Playboy",false,false)
+LocalPlayer["state"]:set("TheSouth",false,false)
+LocalPlayer["state"]:set("Vineyard",false,false)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Walk = nil

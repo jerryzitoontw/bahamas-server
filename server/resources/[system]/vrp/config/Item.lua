@@ -2,6 +2,13 @@
 -- LIST
 -----------------------------------------------------------------------------------------------------------------------------------------
 local List = {
+	["vehiclevip"] = {
+		["Index"] = "bluecard",
+		["Name"] = "Veículo 30 Dias",
+		["Description"] = "Usado para adiquirir um veículo até <green>60 diamantes</green>",
+		["Type"] = "Comum",
+		["Weight"] = 0.0
+	},
 	["contrabandbox1"] = {
 		["Index"] = "package",
 		["Name"] = "Pacote",

@@ -22,19 +22,15 @@ AddEventHandler("gameEventTriggered",function(name,Message)
 	if LocalPlayer["state"]["Route"] < 900000 then
 		if name == "CEventNetworkEntityDamage" then
 			if PlayerPedId() == Message[1] and LocalPlayer["state"]["Active"] then
-				if (Message[7] == 126349499 or Message[7] == 1064738331 or Message[7] == 85055149) and GetEntityHealth(Message[1]) > 100 then
-					SetPedToRagdoll(Message[1],2500,2500,0,0,0,0)
-				else
-					if GetGameTimer() >= Injuried then
-						if not IsPedInAnyVehicle(Message[1]) and GetEntityHealth(Message[1]) > 100 then
-							Injuried = GetGameTimer() + 1000
+				if GetGameTimer() >= Injuried then
+					if not IsPedInAnyVehicle(Message[1]) and GetEntityHealth(Message[1]) > 100 then
+						Injuried = GetGameTimer() + 1000
 
-							local Hit,Mark = GetPedLastDamageBone(Message[1])
-							if Hit and not Damaged[Mark] and Mark ~= 0 then
-								TriggerServerEvent("evidence:dropEvidence","yellow")
-								Bleeding = Bleeding + 1
-								Damaged[Mark] = true
-							end
+						local Hit,Mark = GetPedLastDamageBone(Message[1])
+						if Hit and not Damaged[Mark] and Mark ~= 0 then
+							TriggerServerEvent("evidence:dropEvidence","yellow")
+							Bleeding = Bleeding + 1
+							Damaged[Mark] = true
 						end
 					end
 				end
@@ -48,22 +44,12 @@ end)
 CreateThread(function()
 	while true do
 		local Ped = PlayerPedId()
-		if GetGameTimer() >= BloodTimers and LocalPlayer["state"]["Route"] < 900000 and GetEntityHealth(Ped) > 100 then
-			BloodTimers = GetGameTimer() + 10000
-			BloodTick = BloodTick + 1
+		local Health = GetEntityHealth(Ped)
+		if GetGameTimer() >= BloodTimers and GetEntityHealth(Ped) > 100 then
 
-			if BloodTick >= 3 and Bleeding >= 3 then
-				BloodTick = 0
-				local Nocaute = Bleeding * 1000
-
-				if not IsPedInAnyVehicle(Ped) then
-					SetPedToRagdoll(Ped,Nocaute,Nocaute,0,0,0,0)
-					TriggerEvent("inventory:Cancel")
-				end
-
-				DoScreenFadeOut(1000)
-				Wait(Nocaute)
-				DoScreenFadeIn(1000)
+			if Health > 101 and Bleeding >= 5 then
+				SetEntityHealth(Ped,Health - 3)
+				TriggerEvent("Notify","amarelo","Sangramento encontrado.",3000)
 			end
 		end
 
@@ -140,3 +126,23 @@ end)
 function Creative.Diagnostic()
 	return Damaged,Bleeding
 end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- ARMS
+-----------------------------------------------------------------------------------------------------------------------------------------
+exports("Arms",function()
+	if Damaged[18905] or Damaged[18905] or Damaged[60309] or Damaged[36029] or Damaged[57005] or Damaged[28422] or Damaged[6286] then
+		return true
+	end
+
+	return false
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LEGS
+-----------------------------------------------------------------------------------------------------------------------------------------
+exports("Legs",function()
+	if Damaged[14201] or Damaged[65245] or Damaged[57717] or Damaged[52301] or Damaged[35502] or Damaged[24806] then
+		return true
+	end
+
+	return false
+end)

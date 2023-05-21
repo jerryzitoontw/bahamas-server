@@ -33,5 +33,8 @@ server_scripts {
 }
 
 files {
-	"lib/*"
+	"lib/*",
+	"modules/*",
+	"config/*",
+	"config/**/*"
 }

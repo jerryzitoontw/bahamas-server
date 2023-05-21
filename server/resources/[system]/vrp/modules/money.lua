@@ -7,6 +7,12 @@ function vRP.GiveBank(Passport, Amount)
     if Amount > 0 then
         vRP.Query("characters/addBank", { Passport = Passport, amount = Amount })
         exports.bank:AddTransactions(Passport, "entry", Amount)
+
+        local Source = vRP.Source(Passport)
+        if Source then
+            TriggerClientEvent("itensNotify",Source,{ "+","dollars",parseFormat(Amount),"Dólares" })
+        end
+
         if Characters[Source] then
             Characters[Source].bank = Characters[Source].bank + Amount
         end
@@ -21,6 +27,12 @@ function vRP.RemoveBank(Passport, Amount)
     if Amount > 0 then
         vRP.Query("characters/remBank", { Passport = Passport, amount = Amount })
         exports.bank:AddTransactions(Passport, "exit", Amount)
+
+        local Source = vRP.Source(Passport)
+        if Source then
+            TriggerClientEvent("itensNotify",Source,{ "+","dollars",parseFormat(Amount),"Dólares" })
+        end
+
         if Characters[Source] then
             Characters[Source].bank = Characters[Source].bank - Amount
             if 0 > Characters[Source].bank then

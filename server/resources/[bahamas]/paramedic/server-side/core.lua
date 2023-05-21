@@ -58,6 +58,7 @@ AddEventHandler("paramedic:Treatment",function(entity)
 			end
 
 			TriggerClientEvent("target:StartTreatment",entity)
+			TriggerClientEvent("paramedic:Reset",entity)
 			TriggerClientEvent("Notify",source,"amarelo","Tratamento começou.",5000)
 		end
 	end
@@ -114,9 +115,10 @@ AddEventHandler("paramedic:Bandage",function(entity)
 					TriggerClientEvent("Progress",source,"Passando",3000)
 					vRPC.playAnim(source,false,{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"},true)
 					SetTimeout(3000,function()
-						TriggerClientEvent("Notify",source,"amarelo","Passou ataduras no(a) <b>"..Bandage.."</b>.",3000)
+						TriggerClientEvent("Notify",source,"amarelo","Passou ataduras.",3000)
 						TriggerClientEvent("sounds:Private",source,"bandage",0.5)
-						vRPC.Destroy(source)
+						TriggerClientEvent("paramedic:Reset",source)
+						vRPC.removeObjects(source)
 					end)
 				else
 					TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>1x "..itemName("gauze").."</b>.",5000)
@@ -176,50 +178,14 @@ local preset = {
 	["1"] = {
 		["mp_m_freemode_01"] = {
 			["hat"] = { item = -1, texture = 0 },
-			["pants"] = { item = 56, texture = 0 },
-			["vest"] = { item = 0, texture = 0 },
-			["bracelet"] = { item = -1, texture = 0 },
-			["backpack"] = { item = 0, texture = 0 },
-			["decals"] = { item = 0, texture = 0 },
-			["mask"] = { item = 0, texture = 0 },
-			["shoes"] = { item = 16, texture = 0 },
-			["tshirt"] = { item = 15, texture = 0 },
-			["torso"] = { item = 15, texture = 0 },
-			["accessory"] = { item = 0, texture = 0 },
-			["watch"] = { item = -1, texture = 0 },
-			["arms"] = { item = 15, texture = 0 },
-			["glass"] = { item = 0, texture = 0 },
-			["ear"] = { item = -1, texture = 0 }
-		},
-		["mp_f_freemode_01"] = {
-			["hat"] = { item = -1, texture = 0 },
-			["pants"] = { item = 57, texture = 0 },
-			["vest"] = { item = 0, texture = 0 },
-			["bracelet"] = { item = -1, texture = 0 },
-			["backpack"] = { item = 0, texture = 0 },
-			["decals"] = { item = 0, texture = 0 },
-			["mask"] = { item = 0, texture = 0 },
-			["shoes"] = { item = 16, texture = 0 },
-			["tshirt"] = { item = 15, texture = 0 },
-			["torso"] = { item = 15, texture = 0 },
-			["accessory"] = { item = 0, texture = 0 },
-			["watch"] = { item = -1, texture = 0 },
-			["arms"] = { item = 15, texture = 0 },
-			["glass"] = { item = 0, texture = 0 },
-			["ear"] = { item = -1, texture = 0 }
-		}
-	},
-	["2"] = {
-		["mp_m_freemode_01"] = {
-			["hat"] = { item = -1, texture = 0 },
 			["pants"] = { item = 84, texture = 0 },
 			["vest"] = { item = 0, texture = 0 },
 			["bracelet"] = { item = -1, texture = 0 },
 			["backpack"] = { item = 0, texture = 0 },
 			["decals"] = { item = 0, texture = 0 },
-			["mask"] = { item = 122, texture = 0 },
-			["shoes"] = { item = 47, texture = 3 },
-			["tshirt"] = { item = 15, texture = 0 },
+			["mask"] = { item = 0, texture = 0 },
+			["shoes"] = { item = 25, texture = 0 },
+			["tshirt"] = { item = 0, texture = 0 },
 			["torso"] = { item = 186, texture = 0 },
 			["accessory"] = { item = 0, texture = 0 },
 			["watch"] = { item = -1, texture = 0 },
@@ -233,9 +199,9 @@ local preset = {
 			["vest"] = { item = 0, texture = 0 },
 			["bracelet"] = { item = -1, texture = 0 },
 			["backpack"] = { item = 0, texture = 0 },
-			["decals"] = { item = 90, texture = 0 },
-			["mask"] = { item = 122, texture = 0 },
-			["shoes"] = { item = 48, texture = 3 },
+			["decals"] = { item = 0, texture = 0 },
+			["mask"] = { item = 0, texture = 0 },
+			["shoes"] = { item = 25, texture = 0 },
 			["tshirt"] = { item = 15, texture = 0 },
 			["torso"] = { item = 188, texture = 0 },
 			["accessory"] = { item = 0, texture = 0 },
@@ -247,22 +213,6 @@ local preset = {
 	}
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
--- PLAYER:PRESETBURN
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("paramedic:presetBurn")
-AddEventHandler("paramedic:presetBurn",function(entity)
-	local source = source
-	local Passport = vRP.Passport(source)
-	if Passport then
-		if vRP.HasService(Passport,"Emergency") then
-			local Model = vRP.ModelPlayer(entity)
-			if Model == "mp_m_freemode_01" or "mp_f_freemode_01" then
-				TriggerClientEvent("skinshop:Apply",entity,preset["1"][Model])
-			end
-		end
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYER:PRESETPLASTER
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("paramedic:presetPlaster")
@@ -273,53 +223,7 @@ AddEventHandler("paramedic:presetPlaster",function(entity)
 		if vRP.HasService(Passport,"Emergency") then
 			local Model = vRP.ModelPlayer(entity)
 			if Model == "mp_m_freemode_01" or "mp_f_freemode_01" then
-				TriggerClientEvent("skinshop:Apply",entity,preset["2"][Model])
-			end
-		end
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- PLAYER:EXTRACTBLOOD
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("paramedic:extractBlood")
-AddEventHandler("paramedic:extractBlood",function(entity)
-	local source = source
-	local Passport = vRP.Passport(source)
-	if Passport then
-		local OtherPassport = vRP.Passport(entity)
-		if OtherPassport then
-			if not extractPerson[OtherPassport] then
-				extractPerson[OtherPassport] = true
-
-				local Ped = GetPlayerPed(entity)
-				if GetEntityHealth(Ped) >= 170 then
-					local Identity = vRP.Identity(OtherPassport)
-					if Identity then
-						if vRP.Request(entity,"Deseja iniciar a doação sangue?","Sim, iniciar processo","Não, tenho medo") then
-							if not bloodTimers[OtherPassport] then
-								bloodTimers[OtherPassport] = os.time()
-							end
-
-							if os.time() >= bloodTimers[OtherPassport] then
-								if vRP.TakeItem(Passport,"syringe",3) then
-									vRPC.DowngradeHealth(entity,50)
-									bloodTimers[OtherPassport] = os.time() + 10800
-									vRP.GenerateItem(Passport,"syringe0"..Identity["blood"],5,true)
-
-									if extractPerson[OtherPassport] then
-										extractPerson[OtherPassport] = nil
-									end
-								else
-									TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>3x "..itemName("syringe").."</b>.",5000)
-								end
-							else
-								TriggerClientEvent("Notify",source,"amarelo","No momento não é possível efetuar a extração, o mesmo ainda está se recuperando ou se acidentou recentemente.",10000)
-							end
-						end
-					end
-				else
-					TriggerClientEvent("Notify",source,"amarelo","Sistema imunológico do paciente muito fraco.",5000)
-				end
+				TriggerClientEvent("skinshop:Apply",entity,preset["1"][Model])
 			end
 		end
 	end

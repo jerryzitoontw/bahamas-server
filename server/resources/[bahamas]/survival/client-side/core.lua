@@ -136,7 +136,7 @@ function Creative.Respawn()
 	TriggerEvent("hud:Active",true)
 	SetEntityHeading(PlayerPedId(),158.75)
 	SendNUIMessage({ name = "Open", payload = false })
-	SetEntityCoords(PlayerPedId(),332.8,-569.44,43.29)
+	SetEntityCoords(PlayerPedId(),-1192.2,-1513.12,4.36)
 
 	SetTimeout(1000,function()
 		DoScreenFadeIn(1000)

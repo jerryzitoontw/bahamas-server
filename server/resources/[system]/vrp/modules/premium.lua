@@ -27,9 +27,11 @@ function vRP.UserPremium(Passport)
             if HasPermission then
                 vRP.RemovePermission(Passport, "Premium")
             end
+            return false
         elseif not HasPermission then
             vRP.SetPermission(Passport, "Premium")
         end
+        return true
     end
     return false
 end
@@ -43,11 +45,3 @@ function vRP.LicensePremium(License)
     end
     return false
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- RESOURCESTART
------------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("onResourceStart",function(Resource)
-    if "vrp" == Resource then
-        Wait(3000)
-    end
-end)

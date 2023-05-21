@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------------------------
--- MODELEXIST
+-- MODELEXIST esquerda
 -----------------------------------------------------------------------------------------------------------------------------------------
 function tvRP.ModelExist(Hash)
 	return IsModelInCdimage(Hash)
@@ -154,6 +154,7 @@ function ReloadCharacter(Pid,Ped)
 	SetPedConfigFlag(Ped,434,true)
 
 	SetBlipAlpha(GetNorthRadarBlip(),0)
+	ReplaceHudColourWithRgba(245,10,70,226,255)
 
 	SetAudioFlag("DisableFlightMusic",true)
 	SetAudioFlag("PoliceScannerDisabled",true)

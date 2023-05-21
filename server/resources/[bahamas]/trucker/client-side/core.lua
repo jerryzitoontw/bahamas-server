@@ -142,7 +142,7 @@ CreateThread(function()
 					if Distance <= 200 then
 						TimeDistance = 1
 						DrawMarker(1,packService[Service]["Coords"][Position][1],packService[Service]["Coords"][Position][2],packService[Service]["Coords"][Position][3] - 3,0,0,0,0,0,0,12.0,12.0,8.0,255,255,255,25,0,0,0,0)
-						DrawMarker(21,packService[Service]["Coords"][Position][1],packService[Service]["Coords"][Position][2],packService[Service]["Coords"][Position][3] + 1,0,0,0,0,180.0,130.0,3.0,3.0,2.0,42,137,255,100,0,0,0,1)
+						DrawMarker(21,packService[Service]["Coords"][Position][1],packService[Service]["Coords"][Position][2],packService[Service]["Coords"][Position][3] + 1,0,0,0,0,180.0,130.0,3.0,3.0,2.0,245,10,70,100,0,0,0,1)
 
 						if Distance <= 10 then
 							if Position >= #packService[Service]["Coords"] then

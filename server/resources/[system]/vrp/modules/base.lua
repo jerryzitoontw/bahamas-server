@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------------------------
--- CONNECTION
+-- CONNECTION esquerda
 -----------------------------------------------------------------------------------------------------------------------------------------
 Sources = {}
 Characters = {}
@@ -149,45 +149,41 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERDROPPED
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("playerDropped", function(Reason)
-    if Characters[source] and DoesEntityExist((GetPlayerPed(source))) then
-        Disconnect(source, GetEntityHealth(GetPlayerPed(source)), GetPedArmour(GetPlayerPed(source)), GetEntityCoords(GetPlayerPed(source)), Reason)
+AddEventHandler("playerDropped",function(Reason)
+    local Ped = GetPlayerPed(source)
+    local Health = GetEntityHealth(Ped)
+    local Armour = GetPedArmour(Ped)
+    local Coords = GetEntityCoords(Ped)
+    if Characters[source] and DoesEntityExist(Ped) then
+        Disconnect(source,Health,Armour,Coords,Reason)
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DISCONNECT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Disconnect(source, Health, Armour, Coords, Reason)
+function Disconnect(source,Health,Armour,Coords,Reason)
+    local source = source
     local Passport = vRP.Passport(source)
     local Datatable = vRP.Datatable(Passport)
     if Passport then
-        TriggerEvent("Discord", "Disconnect", "**Source:** " .. source .. [[ **Passaporte:** ]] .. vRP.Passport(source) .. [[ **Health:** ]] .. Health .. [[ **Armour:** ]] .. Armour .. [[ **Cds:** ]] .. Coords .. [[ **Motivo:** ]] .. Reason, 3092790)
+        TriggerEvent("Discord","Disconnect","**Source:** "..source.."\n**Passaporte:** "..Passport.."\n**Health:** "..Health.."\n**Armour:** "..Armour.."\n**Cds:** "..Coords.."\n**Motivo:** "..Reason,3092790)
+        
         if Datatable then
-            if Prepares[Passport] then
-                Datatable.Stress = Prepares[Passport].Stress
-                Datatable.Hunger = Prepares[Passport].Hunger
-                Datatable.Thirst = Prepares[Passport].Thirst
-                Datatable.Armour = Prepares[Passport].Armour
-                Datatable.Health = Prepares[Passport].Health
-                Datatable.Inventory = Prepares[Passport].Inventory
-                Datatable.Pos = { x = BackArenaPos.x, y = BackArenaPos.y, z = BackArenaPos.z }
-                TriggerEvent("arena:Players", "-", Prepares[Passport].route)
-                Prepares[Passport] = nil
-            else
-                Datatable.Health = Health
-                Datatable.Armour = Armour
-                Datatable.Pos = { x = mathLength(Coords.x), y = mathLength(Coords.y), z = mathLength(Coords.z) }
+            Datatable["Health"] = Health
+            Datatable["Armour"] = Armour
+            Datatable["Pos"] = { x = mathLength(Coords["x"]), y = mathLength(Coords["y"]), z = mathLength(Coords["z"]) }
+
+            if Datatable["Health"] <= 100 then
+                TriggerClientEvent("hud:Textform",-1,Coords,"<b>Passaporte:</b> "..Passport.."<br><b>Motivo:</b> "..Reason,CombatLogMinutes * 60000)
             end
-            if Datatable.Health <= 100 then
-                TriggerClientEvent("hud:Textform", -1, Coords, "<b>Passaporte:</b> " .. Passport .. "<br><b>Motivo:</b> " .. Reason, CombatLogMinutes * 60000)
-            end
-            TriggerEvent("Disconnect", Passport, source)
-            vRP.Query("playerdata/SetData", { Passport = Passport, dkey = "Datatable", dvalue = json.encode(Datatable) })
+
+            TriggerEvent("Disconnect",Passport,source)
+            vRP.Query("playerdata/SetData",{ Passport = Passport, dkey = "Datatable", dvalue = json.encode(Datatable) })
             Characters[source] = nil
             Sources[Passport] = nil
-            if GlobalState.Players[source] or Players[source] then
-                Players[source] = nil
-                GlobalState.Players = Players
+            
+            if GlobalState.Players[source] then
+                GlobalState.Players[source] = nil
                 GlobalState:set("Players", GlobalState.Players, true)
             end
         end

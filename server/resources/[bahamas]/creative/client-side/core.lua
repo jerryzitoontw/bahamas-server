@@ -240,11 +240,11 @@ CreateThread(function()
 		DisableControlAction(1,164,true)
 		DisableControlAction(1,165,true)
 
-		SetVehicleDensityMultiplierThisFrame(0.0)
-		SetRandomVehicleDensityMultiplierThisFrame(0.0)
-		SetParkedVehicleDensityMultiplierThisFrame(0.0)
-		SetScenarioPedDensityMultiplierThisFrame(0.0,0.0)
-		SetPedDensityMultiplierThisFrame(0.0)
+		SetVehicleDensityMultiplierThisFrame(1.0)
+		SetRandomVehicleDensityMultiplierThisFrame(1.0)
+		SetParkedVehicleDensityMultiplierThisFrame(1.0)
+		SetScenarioPedDensityMultiplierThisFrame(1.0,1.0)
+		SetPedDensityMultiplierThisFrame(1.0)
 
 		if IsPedArmed(PlayerPedId(),6) then
 			DisableControlAction(1,140,true)

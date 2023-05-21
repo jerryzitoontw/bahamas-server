@@ -872,7 +872,7 @@ function ve(e, t) {
         L(a, "loading", "lazy"),
         fe(
           a.src,
-          (b = "nui://inventory/web-side/images/" + t[1].photo + ".png")
+          (b = "nui://vrp/config/inventory/" + t[1].photo + ".png")
         ) || L(a, "src", b),
         L(a, "alt", (y = t[1].name)),
         L(a, "class", "w-24 h-24 my-2 mx-auto"),
@@ -915,7 +915,7 @@ function ve(e, t) {
           (j & 1 &&
             !fe(
               a.src,
-              (b = "nui://inventory/web-side/images/" + t[1].photo + ".png")
+              (b = "nui://vrp/config/inventory/" + t[1].photo + ".png")
             ))) &&
           L(a, "src", b),
         (!g || (j & 1 && y !== (y = t[1].name))) && L(a, "alt", y),

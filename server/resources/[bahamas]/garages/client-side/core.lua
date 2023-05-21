@@ -605,6 +605,68 @@ function Creative.SearchBlip(Coords)
 	end)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- STARTHOTWIRED
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Creative.StartHotwired()
+	Hotwired = true
+
+	if LoadAnim(Dict) then
+		TaskPlayAnim(PlayerPedId(),Dict,Anim,8.0,8.0,-1,49,5.0,0,0,0)
+	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- STOPHOTWIRED
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Creative.StopHotwired(Vehicle)
+	Hotwired = false
+
+	if LoadAnim(Dict) then
+		StopAnimTask(PlayerPedId(),Dict,Anim,8.0)
+	end
+
+	if Vehicle then
+		SetEntityAsMissionEntity(Vehicle,true,false)
+		SetVehicleHasBeenOwnedByPlayer(Vehicle,true)
+		SetVehicleNeedsToBeHotwired(Vehicle,false)
+
+		if not DecorExistOn(Vehicle,"PlayerVehicle") then
+			DecorSetInt(Vehicle,"PlayerVehicle",-1)
+		end
+	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- UPDATEHOTWIRED
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Creative.UpdateHotwired(Status)
+	Hotwired = Status
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- LOOPHOTWIRED
+-----------------------------------------------------------------------------------------------------------------------------------------
+CreateThread(function()
+	while true do
+		local TimeDistance = 999
+		local Ped = PlayerPedId()
+		if IsPedInAnyVehicle(Ped) then
+			local Vehicle = GetVehiclePedIsUsing(Ped)
+			local Plate = GetVehicleNumberPlateText(Vehicle)
+			if GetPedInVehicleSeat(Vehicle,-1) == Ped and not GlobalState["Plates"][Plate] then
+				SetVehicleEngineOn(Vehicle,false,true,true)
+				DisablePlayerFiring(Ped,true)
+				TimeDistance = 1
+			end
+
+			if Hotwired and Vehicle then
+				DisableControlAction(1,75,true)
+				DisableControlAction(1,20,true)
+				TimeDistance = 1
+			end
+		end
+
+		Wait(TimeDistance)
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGES:IMPOUND
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("garages:Impound")
@@ -648,7 +710,7 @@ CreateThread(function()
 				for Number,v in pairs(Garages) do
 					local Distance = #(Coords - vec3(v["x"],v["y"],v["z"]))
 					if Distance <= 15 then
-						DrawMarker(23,v["x"],v["y"],v["z"] - 0.95,0.0,0.0,0.0,0.0,0.0,0.0,1.75,1.75,0.0,66,165,245,100,0,0,0,0)
+						DrawMarker(23,v["x"],v["y"],v["z"] - 0.95,0.0,0.0,0.0,0.0,0.0,0.0,1.75,1.75,0.0,245,10,70,100,0,0,0,0)
 						TimeDistance = 1
 
 						if Distance <= 1.25 and IsControlJustPressed(1,38) and not exports["hud"]:Wanted() then

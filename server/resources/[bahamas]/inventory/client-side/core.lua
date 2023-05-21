@@ -870,7 +870,8 @@ CreateThread(function()
 				local Distance = #(Coords - vec3(v["Coords"][1],v["Coords"][2],v["Coords"][3]))
 				if Distance <= 50 then
 					TimeDistance = 1
-					DrawMarker(21,v["Coords"][1],v["Coords"][2],v["Coords"][3] + 0.25,0.0,0.0,0.0,0.0,180.0,0.0,0.25,0.35,0.25,162,124,219,200,0,0,0,1)
+					DrawMarker(23,v["Coords"][1],v["Coords"][2],v["Coords"][3] + 0.05,0.0,0.0,0.0,0.0,180.0,0.0,0.15,0.15,0.0,255,255,255,50,0,0,0,0)
+					DrawMarker(21,v["Coords"][1],v["Coords"][2],v["Coords"][3] + 0.25,0.0,0.0,0.0,0.0,180.0,0.0,0.20,0.20,0.20,245,10,70,125,0,0,0,1)
 				end
 			end
 		end
@@ -1381,108 +1382,6 @@ function Creative.checkAtm(Coords)
 
 	return BombZone,AtmSelected
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- THREADSTEALNPCS
------------------------------------------------------------------------------------------------------------------------------------------
-CreateThread(function()
-	while true do
-		local TimeDistance = 999
-		local Ped = PlayerPedId()
-
-		if not IsPedInAnyVehicle(Ped) and IsPedArmed(Ped,7) then
-			local Handler,Selected = FindFirstPed()
-
-			repeat
-				if not IsEntityDead(Selected) and not StealPeds[Selected] and not IsPedDeadOrDying(Selected) and GetPedArmour(Selected) <= 0 and not IsPedAPlayer(Selected) and not IsPedInAnyVehicle(Selected) and GetPedType(Selected) ~= 28 then
-					local Coords = GetEntityCoords(Ped)
-					local pCoords = GetEntityCoords(Selected)
-					local Distance = #(Coords - pCoords)
-
-					if Distance <= 5 then
-						TimeDistance = 100
-
-						local Pid = PlayerId()
-						if Distance <= 2 and (IsPedInMeleeCombat(Ped) or IsPlayerFreeAiming(Pid)) then
-							ClearPedTasks(Selected)
-							ClearPedSecondaryTask(Selected)
-							ClearPedTasksImmediately(Selected)
-
-							TaskSetBlockingOfNonTemporaryEvents(Selected,true)
-							SetBlockingOfNonTemporaryEvents(Selected,true)
-							SetEntityAsMissionEntity(Selected,true,true)
-							SetPedDropsWeaponsWhenDead(Selected,false)
-							TaskTurnPedToFaceEntity(Selected,Ped,3.0)
-							SetPedSuffersCriticalHits(Selected,false)
-							StealPeds[Selected] = true
-
-							local SelectedRobbery = 500
-							LocalPlayer["state"]["Buttons"] = true
-							LocalPlayer["state"]["Commands"] = true
-
-							if LoadAnim("random@mugging3") then
-								TaskPlayAnim(Selected,"random@mugging3","handsup_standing_base",8.0,8.0,-1,16,0,0,0,0)
-							end
-
-							while true do
-								local Coords = GetEntityCoords(Ped)
-								local pCoords = GetEntityCoords(Selected)
-								local Distance = #(Coords - pCoords)
-
-								if Distance <= 2 and (IsPedInMeleeCombat(Ped) or IsPlayerFreeAiming(Pid)) then
-									SelectedRobbery = SelectedRobbery - 1
-
-									if not IsEntityPlayingAnim(Selected,"random@mugging3","handsup_standing_base",3) then
-										TaskPlayAnim(Selected,"random@mugging3","handsup_standing_base",8.0,8.0,-1,16,0,0,0,0)
-									end
-
-									if SelectedRobbery <= 0 then
-										if LoadModel("prop_paper_bag_small") then
-											local Object = CreateObject("prop_paper_bag_small",Coords["x"],Coords["y"],Coords["z"],false,false,false)
-											AttachEntityToEntity(Object,Selected,GetPedBoneIndex(Selected,28422),0.0,-0.05,0.05,180.0,0.0,0.0,false,false,false,false,2,true)
-											
-											if LoadAnim("mp_safehouselost@") then
-												TaskPlayAnim(Selected,"mp_safehouselost@","package_dropoff",8.0,8.0,-1,16,0,0,0,0)
-											end
-
-											Wait(3000)
-
-											if DoesEntityExist(Object) then
-												DeleteEntity(Object)
-											end
-
-											vSERVER.StealPeds()
-											ClearPedSecondaryTask(Selected)
-											TaskWanderStandard(Selected,10.0,10)
-
-											LocalPlayer["state"]["Buttons"] = false
-											LocalPlayer["state"]["Commands"] = false
-
-											break
-										end
-									end
-								else
-									ClearPedSecondaryTask(Selected)
-									TaskWanderStandard(Selected,10.0,10)
-
-									LocalPlayer["state"]["Buttons"] = false
-									LocalPlayer["state"]["Commands"] = false
-
-									break
-								end
-
-								Wait(1)
-							end
-						end
-					end
-				end
-
-				Success,Selected = FindNextPed(Handler)
-			until not Success EndFindPed(Handler)
-		end
-
-		Wait(TimeDistance)
-	end
-end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DISVARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------

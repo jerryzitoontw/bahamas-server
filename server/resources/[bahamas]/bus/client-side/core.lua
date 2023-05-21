@@ -26,11 +26,11 @@ AddEventHandler("bus:Init",function()
 		end
 
 		exports["target"]:LabelText("WorkBus","Trabalhar")
-		TriggerEvent("Notify","verde","Trabalho finalizado.","Sucesso",5000)
+		TriggerEvent("Notify","verde","Trabalho finalizado.",5000)
 		Active = false
 	else
 		exports["target"]:LabelText("WorkBus","Finalizar")
-		TriggerEvent("Notify","verde","Trabalho iniciado.","Sucesso",5000)
+		TriggerEvent("Notify","verde","Trabalho iniciado.",5000)
 		Active = true
 		MakeBlips()
 	end
@@ -52,7 +52,7 @@ CreateThread(function()
 					if Distance <= 200 then
 						TimeDistance = 1
 
-						DrawMarker(22,Locations[Selected]["x"],Locations[Selected]["y"],Locations[Selected]["z"] + 3.0,0.0,0.0,0.0,0.0,180.0,0.0,7.5,7.5,5.0,65,130,226,100,0,0,0,1)
+						DrawMarker(22,Locations[Selected]["x"],Locations[Selected]["y"],Locations[Selected]["z"] + 3.0,0.0,0.0,0.0,0.0,180.0,0.0,7.5,7.5,5.0,245,10,70,100,0,0,0,1)
 						DrawMarker(1,Locations[Selected]["x"],Locations[Selected]["y"],Locations[Selected]["z"] - 3.0,0.0,0.0,0.0,0.0,0.0,0.0,15.0,15.0,10.0,255,255,255,50,0,0,0,0)
 
 						if Distance <= 10 then

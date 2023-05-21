@@ -2,6 +2,23 @@
 -- GROUPS
 -----------------------------------------------------------------------------------------------------------------------------------------
 Groups = {
+    -- Groups
+    ["Emergency"] = {
+		["Parent"] = {
+			["Police"] = true,
+			["Paramedic"] = true
+		},
+		["Hierarchy"] = { "Chefe" },
+		["Service"] = {}
+	},
+	["Restaurants"] = {
+		["Parent"] = {
+			["Pearls"] = true
+		},
+		["Hierarchy"] = { "Chefe" },
+		["Service"] = {}
+	},
+    -- Framework
 	["Admin"] = {
 		["Parent"] = {
 			["Admin"] = true
@@ -17,168 +34,187 @@ Groups = {
 		["Salary"] = { 2500,2250,2000,1750 },
 		["Service"] = {}
 	},
-	["Police"] = {
-		["Parent"] = {
-			["Police"] = true
-		},
-		["Hierarchy"] = { "Chefe","Capitão","Tenente","Sargento","Corporal","Oficial","Cadete" },
-		["Salary"] = { 2500,2250,2000,1750,1500,1500,1500 },
-		["Service"] = {},
-		["Type"] = "Work"
-	},
-	["Paramedic"] = {
+    -- Public
+    ["Paramedic"] = {
 		["Parent"] = {
 			["Paramedic"] = true
 		},
-		["Hierarchy"] = { "Chefe","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Salary"] = { 2500,2250,2000 },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Mechanic"] = {
+	["Police"] = {
 		["Parent"] = {
-			["Mechanic"] = true
+			["Police"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Salary"] = { 2500,2250,2000 },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["BurgerShot"] = {
+	["Harmony"] = {
 		["Parent"] = {
-			["BurgerShot"] = true
+			["Harmony"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["PizzaThis"] = {
+    ["Ottos"] = {
 		["Parent"] = {
-			["PizzaThis"] = true
+			["Ottos"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["UwuCoffee"] = {
+    ["Tuners"] = {
 		["Parent"] = {
-			["UwuCoffee"] = true
+			["Tuners"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["BeanMachine"] = {
+    -- Restaurants
+	["Pearls"] = {
 		["Parent"] = {
-			["BeanMachine"] = true
+			["Pearls"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Ballas"] = {
+    -- Contraband
+    ["Chiliad"] = {
 		["Parent"] = {
-			["Ballas"] = true
+			["Chiliad"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Vagos"] = {
-		["Parent"] = {
-			["Vagos"] = true
-		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
-		["Service"] = {},
-		["Type"] = "Work"
-	},
-	["Families"] = {
+    ["Families"] = {
 		["Parent"] = {
 			["Families"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Aztecas"] = {
+    ["Highways"] = {
 		["Parent"] = {
-			["Aztecas"] = true
+			["Highways"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Bloods"] = {
+    ["Vagos"] = {
 		["Parent"] = {
-			["Bloods"] = true
+			["Vagos"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Grota"] = {
+    -- Favelas
+    ["Barragem"] = {
 		["Parent"] = {
-			["Grota"] = true
+			["Barragem"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["SV"] = {
+    ["Farol"] = {
 		["Parent"] = {
-			["Sv"] = true
+			["Farol"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Ruinxos"] = {
+    ["Parque"] = {
 		["Parent"] = {
-			["Ruinxos"] = true
+			["Parque"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Pedreira"] = {
+    ["Sandy"] = {
 		["Parent"] = {
-			["Pedreira"] = true
+			["Sandy"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Sinaloa"] = {
+    ["Petroleo"] = {
 		["Parent"] = {
-			["Sinaloa"] = true
+			["Petroleo"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Mafia"] = {
+    ["Praia-1"] = {
 		["Parent"] = {
-			["Mafia"] = true
+			["Praia-1"] = true
 		},
-		["Hierarchy"] = { "Chefe","Sub-Chefe","Gerente","Conselheiro","Membro" },
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
-	["Emergency"] = {
+    ["Praia-2"] = {
 		["Parent"] = {
-			["Police"] = true,
-			["Paramedic"] = true
+			["Praia-2"] = true
 		},
-		["Hierarchy"] = { "Chefe" },
-		["Service"] = {}
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Service"] = {},
+		["Type"] = "Work"
 	},
-	["Restaurants"] = {
+    ["Zancudo"] = {
 		["Parent"] = {
-			["BurgerShot"] = true,
-			["PizzaThis"] = true,
-			["UwuCoffee"] = true,
-			["BeanMachine"] = true
+			["Zancudo"] = true
 		},
-		["Hierarchy"] = { "Chefe" },
-		["Service"] = {}
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Service"] = {},
+		["Type"] = "Work"
+	},
+    -- Mafias
+    ["Madrazzo"] = {
+		["Parent"] = {
+			["Madrazzo"] = true
+		},
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Service"] = {},
+		["Type"] = "Work"
+	},
+    ["Playboy"] = {
+		["Parent"] = {
+			["Playboy"] = true
+		},
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Service"] = {},
+		["Type"] = "Work"
+	},
+    ["TheSouth"] = {
+		["Parent"] = {
+			["TheSouth"] = true
+		},
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Service"] = {},
+		["Type"] = "Work"
+	},
+    ["Vineyard"] = {
+		["Parent"] = {
+			["Vineyard"] = true
+		},
+		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Service"] = {},
+		["Type"] = "Work"
 	}
 }

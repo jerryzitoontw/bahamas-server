@@ -110,7 +110,7 @@ function targetLabel(x,y,z,Number,Item,Mode,Perm)
 					label = "Guardar",
 					tunnel = "client"
 				},{
-					event = "shops:medicBag",
+					event = "shops:Medic",
 					label = "Abrir",
 					tunnel = "client"
 				}

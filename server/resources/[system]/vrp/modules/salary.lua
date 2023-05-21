@@ -1,10 +1,16 @@
------------------------------------------------------------------------------------------------------------------------------------------
--- SALARY
------------------------------------------------------------------------------------------------------------------------------------------
 local Salary = {}
------------------------------------------------------------------------------------------------------------------------------------------
--- SALARY:ADD
------------------------------------------------------------------------------------------------------------------------------------------
+
+-- GetHierarquia
+
+function vRP.GetHierarquia(Passport,Permission)
+    local Datatable = vRP.GetSrvData("Permissions:" ..Permission)
+    for k, v in pairs(Datatable) do
+        return k,v
+    end
+end
+
+-- UPDATEROLEPASS
+
 AddEventHandler("Salary:Add", function(Passport, Permission)
     if not Salary[Permission] then
         Salary[Permission] = {}
@@ -13,9 +19,9 @@ AddEventHandler("Salary:Add", function(Passport, Permission)
         Salary[Permission][Passport] = os.time() + SalarySeconds
     end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- SALARY:REMOVE
------------------------------------------------------------------------------------------------------------------------------------------
+
+-- UPDATEROLEPASS
+
 AddEventHandler("Salary:Remove", function(Passport, Permission)
     if Permission then
         if Salary[Permission] and Salary[Permission][Passport] then
@@ -29,43 +35,34 @@ AddEventHandler("Salary:Remove", function(Passport, Permission)
         end
     end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- THREAD
------------------------------------------------------------------------------------------------------------------------------------------
+
+-- UPDATEROLEPASS
+
 CreateThread(function()
     while true do
-        Wait(60000)
+        Wait(SalarySeconds)
         for k, v in pairs(Salary) do
             for Passport, Sources in pairs(Salary[k]) do
-                if Sources <= os.time() then
-                    Salary[k][Passport] = os.time() + SalarySeconds
-                    if vRP.HasPermission(Passport, k) then
-                        if Groups[k] and Groups[k].Salary and Groups[k].Salary[vRP.HasPermission(Passport, k)] then
-                            vRP.GiveBank(Passport, Groups[k].Salary[vRP.HasPermission(Passport, k)])
-                        end
-                    else
-                        Salary[k][Passport] = nil
+                local id,level = vRP.GetHierarquia(Passport,k)
+                Salary[k][Passport] = os.time() + SalarySeconds
+                if vRP.HasGroup(Passport, k,level) then
+                    if Groups[k] and Groups[k].Salary[level]  and vRP.HasService(Passport,k) then
+                        vRP.GiveBank(Passport, Groups[k].Salary[level])
                     end
+                else
+                    Salary[k][Passport] = nil
                 end
             end
         end
     end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- DISCONNECT
------------------------------------------------------------------------------------------------------------------------------------------
+
+-- UPDATEROLEPASS
+
 AddEventHandler("Disconnect", function(Passport)
     for k, v in pairs(Salary) do
         if Salary[k][Passport] then
             Salary[k][Passport] = nil
         end
-    end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- RESOURCESTART
------------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("onResourceStart",function(Resource)
-    if "vrp" == Resource then
-        Wait(3000)
     end
 end)

@@ -2307,14 +2307,14 @@ Use = {
 					return
 				end
 
-				if vRP.InsideVehicle(source) then
+				if vRPC.InsideVehicle(source) then
 					vRPC.AnimActive(source)
 					vGARAGE.StartHotwired(source)
 					Active[Passport] = os.time() + 100
 					Player(source)["state"]["Buttons"] = true
 					TriggerClientEvent("inventory:Close",source)
 
-					if vTASKBAR.taskLockpick(source) then
+					if vTASKBAR.Task(source,3,20000) then
 						if math.random(100) >= 20 then
 							Brokenpick = 900
 							TriggerEvent("plateEveryone",Plate)
@@ -2332,7 +2332,7 @@ Use = {
 							local Service = vRP.NumPermission("Police")
 							for Passports,Sources in pairs(Service) do
 								async(function()
-									TriggerClientEvent("NotifyPush",Sources,{ code = "QRU", title = "Roubo de Veículo", x = Coords["x"], y = Coords["y"], z = Coords["z"], vehicle = VehicleName(vehName).." - "..Plate, time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
+									TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Roubo de Veículo", x = Coords["x"], y = Coords["y"], z = Coords["z"], vehicle = VehicleName(vehName).." - "..Plate, time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
 								end)
 							end
 						end
@@ -2355,62 +2355,26 @@ Use = {
 					TriggerClientEvent("inventory:Close",source)
 					vRPC.playAnim(source,false,{"missfbi_s4mop","clean_mop_back_player"},true)
 
-					if string.sub(Plate,1,4) == "DISM" then
-						if vTASKBAR.UpgradeVehicle(source) then
-							Brokenpick = 900
-							Active[Passport] = os.time() + 30
-							TriggerClientEvent("inventory:DisPed",source)
-							TriggerClientEvent("Progress",source,"Usando",30000)
+					if not string.sub(Plate,1,4) == "DISM" then
+						Brokenpick = 900
 
-							if math.random(100) >= 25 then
-								local Coords = vRP.GetEntityCoords(source)
-								local Service = vRP.NumPermission("Police")
-								for Passports,Sources in pairs(Service) do
-									async(function()
-										TriggerClientEvent("NotifyPush",Sources,{ code = "QRU", title = "Roubo de Veículo", x = Coords["x"], y = Coords["y"], z = Coords["z"], vehicle = VehicleName(vehName).." - "..Plate, time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
-									end)
-								end
+						if math.random(100) >= 75 then
+							TriggerEvent("plateEveryone",Plate)
+							TriggerClientEvent("inventory:vehicleAlarm",source,Network,Plate)
+
+							local Network = NetworkGetEntityFromNetworkId(Network)
+							if GetVehicleDoorLockStatus(Network) == 2 then
+								SetVehicleDoorsLocked(Network,1)
 							end
-
-							repeat
-								if os.time() >= parseInt(Active[Passport]) then
-									Active[Passport] = nil
-
-									TriggerEvent("plateEveryone",Plate)
-									TriggerClientEvent("target:Dismantles",source)
-									TriggerClientEvent("inventory:vehicleAlarm",source,Network,Plate)
-
-									local Network = NetworkGetEntityFromNetworkId(Network)
-									if GetVehicleDoorLockStatus(Network) == 2 then
-										SetVehicleDoorsLocked(Network,1)
-									end
-								end
-
-								Wait(100)
-							until not Active[Passport]
 						end
-					else
-						if vTASKBAR.taskLockpick(source) then
-							Brokenpick = 900
 
-							if math.random(100) >= 75 then
-								TriggerEvent("plateEveryone",Plate)
-								TriggerClientEvent("inventory:vehicleAlarm",source,Network,Plate)
-
-								local Network = NetworkGetEntityFromNetworkId(Network)
-								if GetVehicleDoorLockStatus(Network) == 2 then
-									SetVehicleDoorsLocked(Network,1)
-								end
-							end
-
-							if math.random(100) >= 25 then
-								local Coords = vRP.GetEntityCoords(source)
-								local Service = vRP.NumPermission("Police")
-								for Passports,Sources in pairs(Service) do
-									async(function()
-										TriggerClientEvent("NotifyPush",Sources,{ code = "QRU", title = "Roubo de Veículo", x = Coords["x"], y = Coords["y"], z = Coords["z"], vehicle = VehicleName(vehName).." - "..Plate, time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
-									end)
-								end
+						if math.random(100) >= 25 then
+							local Coords = vRP.GetEntityCoords(source)
+							local Service = vRP.NumPermission("Police")
+							for Passports,Sources in pairs(Service) do
+								async(function()
+									TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Roubo de Veículo", x = Coords["x"], y = Coords["y"], z = Coords["z"], vehicle = VehicleName(vehName).." - "..Plate, time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
+								end)
 							end
 						end
 					end
@@ -2423,7 +2387,7 @@ Use = {
 					end
 
 					Player(source)["state"]["Buttons"] = false
-					vRPC.removeObjects(source)
+					vRPC.Destroy(source)
 					Active[Passport] = nil
 				end
 			end

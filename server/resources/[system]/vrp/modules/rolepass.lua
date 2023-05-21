@@ -2,6 +2,7 @@
 -- UPDATEROLEPASS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UpdateRolepass(source, Day)
+    print(source, Day)
     if Characters[source] then
         vRP.Query("accounts/Rolepass", { license = Characters[source].license, rolepass = Day })
         Characters[source].rolepass = Day
@@ -16,11 +17,3 @@ function vRP.CheckRolepass(source)
     end
     return false
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- RESOURCESTART
------------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("onResourceStart",function(Resource)
-    if "vrp" == Resource then
-        Wait(3000)
-    end
-end)

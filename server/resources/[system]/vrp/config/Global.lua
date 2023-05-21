@@ -11,7 +11,7 @@ ServerName = "Bahamas City"
 ReleaseText = "Envie seu ID na sala liberação"
 SpawnCoords = vec3(-1192.2,-1513.12,4.36)
 BackPrison = vec3(1841.62,2585.94,46.02)
-BackpackWeightDefault = 30
+BackpackWeightDefault = 25
 WipeBackpackDeath = false
 NewItemIdentity = true
 -----------------------------------------------------------------------------------------------------------------------------------------
