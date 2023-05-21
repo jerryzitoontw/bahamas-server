@@ -95,8 +95,8 @@ Products = {
 	},
 	["Pearls3"] = {
 		{ ["timer"] = 10, ["need"] = {
-			{ ["item"] = "Pearls2", ["amount"] = 1 },
-			{ ["item"] = "Pearls1", ["amount"] = 1 }
+			{ ["item"] = "foodburger", ["amount"] = 1 },
+			{ ["item"] = "foodjuice", ["amount"] = 1 }
 		}, ["needAmount"] = 1, ["item"] = "foodbox", ["itemAmount"] = 1 }
 	},
 	["paper"] = {
@@ -657,16 +657,12 @@ function Creative.Deliver(Slot)
 					vDELIVER.Update(source)
 				end
 			end
-		elseif Item == "burgershot3" or Item == "burgershot4" then
-			if vDELIVER.Deliver(source,"BurgerShot") then
+		elseif Item == "foodbox" then
+			if vDELIVER.Deliver(source,"Pearls") then
 				if vRP.TakeItem(Passport,Full,1,false,Slot) then
 					local Experience = vRP.GetExperience(Passport,"Delivery")
 					local Category = ClassCategory(Experience)
 					local Valuation = 200
-
-					if Item == "burgershot4" then
-						Valuation = 350
-					end
 
 					if Category == "B+" then
 						Valuation = Valuation + 15
@@ -688,115 +684,7 @@ function Creative.Deliver(Slot)
 
 					TriggerClientEvent("inventory:Update",source,"Backpack")
 					vRP.GenerateItem(Passport,"dollars",Valuation,true)
-					vRP.DirectChest("BurgerShot","100",Valuation * 0.05,true)
-					vRP.PutExperience(Passport,"Delivery",1)
-					vDELIVER.Update(source)
-				end
-			end
-		elseif Item == "pizzathis3" or Item == "pizzathis4" then
-			if vDELIVER.Deliver(source,"PizzaThis") then
-				if vRP.TakeItem(Passport,Full,1,false,Slot) then
-					local Experience = vRP.GetExperience(Passport,"Delivery")
-					local Category = ClassCategory(Experience)
-					local Valuation = 200
-
-					if Item == "pizzathis4" then
-						Valuation = 350
-					end
-
-					if Category == "B+" then
-						Valuation = Valuation + 15
-					elseif Category == "A" then
-						Valuation = Valuation + 30
-					elseif Category == "A+" then
-						Valuation = Valuation + 45
-					elseif Category == "S" then
-						Valuation = Valuation + 60
-					elseif Category == "S+" then
-						Valuation = Valuation + 75
-					end
-
-					if Buffs["Dexterity"][Passport] then
-						if Buffs["Dexterity"][Passport] > os.time() then
-							Valuation = Valuation + (Valuation * 0.1)
-						end
-					end
-
-					TriggerClientEvent("inventory:Update",source,"Backpack")
-					vRP.GenerateItem(Passport,"dollars",Valuation,true)
-					vRP.DirectChest("PizzaThis","100",Valuation * 0.05,true)
-					vRP.PutExperience(Passport,"Delivery",1)
-					vDELIVER.Update(source)
-				end
-			end
-		elseif Item == "uwucoffee3" or Item == "uwucoffee4" then
-			if vDELIVER.Deliver(source,"UwuCoffee") then
-				if vRP.TakeItem(Passport,Full,1,false,Slot) then
-					local Experience = vRP.GetExperience(Passport,"Delivery")
-					local Category = ClassCategory(Experience)
-					local Valuation = 200
-
-					if Item == "uwucoffee4" then
-						Valuation = 350
-					end
-
-					if Category == "B+" then
-						Valuation = Valuation + 15
-					elseif Category == "A" then
-						Valuation = Valuation + 30
-					elseif Category == "A+" then
-						Valuation = Valuation + 45
-					elseif Category == "S" then
-						Valuation = Valuation + 60
-					elseif Category == "S+" then
-						Valuation = Valuation + 75
-					end
-
-					if Buffs["Dexterity"][Passport] then
-						if Buffs["Dexterity"][Passport] > os.time() then
-							Valuation = Valuation + (Valuation * 0.1)
-						end
-					end
-
-					TriggerClientEvent("inventory:Update",source,"Backpack")
-					vRP.GenerateItem(Passport,"dollars",Valuation,true)
-					vRP.DirectChest("UwuCoffee","100",Valuation * 0.05,true)
-					vRP.PutExperience(Passport,"Delivery",1)
-					vDELIVER.Update(source)
-				end
-			end
-		elseif Item == "beanmachine3" or Item == "beanmachine4" then
-			if vDELIVER.Deliver(source,"BeanMachine") then
-				if vRP.TakeItem(Passport,Full,1,false,Slot) then
-					local Experience = vRP.GetExperience(Passport,"Delivery")
-					local Category = ClassCategory(Experience)
-					local Valuation = 200
-
-					if Item == "beanmachine4" then
-						Valuation = 350
-					end
-
-					if Category == "B+" then
-						Valuation = Valuation + 15
-					elseif Category == "A" then
-						Valuation = Valuation + 30
-					elseif Category == "A+" then
-						Valuation = Valuation + 45
-					elseif Category == "S" then
-						Valuation = Valuation + 60
-					elseif Category == "S+" then
-						Valuation = Valuation + 75
-					end
-
-					if Buffs["Dexterity"][Passport] then
-						if Buffs["Dexterity"][Passport] > os.time() then
-							Valuation = Valuation + (Valuation * 0.1)
-						end
-					end
-
-					TriggerClientEvent("inventory:Update",source,"Backpack")
-					vRP.GenerateItem(Passport,"dollars",Valuation,true)
-					vRP.DirectChest("BeanMachine","100",Valuation * 0.05,true)
+					vRP.DirectChest("Pearls","100",Valuation * 0.05,true)
 					vRP.PutExperience(Passport,"Delivery",1)
 					vDELIVER.Update(source)
 				end
@@ -1368,7 +1256,7 @@ function Creative.Animals(Entity)
 	local Passport = vRP.Passport(source)
 	if Passport then
 		if Entity[2] ~= nil and Entity[3] ~= nil then
-			local Item = "switchblade"
+			local Item = "WEAPON_SWITCHBLADE"
 			local consultItem = vRP.InventoryItemAmount(Passport,Item)
 			if consultItem[1] <= 0 then
 				TriggerClientEvent("Notify",source,"amarelo","Necessário possuir um <b>"..itemName(Item).."</b>.",5000)
@@ -1416,12 +1304,12 @@ function Creative.Animals(Entity)
 
 								if Animals[Model] then
 									if parseInt(Animals[Model][netObjects]) <= 1 then
-										vRP.GenerateItem(Passport,"meat",1,true)
+										vRP.GenerateItem(Passport,"coyote1star",1,true)
 									elseif parseInt(Animals[Model][netObjects]) == 2 then
-										vRP.GenerateItem(Passport,"meat",1,true)
+										vRP.GenerateItem(Passport,"coyote1star",1,true)
 									elseif parseInt(Animals[Model][netObjects]) == 3 then
 										local randItens = math.random(8)
-										vRP.GenerateItem(Passport,"animalfat",randItens,true)
+										vRP.GenerateItem(Passport,"coyote1star",randItens,true)
 									elseif parseInt(Animals[Model][netObjects]) == 4 then
 										local randItens = math.random(4)
 										vRP.GenerateItem(Passport,"leather",randItens,true)
@@ -1430,7 +1318,7 @@ function Creative.Animals(Entity)
 										local randItens = math.random(2)
 										Animals[Model][netObjects] = nil
 										TriggerEvent("DeletePed",netObjects)
-										vRP.GenerateItem(Passport,"animalpelt",randItens,true)
+										vRP.GenerateItem(Passport,"leather",randItens,true)
 									end
 								end
 							end
@@ -1540,11 +1428,11 @@ function Creative.MakeProducts(Table)
 				vRPC.playAnim(source,false,{"anim@amb@business@coc@coc_unpack_cut@","fullcut_cycle_v6_cokecutter"},true)
 			elseif Selected == "tableweed" then
 				vRPC.playAnim(source,false,{"anim@amb@business@coc@coc_unpack_cut@","fullcut_cycle_v6_cokecutter"},true)
-			elseif Selected == "burgershot1" or Selected == "pizzathis1" or Selected == "uwucoffee1" or Selected == "beanmachine1" then
+			elseif Selected == "Pearls1" then
 				vRPC.playAnim(source,false,{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"},true)
-			elseif Selected == "burgershot2" or Selected == "pizzathis2" or Selected == "uwucoffee2" or Selected == "beanmachine2" then
+			elseif Selected == "Pearls2" then
 				vRPC.playAnim(source,false,{"anim@amb@business@coc@coc_unpack_cut@","fullcut_cycle_v6_cokecutter"},true)
-			elseif Selected == "burgershot3" or Selected == "pizzathis3" or Selected == "uwucoffee3" or Selected == "beanmachine3" then
+			elseif Selected == "Pearls3" then
 				vRPC.playAnim(source,false,{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"},true)
 			elseif Selected == "milkBottle" then
 				vRPC.playAnim(source,false,{"amb@prop_human_parking_meter@female@idle_a","idle_a_female"},true)

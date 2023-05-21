@@ -39,24 +39,6 @@ AddEventHandler("gameEventTriggered",function(name,Message)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- THREADBLOODTICK
------------------------------------------------------------------------------------------------------------------------------------------
-CreateThread(function()
-	while true do
-		local Ped = PlayerPedId()
-		local Health = GetEntityHealth(Ped)
-		if GetGameTimer() >= BloodTimers and GetEntityHealth(Ped) > 100 then
-
-			if Health > 101 and Bleeding >= 5 then
-				SetEntityHealth(Ped,Health - 3)
-				TriggerEvent("Notify","amarelo","Sangramento encontrado.",3000)
-			end
-		end
-
-		Wait(1000)
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
 -- PARAMEDIC:RESET
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("paramedic:Reset")

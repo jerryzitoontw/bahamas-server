@@ -13,9 +13,12 @@ Tunnel.bindInterface("dynamic",Creative)
 -- WORKS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Works = {
+	["Driver"] = "Motorista",
+	["Delivery"] = "Entregador",
+
 	["Dismantle"] = "Desmanche",
 	["Tows"] = "Reboque",
-	["Delivery"] = "Entregador",
+
 	["Transporter"] = "Transportador",
 	["Lumberman"] = "Lenhador"
 }

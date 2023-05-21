@@ -676,7 +676,7 @@ CreateThread(function()
 		Distance = 0.75
 	})
 
-	AddCircleZone("Juice01",vec3(-1190.76,-904.24,13.99),0.5,{
+	AddCircleZone("Juice01",vec3(-1843.61,-1198.19,14.72),0.5,{
 		name = "Juice01",
 		heading = 3374176
 	},{
@@ -686,12 +686,12 @@ CreateThread(function()
 				event = "inventory:MakeProducts",
 				label = "Encher Copo",
 				tunnel = "products",
-				service = "burgershot1"
+				service = "Pearls1"
 			}
 		}
 	})
 
-	AddCircleZone("Burger01",vec3(-1202.09,-897.2,13.99),0.5,{
+	AddCircleZone("Burger01",vec3(-1844.76,-1196.41,14.33),0.5,{
 		name = "Burger01",
 		heading = 3374176
 	},{
@@ -701,12 +701,12 @@ CreateThread(function()
 				event = "inventory:MakeProducts",
 				label = "Montar Lanche",
 				tunnel = "products",
-				service = "burgershot2"
+				service = "Pearls2"
 			}
 		}
 	})
 
-	AddCircleZone("Box01",vec3(-1197.92,-892.28,13.99),0.5,{
+	AddCircleZone("Box01",vec3(-1846.31,-1193.05,14.24),0.5,{
 		name = "Box01",
 		heading = 3374176
 	},{
@@ -716,142 +716,7 @@ CreateThread(function()
 				event = "inventory:MakeProducts",
 				label = "Montar Combo",
 				tunnel = "products",
-				service = "burgershot3"
-			}
-		}
-	})
-
-	AddCircleZone("Juice02",vec3(810.69,-764.58,26.77),0.5,{
-		name = "Juice02",
-		heading = 3374176
-	},{
-		Distance = 1.25,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Encher Copo",
-				tunnel = "products",
-				service = "pizzathis1"
-			}
-		}
-	})
-
-	AddCircleZone("Burger02",vec3(807.68,-762.3,26.77),0.5,{
-		name = "Burger02",
-		heading = 3374176
-	},{
-		Distance = 1.0,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Montar Lanche",
-				tunnel = "products",
-				service = "pizzathis2"
-			}
-		}
-	})
-
-	AddCircleZone("Box02",vec3(809.87,-761.15,26.77),0.5,{
-		name = "Box02",
-		heading = 3374176
-	},{
-		Distance = 1.25,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Montar Combo",
-				tunnel = "products",
-				service = "pizzathis3"
-			}
-		}
-	})
-
-	AddCircleZone("Juice03",vec3(-590.36,-1058.54,22.34),0.5,{
-		name = "Juice03",
-		heading = 3374176
-	},{
-		Distance = 1.25,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Encher Copo",
-				tunnel = "products",
-				service = "uwucoffee1"
-			}
-		}
-	})
-
-	AddCircleZone("Burger03",vec3(-590.49,-1056.51,22.36),0.5,{
-		name = "Burger03",
-		heading = 3374176
-	},{
-		Distance = 1.0,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Montar Lanche",
-				tunnel = "products",
-				service = "uwucoffee2"
-			}
-		}
-	})
-
-	AddCircleZone("Box03",vec3(-590.5,-1063.02,22.36),0.5,{
-		name = "Box03",
-		heading = 3374176
-	},{
-		Distance = 1.25,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Montar Combo",
-				tunnel = "products",
-				service = "uwucoffee3"
-			}
-		}
-	})
-
-	AddCircleZone("Juice04",vec3(126.28,-1035.83,29.27),0.5,{
-		name = "Juice04",
-		heading = 3374176
-	},{
-		Distance = 1.25,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Encher Copo",
-				tunnel = "products",
-				service = "beanmachine1"
-			}
-		}
-	})
-
-	AddCircleZone("Burger04",vec3(122.31,-1038.35,29.27),0.5,{
-		name = "Burger04",
-		heading = 3374176
-	},{
-		Distance = 1.0,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Montar Lanche",
-				tunnel = "products",
-				service = "beanmachine2"
-			}
-		}
-	})
-
-	AddCircleZone("Box04",vec3(122.79,-1044.03,29.27),0.5,{
-		name = "Box04",
-		heading = 3374176
-	},{
-		Distance = 1.25,
-		options = {
-			{
-				event = "inventory:MakeProducts",
-				label = "Montar Combo",
-				tunnel = "products",
-				service = "beanmachine3"
+				service = "Pearls3"
 			}
 		}
 	})

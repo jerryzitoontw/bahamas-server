@@ -91,13 +91,25 @@ function Creative.paymentMethod(Network,Plate)
 				vRP.GenerateItem(Passport,VehSelected.."a",1,true)
 			end
 
-			vRP.GenerateItem(Passport,"plastic",AmountItens,true)
-			vRP.GenerateItem(Passport,"glass",AmountItens,true)
-			vRP.GenerateItem(Passport,"rubber",AmountItens,true)
-			vRP.GenerateItem(Passport,"copper",AmountItens,true)
-			vRP.GenerateItem(Passport,"aluminum",AmountItens,true)
-
-			vRP.PutExperience(Passport,"Tows",1)
+			local Members = exports["vrp"]:Party(Passport,source,20)
+			if #Members > 1 then
+				for _,v in pairs(Members) do
+					vRP.GenerateItem(v["Passport"],"plastic",AmountItens * #Members,true)
+					vRP.GenerateItem(v["Passport"],"glass",AmountItens * #Members,true)
+					vRP.GenerateItem(v["Passport"],"rubber",AmountItens * #Members,true)
+					vRP.GenerateItem(v["Passport"],"copper",AmountItens * #Members,true)
+					vRP.GenerateItem(v["Passport"],"aluminum",AmountItens * #Members,true)
+					vRP.PutExperience(v["Passport"],"Tows",1)
+				end
+			else
+				vRP.GenerateItem(Passport,"plastic",AmountItens,true)
+				vRP.GenerateItem(Passport,"glass",AmountItens,true)
+				vRP.GenerateItem(Passport,"rubber",AmountItens,true)
+				vRP.GenerateItem(Passport,"copper",AmountItens,true)
+				vRP.GenerateItem(Passport,"aluminum",AmountItens,true)
+	
+				vRP.PutExperience(Passport,"Tows",1)
+			end
 		else
 			TriggerClientEvent("Notify",source,"vermelho","Mochila cheia.",5000)
 		end
