@@ -267,14 +267,14 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.TakeItem(Passport, Item, Amount, Notify, Slot)
     local source = vRP.Source(Passport)
-    TriggerClientEvent("inventory:Update",source,"Backpack")
+    local take = false
     if source and parseInt(Amount) > 0 then
         local Inventory = vRP.Inventory(Passport)
         if not Slot then
             for k, v in pairs(Inventory) do
-                if v["item"] == Item and parseInt(Amount) <= v["amount"] then
-                    v["amount"] = v["amount"] - parseInt(Amount)
-                    if v["amount"] <= 0 then
+                if v.item == Item and parseInt(Amount) <= v.amount then
+                    v.amount = v.amount - parseInt(Amount)
+                    if v.amount <= 0 then
                         if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
                             TriggerClientEvent("inventory:verifyWeapon", source, Item)
                         end
@@ -284,28 +284,30 @@ function vRP.TakeItem(Passport, Item, Amount, Notify, Slot)
                         Inventory[k] = nil
                     end
                     if Notify and itemBody(Item) then
-                        TriggerClientEvent("itensNotify", source, { "-",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                        TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
                     end
+                    take = true
                     break
                 end
             end
-        elseif Inventory[Slot] and Inventory[Slot]["item"] == Item and parseInt(Amount) <= Inventory[Slot]["amount"] then
-            Inventory[Slot]["amount"] = Inventory[Slot]["amount"] - parseInt(Amount)
-            if 0 >= Inventory[Slot]["amount"] then
+        elseif Inventory[tostring(Slot)].item == Item and parseInt(Amount) <= Inventory[tostring(Slot)].amount then
+            Inventory[tostring(Slot)].amount =  Inventory[tostring(Slot)].amount - parseInt(Amount)
+            if  Inventory[tostring(Slot)].amount <= 0 then
                 if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
                     TriggerClientEvent("inventory:verifyWeapon", source, Item)
                 end
-                if 5 >= parseInt(Slot) then
+                if parseInt(Slot) <= 5 then
                     TriggerClientEvent("inventory:RemoveWeapon", source, Item)
                 end
-                Inventory[Slot] = nil
+                Inventory[tostring(Slot)] = nil
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "-",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
+            take = true
         end
     end
-    return true
+    return take
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVEITEM

@@ -79,6 +79,33 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PARAMEDIC:REVIVE
 -----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("paramedic:Adrenaline")
+AddEventHandler("paramedic:Adrenaline",function(entity)
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport and vRP.GetHealth(entity) <= 100 then
+		if vRP.ConsultItem(Passport,"adrenaline",1) then
+			local OtherPassport = vRP.Passport(entity)
+			Player(source)["state"]["Cancel"] = true
+			TriggerClientEvent("Progress",source,"Tratando",10000)
+			vRPC.playAnim(source,false,{"mini@cpr@char_a@cpr_str","cpr_pumpchest"},true)
+
+			SetTimeout(10000,function()
+				vRP.TakeItem(Passport,"adrenaline",1)
+				vRP.Revive(entity,101)
+				vRPC.Destroy(source)
+				vRP.UpgradeThirst(OtherPassport,10)
+				vRP.UpgradeHunger(OtherPassport,10)
+				Player(source)["state"]["Cancel"] = false
+			end)
+		else
+			TriggerClientEvent("Notify",source,"amarelo","Você não possui <b>1x "..itemName("adrenaline").."</b>.",5000)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- PARAMEDIC:REVIVE
+-----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("paramedic:Revive")
 AddEventHandler("paramedic:Revive",function(entity)
 	local source = source

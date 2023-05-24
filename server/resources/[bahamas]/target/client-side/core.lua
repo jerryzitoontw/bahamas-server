@@ -18,6 +18,14 @@ local Sucess = false
 local Dismantleds = 1
 LocalPlayer["state"]["Target"] = false
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- ADRENALINE
+-----------------------------------------------------------------------------------------------------------------------------------------
+local Adrenaline = {
+	{ 809.87,-494.42,30.68 },
+	{ 1603.14,3568.94,38.77 },
+	{ -470.91,6289.1,13.61 }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- TOWS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Tows = {
@@ -1025,6 +1033,13 @@ function TargetEnable()
 							local Menu = {}
 
 							Selected = { source }
+
+							for k,v in pairs(Adrenaline) do
+								local Distance = #(Coords - vec3(v[1],v[2],v[3]))
+								if Distance <= 10 then
+									Menu[#Menu + 1] = { event = "paramedic:Adrenaline", label = "Reviver", tunnel = "paramedic" }
+								end
+							end
 
 							if LocalPlayer["state"]["Police"] then
 								Menu[#Menu + 1] = { event = "police:runInspect", label = "Revistar", tunnel = "police" }

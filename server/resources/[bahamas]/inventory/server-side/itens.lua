@@ -161,34 +161,13 @@ Use = {
 			return
 		end
 
-		local ClosestPed = vRPC.ClosestPed(source,2)
-		if ClosestPed then
-			local OtherPassport = vRP.Passport(ClosestPed)
+		local Ped = GetPlayerPed(source)
+		local entity = vRPC.ClosestPed(source,2)
+		if entity then
+			local OtherPassport = vRP.Passport(entity)
 			if OtherPassport then
-				if vRP.GetHealth(ClosestPed) <= 101 then
-					vRPC.AnimActive(source)
-					Active[Passport] = os.time() + 10
-					Player(source)["state"]["Buttons"] = true
-					TriggerClientEvent("Progress",source,"Aplicando Adrenalina",10000)
-					TriggerClientEvent("inventory:Close",source)
-					vRPC.playAnim(source,true,{"mini@cpr@char_a@cpr_str","cpr_pumpchest"},true)
-
-					repeat
-						if os.time() >= parseInt(Active[Passport]) then
-							Active[Passport] = nil
-							vRPC.Destroy(source,"one")
-							Player(source)["state"]["Buttons"] = false
-
-							if vRP.TakeItem(Passport,Full,1,true,Slot) then
-								vRP.UpgradeThirst(Passport,10)
-								vRP.UpgradeHunger(OtherPassport,10)
-								vRP.Revive(101)
-								TriggerEvent("paramedic:Reset")
-							end
-						end
-
-						Wait(100)
-					until not Active[Passport]
+				if vRP.GetHealth(entity) <= 101 then
+					TriggerEvent("paramedic:Revive",entity)
 				end
 			end
 		end
