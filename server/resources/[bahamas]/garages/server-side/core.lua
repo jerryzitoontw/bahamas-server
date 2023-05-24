@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("garages",Creative)
+Bahamas = {}
+Tunnel.bindInterface("garages",Bahamas)
 vCLIENT = Tunnel.getInterface("garages")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ GlobalState["Plates"] = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SERVERVEHICLE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.ServerVehicle(Model,x,y,z,Heading,Plate,Nitrox,Doors,Body,Fuel)
+function Bahamas.ServerVehicle(Model,x,y,z,Heading,Plate,Nitrox,Doors,Body,Fuel)
 	local Vehicle = CreateVehicle(Model,x,y,z,Heading,true,true)
 
 	while not DoesEntityExist(Vehicle) do
@@ -225,7 +225,7 @@ local Works = {
 
 	-- Paramedic (Public)
 	["Paramedic"] = {
-		"emsnspeedo"
+		"ambulance2"
 	},
 	["HeliParamedic"] = {
 		"polmav"
@@ -237,17 +237,19 @@ local Works = {
 	},
 	["Police"] = {
 		"audia3",
-		"audia4",
 		"audiq8",
 		"audirs5",
-		"audirs6",
-		"audirs6av",
-		"ducatidm1200",
-		"raptor",
+		"audirs62",
+		"audirs6avant",
+		"ducati1200",
+		"fordraptor",
+		"nspeedo",
+		"polmesa",
+		"sanchez3",
 		"tahoe"
 	},
 	["HeliPolice"] = {
-		"maverick"
+		"B412"
 	},
 
 	-- Mechanic (Public)
@@ -286,7 +288,7 @@ local Works = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VEHICLES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Vehicles(Number)
+function Bahamas.Vehicles(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not exports["hud"]:Wanted(Passport) then
@@ -381,7 +383,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- IMPOUND
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Impound()
+function Bahamas.Impound()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -424,7 +426,7 @@ end)
 -- RegisterServerEvent("garages:Tax")
 -- AddEventHandler("garages:Tax",function(Name)
 
-function Creative.Tax(Name)
+function Bahamas.Tax(Name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -447,7 +449,7 @@ end
 -- RegisterServerEvent("garages:Sell")
 -- AddEventHandler("garages:Sell",function(Name)
 
-function Creative.Sell(Name)
+function Bahamas.Sell(Name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -477,7 +479,7 @@ end
 -- RegisterServerEvent("garages:Transfer")
 -- AddEventHandler("garages:Transfer",function(Name)
 
-function Creative.Transfer(Name)
+function Bahamas.Transfer(Name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -526,7 +528,7 @@ end
 -- RegisterServerEvent("garages:Spawn")
 -- AddEventHandler("garages:Spawn",)
 
-function Creative.Spawn(Name, Number)
+function Bahamas.Spawn(Name, Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -636,7 +638,7 @@ function Creative.Spawn(Name, Number)
 						if Garages[Number]["payment"] then
 							if vRP.UserPremium(Passport) then
 								TriggerClientEvent("dynamic:closeSystem",source)
-								local Exist,Network = Creative.ServerVehicle(Name,Coords[1],Coords[2],Coords[3],Coords[4],Plate,vehicle[1]["nitro"],vehicle[1]["doors"],vehicle[1]["body"])
+								local Exist,Network = Bahamas.ServerVehicle(Name,Coords[1],Coords[2],Coords[3],Coords[4],Plate,vehicle[1]["nitro"],vehicle[1]["doors"],vehicle[1]["body"])
 
 								if Exist then
 									vCLIENT.CreateVehicle(-1,Name,Network,vehicle[1]["engine"],vehicle[1]["health"],Mods,vehicle[1]["windows"],vehicle[1]["tyres"])
@@ -653,7 +655,7 @@ function Creative.Spawn(Name, Number)
 									local Amount = parseInt(VehiclePrice * 0.05)
 									if vRP.ConsultItem(Passport,"dollars",Amount) or vRP.GetBank(source) >= parseInt(VehiclePrice * 0.05) then
 										TriggerClientEvent("dynamic:closeSystem",source)
-										local Exist,Network = Creative.ServerVehicle(Name,Coords[1],Coords[2],Coords[3],Coords[4],Plate,vehicle[1]["nitro"],vehicle[1]["doors"],vehicle[1]["body"])
+										local Exist,Network = Bahamas.ServerVehicle(Name,Coords[1],Coords[2],Coords[3],Coords[4],Plate,vehicle[1]["nitro"],vehicle[1]["doors"],vehicle[1]["body"])
 
 										if Exist then
 											vCLIENT.CreateVehicle(-1,Name,Network,vehicle[1]["engine"],vehicle[1]["health"],Mods,vehicle[1]["windows"],vehicle[1]["tyres"])
@@ -672,7 +674,7 @@ function Creative.Spawn(Name, Number)
 							end
 						else
 							TriggerClientEvent("dynamic:closeSystem",source)
-							local Exist,Network = Creative.ServerVehicle(Name,Coords[1],Coords[2],Coords[3],Coords[4],Plate,vehicle[1]["nitro"],vehicle[1]["doors"],vehicle[1]["body"])
+							local Exist,Network = Bahamas.ServerVehicle(Name,Coords[1],Coords[2],Coords[3],Coords[4],Plate,vehicle[1]["nitro"],vehicle[1]["doors"],vehicle[1]["body"])
 
 							if Exist then
 								vCLIENT.CreateVehicle(-1,Name,Network,vehicle[1]["engine"],vehicle[1]["health"],Mods,vehicle[1]["windows"],vehicle[1]["tyres"])
@@ -702,7 +704,7 @@ RegisterCommand("car",function(source,Message)
 			local Coords = GetEntityCoords(Ped)
 			local Heading = GetEntityHeading(Ped)
 			local Plate = "VEH"..(10000 + Passport)
-			local Exist,Network,Vehicle = Creative.ServerVehicle(VehicleName,Coords["x"],Coords["y"],Coords["z"],Heading,Plate,2000,nil,1000)
+			local Exist,Network,Vehicle = Bahamas.ServerVehicle(VehicleName,Coords["x"],Coords["y"],Coords["z"],Heading,Plate,2000,nil,1000)
 
 			if not Exist then
 				return
@@ -777,7 +779,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DELETE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Delete(Network,Health,Engine,Body,Fuel,Doors,Windows,Tyres,Plate)
+function Bahamas.Delete(Network,Health,Engine,Body,Fuel,Doors,Windows,Tyres,Plate)
 	if Spawn[Plate] then
 		local Passport = Spawn[Plate][1]
 		local vehName = Spawn[Plate][2]

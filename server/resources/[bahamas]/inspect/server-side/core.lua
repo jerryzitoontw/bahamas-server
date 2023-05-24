@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("inspect",Creative)
+Bahamas = {}
+Tunnel.bindInterface("inspect",Bahamas)
 vCLIENT = Tunnel.getInterface("inspect")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -35,7 +35,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPENCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.openChest()
+function Bahamas.openChest()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -105,7 +105,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESETINSPECT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.resetInspect()
+function Bahamas.resetInspect()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -123,7 +123,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STOREITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.storeItem(Item,Slot,Amount,Target)
+function Bahamas.storeItem(Item,Slot,Amount,Target)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -151,7 +151,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.takeItem(Item,Slot,Target,Amount)
+function Bahamas.takeItem(Item,Slot,Target,Amount)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -179,7 +179,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATECHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.updateChest(Slot,Target,Amount)
+function Bahamas.updateChest(Slot,Target,Amount)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

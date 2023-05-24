@@ -8,12 +8,12 @@ local Tank = nil
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("hud:ScubaRemove")
 AddEventHandler("hud:ScubaRemove",function()
-	if Mask and DoesEntityExist(Mask) then
+	if DoesEntityExist(Mask) then
 		TriggerServerEvent("DeleteObject",ObjToNet(Mask))
 		Mask = nil
 	end
 
-	if Tank and DoesEntityExist(Tank) then
+	if DoesEntityExist(Tank) then
 		TriggerServerEvent("DeleteObject",ObjToNet(Tank))
 		Tank = nil
 	end
@@ -35,19 +35,13 @@ AddEventHandler("hud:Scuba",function()
 		local Progression,Network = vRPS.CreateObject("p_s_scuba_tank_s",Coords["x"],Coords["y"],Coords["z"])
 		if Progression then
 			Tank = LoadNetwork(Network)
-			if Tank then
-				AttachEntityToEntity(Tank,Ped,GetPedBoneIndex(Ped,24818),-0.28,-0.24,0.0,180.0,90.0,0.0,true,true,false,true,2,true)
-				SetModelAsNoLongerNeeded("p_s_scuba_tank_s")
-			end
+			AttachEntityToEntity(Tank,Ped,GetPedBoneIndex(Ped,24818),-0.28,-0.24,0.0,180.0,90.0,0.0,1,1,0,0,2,1)
 		end
 
 		local Progression,Network = vRPS.CreateObject("p_s_scuba_mask_s",Coords["x"],Coords["y"],Coords["z"])
 		if Progression then
 			Mask = LoadNetwork(Network)
-			if Mask then
-				AttachEntityToEntity(Mask,Ped,GetPedBoneIndex(Ped,12844),0.0,0.0,0.0,180.0,90.0,0.0,true,true,false,true,2,true)
-				SetModelAsNoLongerNeeded("p_s_scuba_mask_s")
-			end
+			AttachEntityToEntity(Mask,Ped,GetPedBoneIndex(Ped,12844),0.0,0.0,0.0,180.0,90.0,0.0,1,1,0,0,2,1)
 		end
 
 		SetEnableScuba(Ped,true)

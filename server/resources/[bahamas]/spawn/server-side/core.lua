@@ -6,12 +6,12 @@ tvRP = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("spawn",Creative)
+Bahamas = {}
+Tunnel.bindInterface("spawn",Bahamas)
 
 local Global = {}
 
-function Creative.Characters()
+function Bahamas.Characters()
 	local Character = {}
 	local source = source
 	local License = vRP.Identities(source)
@@ -40,7 +40,7 @@ function Creative.Characters()
 	
 	return Character
 end
-function Creative.CharacterChosen(Passport)
+function Bahamas.CharacterChosen(Passport)
   local source = source
   local license = vRP.Identities(source)
   local query = vRP.Query("characters/UserLicense", { id = Passport, license = license})
@@ -55,7 +55,7 @@ function Creative.CharacterChosen(Passport)
 end
 
 
-function Creative.NewCharacter(name, name2, sex)
+function Bahamas.NewCharacter(name, name2, sex)
   local source = source
   if not Global[source] then
     Global[source] = true
@@ -89,7 +89,7 @@ function Creative.NewCharacter(name, name2, sex)
   end
 end
 
-function Creative.FinshSpawn()
+function Bahamas.FinshSpawn()
 	local source = source
 	SetPlayerRoutingBucket(source,0)
 	tvRP.stopAnim(source,false)

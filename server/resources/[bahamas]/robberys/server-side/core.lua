@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("robberys",Creative)
+Bahamas = {}
+Tunnel.bindInterface("robberys",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -43,7 +43,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -61,7 +61,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -79,7 +79,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -97,7 +97,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -115,7 +115,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -133,7 +133,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -151,7 +151,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -169,7 +169,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -187,7 +187,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -205,7 +205,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -223,7 +223,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -241,7 +241,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -259,7 +259,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -277,7 +277,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -295,7 +295,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -313,7 +313,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -331,7 +331,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -349,7 +349,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 5,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -367,7 +367,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -385,7 +385,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -403,7 +403,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -421,7 +421,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -439,7 +439,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -457,7 +457,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -475,7 +475,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -493,7 +493,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -511,7 +511,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -529,7 +529,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -547,7 +547,7 @@ local Robberys = {
 		["cooldown"] = 1800,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 3,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -566,7 +566,7 @@ local Robberys = {
 		["cooldown"] = 1000,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 4,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -584,7 +584,7 @@ local Robberys = {
 		["cooldown"] = 1000,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 4,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -602,7 +602,7 @@ local Robberys = {
 		["cooldown"] = 1000,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 4,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -620,7 +620,7 @@ local Robberys = {
 		["cooldown"] = 1000,
 		["duration"] = 300,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 4,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -638,7 +638,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 9,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -656,7 +656,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 9,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -674,7 +674,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 9,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -692,7 +692,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 9,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -710,7 +710,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 9,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -728,7 +728,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 9,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -746,7 +746,7 @@ local Robberys = {
 		["cooldown"] = 4320,
 		["duration"] = 480,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 11,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -764,7 +764,7 @@ local Robberys = {
 		["cooldown"] = 7200,
 		["duration"] = 580,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 12,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -782,7 +782,7 @@ local Robberys = {
 		["cooldown"] = 7200,
 		["duration"] = 580,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 12,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -800,7 +800,7 @@ local Robberys = {
 		["cooldown"] = 7200,
 		["duration"] = 580,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 17,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -818,7 +818,7 @@ local Robberys = {
 		["cooldown"] = 7200,
 		["duration"] = 580,
 		["group"] = "Police",
-		["population"] = 0,
+		["population"] = 99,
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
@@ -827,6 +827,42 @@ local Robberys = {
 		},
 		["payment"] = {
 			{ ["item"] = "dollarsroll", ["min"] = 180000, ["max"] = 210000 }
+		}
+	},
+	["49"] = {
+		["Coords"] = vec3(1701.14,4812.14,42.42),
+		["name"] = "Grapeseed",
+		["type"] = "north",
+		["cooldown"] = 7200,
+		["duration"] = 580,
+		["group"] = "Police",
+		["population"] = 8,
+		["avaiable"] = false,
+		["timavaiable"] = 0,
+		["need"] = {
+			["item"] = "card01",
+			["amount"] = 1
+		},
+		["payment"] = {
+			{ ["item"] = "dollarsroll", ["min"] = 45000, ["max"] = 70000 }
+		}
+	},
+	["50"] = {
+		["Coords"] = vec3(2863.63,1509.12,25.06),
+		["name"] = "Mergulhador",
+		["type"] = "north",
+		["cooldown"] = 7200,
+		["duration"] = 580,
+		["group"] = "Police",
+		["population"] = 9,
+		["avaiable"] = false,
+		["timavaiable"] = 0,
+		["need"] = {
+			["item"] = "card05",
+			["amount"] = 1
+		},
+		["payment"] = {
+			{ ["item"] = "dollarsroll", ["min"] = 40000, ["max"] = 65000 }
 		}
 	}
 }
@@ -862,20 +898,20 @@ AddEventHandler("robberys:Init",function(Number)
 										end)
 									end
 
-									TriggerClientEvent("Notify",source,"verde","Progresso de desencriptação do sistema iniciado, o mesmo vai estar concluído em <b>"..Robberys[Number]["duration"].."</b> segundos.","Aviso",5000)
+									TriggerClientEvent("Notify",source,"verde","Progresso de desencriptação do sistema iniciado, o mesmo vai estar concluído em <b>"..Robberys[Number]["duration"].."</b> segundos.",5000)
 								end
 							else
-								TriggerClientEvent("Notify",source,"vermelho","<b>"..itemName(Robberys[Number]["need"]["item"]).."</b> danificado.","Aviso",5000)
+								TriggerClientEvent("Notify",source,"vermelho","<b>"..itemName(Robberys[Number]["need"]["item"]).."</b> danificado.",5000)
 							end
 						else
-							TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>"..Robberys[Number]["need"]["amount"].."x "..itemName(Robberys[Number]["need"]["item"]).."</b>.","Aviso",5000)
+							TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>"..Robberys[Number]["need"]["amount"].."x "..itemName(Robberys[Number]["need"]["item"]).."</b>.",5000)
 						end
 					else
-						TriggerClientEvent("Notify",source,"vermelho","Contingente indisponível.","Aviso",5000)
+						TriggerClientEvent("Notify",source,"vermelho","Contingente indisponível.",5000)
 					end
 				else
 					local Cooldown = parseInt(Robberype[Robberys[Number]["type"]] - os.time())
-					TriggerClientEvent("Notify",source,"azul","Cofre está vazio, aguarde <b>"..Cooldown.."</b> segundos.","Aviso",5000)
+					TriggerClientEvent("Notify",source,"azul","Cofre está vazio, aguarde <b>"..Cooldown.."</b> segundos.",5000)
 				end
 			else
 				if os.time() >= Robberys[Number]["timavaiable"] then
@@ -886,7 +922,7 @@ AddEventHandler("robberys:Init",function(Number)
 					end
 				else
 					local Cooldown = parseInt(Robberys[Number]["timavaiable"] - os.time())
-					TriggerClientEvent("Notify",source,"azul","Desencriptação em andamento, aguarde <b>"..Cooldown.."</b> segundos.","Aviso",5000)
+					TriggerClientEvent("Notify",source,"azul","Desencriptação em andamento, aguarde <b>"..Cooldown.."</b> segundos.",5000)
 				end
 			end
 		end

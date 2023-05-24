@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("trunkchest",Creative)
+Bahamas = {}
+Tunnel.bindInterface("trunkchest",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ local Vehicle = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPENCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.openChest()
+function Bahamas.openChest()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Vehicle[Passport] then
@@ -104,7 +104,7 @@ local storeVehs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATECHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.updateChest(Slot,Target,Amount)
+function Bahamas.updateChest(Slot,Target,Amount)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -119,7 +119,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STOREITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.storeItem(Item,Slot,Amount,Target)
+function Bahamas.storeItem(Item,Slot,Amount,Target)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -148,7 +148,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.takeItem(Slot,Amount,Target)
+function Bahamas.takeItem(Slot,Amount,Target)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -168,7 +168,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHESTCLOSE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.chestClose()
+function Bahamas.chestClose()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Vehicle[Passport] then

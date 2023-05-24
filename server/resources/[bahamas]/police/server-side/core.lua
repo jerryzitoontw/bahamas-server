@@ -8,8 +8,8 @@ vRPC = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("police",Creative)
+Bahamas = {}
+Tunnel.bindInterface("police",Bahamas)
 vCLIENT = Tunnel.getInterface("police")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ local Actived = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INITPRISON
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.initPrison(OtherPassport,services,fines,text)
+function Bahamas.initPrison(OtherPassport,services,fines,text)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -113,7 +113,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SEARCHUSER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.searchUser(OtherPassport)
+function Bahamas.searchUser(OtherPassport)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -132,7 +132,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INITFINE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.initFine(OtherPassport,fines,text)
+function Bahamas.initFine(OtherPassport,fines,text)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and fines > 0 then
@@ -155,7 +155,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATEPORT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.updatePort(OtherPassport)
+function Bahamas.updatePort(OtherPassport)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

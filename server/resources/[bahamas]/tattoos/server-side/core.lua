@@ -7,12 +7,12 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("tattoos",Creative)
+Bahamas = {}
+Tunnel.bindInterface("tattoos",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKWANTED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.CheckWanted()
+function Bahamas.CheckWanted()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not exports["hud"]:Wanted(Passport,source) then
@@ -24,7 +24,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATETATTOO
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.updateTattoo(Tattoos)
+function Bahamas.updateTattoo(Tattoos)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

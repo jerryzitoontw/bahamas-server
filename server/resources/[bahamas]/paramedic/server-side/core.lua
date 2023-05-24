@@ -118,7 +118,7 @@ AddEventHandler("paramedic:Bandage",function(entity)
 						TriggerClientEvent("Notify",source,"amarelo","Passou ataduras.",3000)
 						TriggerClientEvent("sounds:Private",source,"bandage",0.5)
 						TriggerClientEvent("paramedic:Reset",source)
-						vRPC.removeObjects(source)
+						vRPC.Destroy(source)
 					end)
 				else
 					TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>1x "..itemName("gauze").."</b>.",5000)

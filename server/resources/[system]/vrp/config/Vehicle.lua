@@ -210,7 +210,7 @@ local List = {
 			["Weight"] = 160,
 			["Price"] = 100000,
 			["Mode"] = "Rental",
-			["Gemstone"] = 5000,
+			["Gemstone"] = 300,
 			["Class"] = "Caminhões"
 		},
 		["biff"] = {
@@ -6560,8 +6560,24 @@ local List = {
 			["Gemstone"] = 120,
 			["Class"] = "Importados"
 	    },
+		["tenere1200"] = {
+			["Name"] = "Yamaha Tenere",
+			["Weight"] = 20,
+			["Price"] = 20000,
+			["Mode"] = "Rental",
+			["Gemstone"] = 150,
+			["Class"] = "Importados"
+	    },
+		["nissansilvia"] = {
+			["Name"] = "Nissan Silvia",
+			["Weight"] = 20,
+			["Price"] = 20000,
+			["Mode"] = "Rental",
+			["Gemstone"] = 150,
+			["Class"] = "Importados"
+	    },
 		-- Paramedico
-		["emsnspeedo"] = {
+		["ambulance2"] = {
 			["Name"] = "Ambulância",
 			["Weight"] = 0,
 			["Price"] = 1000,
@@ -6572,14 +6588,6 @@ local List = {
 		-- Policia
 		["audia3"] = {
 			["Name"] = "Audi A3",
-			["Weight"] = 0,
-			["Price"] = 1000,
-			["Mode"] = "Work",
-			["Gemstone"] = 0,
-			["Class"] = "Emergência"
-		},
-		["audia4"] = {
-			["Name"] = "Audi A4",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
@@ -6602,7 +6610,7 @@ local List = {
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["audirs6"] = {
+		["audirs62"] = {
 			["Name"] = "Audi RS6",
 			["Weight"] = 0,
 			["Price"] = 1000,
@@ -6610,7 +6618,7 @@ local List = {
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["audirs6av"] = {
+		["audirs6avant"] = {
 			["Name"] = "Audi Avant",
 			["Weight"] = 0,
 			["Price"] = 1000,
@@ -6618,7 +6626,7 @@ local List = {
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["ducatidm1200"] = {
+		["ducati1200"] = {
 			["Name"] = "Ducati 1200",
 			["Weight"] = 0,
 			["Price"] = 1000,
@@ -6626,8 +6634,32 @@ local List = {
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["raptor"] = {
+		["fordraptor"] = {
 			["Name"] = "Ford Raptor",
+			["Weight"] = 0,
+			["Price"] = 1000,
+			["Mode"] = "Work",
+			["Gemstone"] = 0,
+			["Class"] = "Emergência"
+		},
+		["nspeedo"] = {
+			["Name"] = "Van Prisional",
+			["Weight"] = 0,
+			["Price"] = 1000,
+			["Mode"] = "Work",
+			["Gemstone"] = 0,
+			["Class"] = "Emergência"
+		},
+		["polmesa"] = {
+			["Name"] = "Mesa Policial",
+			["Weight"] = 0,
+			["Price"] = 1000,
+			["Mode"] = "Work",
+			["Gemstone"] = 0,
+			["Class"] = "Emergência"
+		},
+		["sanchez3"] = {
+			["Name"] = "Sanchez Policial",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",

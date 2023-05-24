@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("warehouse",Creative)
+Bahamas = {}
+Tunnel.bindInterface("warehouse",Bahamas)
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WAREHOUSE:PASSWORD
@@ -36,7 +36,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WAREHOUSE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Warehouse(Name)
+function Bahamas.Warehouse(Name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -112,7 +112,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPENWAREHOUSE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.openWarehouse(Name)
+function Bahamas.openWarehouse(Name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -185,7 +185,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STOREITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.storeItem(Item,Slot,Amount,Target,Name)
+function Bahamas.storeItem(Item,Slot,Amount,Target,Name)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -213,7 +213,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.takeItem(Item,Slot,Amount,Target,Name)
+function Bahamas.takeItem(Item,Slot,Amount,Target,Name)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -234,7 +234,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATEWAREHOUSE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.updateWarehouse(Slot,Target,Amount,Name)
+function Bahamas.updateWarehouse(Slot,Target,Amount,Name)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)

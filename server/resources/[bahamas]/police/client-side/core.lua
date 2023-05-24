@@ -8,8 +8,8 @@ vRPS = Tunnel.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("police",Creative)
+Bahamas = {}
+Tunnel.bindInterface("police",Bahamas)
 vSERVER = Tunnel.getInterface("police")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INITPRISON
@@ -57,7 +57,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SYNC
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Sync(Status,Teleport)
+function Bahamas.Sync(Status,Teleport)
 	if Teleport then
 		if Status then
 			SetEntityCoords(PlayerPedId(),coordsIntern[1],coordsIntern[2],coordsIntern[3],1,0,0,0)
@@ -156,7 +156,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ESCAPEPRISON
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.EscapePrison()
+function Bahamas.EscapePrison()
 	LocalPlayer["state"]:set("Buttons",true,true)
 	LocalPlayer["state"]:set("Commands",true,true)
 	TriggerEvent("hud:Active",false)

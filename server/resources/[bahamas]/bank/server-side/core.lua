@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("bank",Creative)
+Bahamas = {}
+Tunnel.bindInterface("bank",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ local yield = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKOPEN
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Wanted()
+function Bahamas.Wanted()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and vRP.GetHealth(source) > 100 and not exports["hud"]:Reposed(Passport) and not exports["hud"]:Wanted(Passport,source) then
@@ -39,7 +39,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HOME
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Home()
+function Bahamas.Home()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -61,13 +61,13 @@ function Creative.Home()
   CreateThread(function()
 	while true do
 		Wait(1)
-		Creative.Home()
+		Bahamas.Home()
 	end
   end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSACTIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.TransactionHistory()
+function Bahamas.TransactionHistory()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -77,7 +77,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BANKDEPOSIT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Deposit(amount)
+function Bahamas.Deposit(amount)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Active[Passport] == nil and parseInt(amount) > 0 then
@@ -98,7 +98,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BANWITHDRAW
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Withdraw(amount)
+function Bahamas.Withdraw(amount)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Active[Passport] == nil and parseInt(amount) > 0 then
@@ -114,7 +114,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFERENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Transfer(ClosestPed,amount)
+function Bahamas.Transfer(ClosestPed,amount)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Active[Passport] == nil and parseInt(amount) > 0 then
@@ -178,7 +178,7 @@ function Fines(Passport)
 	return fines
 end
 
-function Creative.FineList()
+function Bahamas.FineList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -189,7 +189,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFERENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.FinePayment(id)
+function Bahamas.FinePayment(id)
 	local source = source
 	local Passport = vRP.Passport(source)
 	local id = id
@@ -211,7 +211,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFERENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.FinePaymentAll()
+function Bahamas.FinePaymentAll()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Active[Passport] == nil then
@@ -254,7 +254,7 @@ function Taxs(Passport)
 	return taxs
 end
 
-function Creative.TaxList()
+function Bahamas.TaxList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -264,7 +264,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFERENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.TaxPayment(id)
+function Bahamas.TaxPayment(id)
 	local source = source
 	local Passport = vRP.Passport(source)
 	local id = id
@@ -303,7 +303,7 @@ function Invoices(Passport)
 	end
 	return invoices
 end
-function Creative.InvoiceList()
+function Bahamas.InvoiceList()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -313,7 +313,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFERENCE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.InvoicePayment(id)
+function Bahamas.InvoicePayment(id)
 	local source = source
 	local Passport = vRP.Passport(source)
 	local id = id
@@ -334,7 +334,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MAKEINVOICE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.MakeInvoice(OtherPassport, value, reason)
+function Bahamas.MakeInvoice(OtherPassport, value, reason)
 	local source = source
 	local Passport = vRP.Passport(source)
 	local OtherPassport = OtherPassport
@@ -362,7 +362,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 --  INVESTMENTS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Investments()
+function Bahamas.Investments()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -391,7 +391,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ADD INVESTMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Invest(amount)
+function Bahamas.Invest(amount)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and parseInt(amount) > 0 then
@@ -415,7 +415,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REM INVESTMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.InvestRescue()
+function Bahamas.InvestRescue()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] then

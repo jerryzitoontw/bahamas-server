@@ -26,15 +26,15 @@ CreateThread(function()
 
     if SQL.has_table('vrp_infos') and SQL.has_table('vrp_permissions') then
         if load_extension('vrp/creative3') then
-            printf('Creative v3 (by summerz) template was injected')
+            printf('Bahamas v3 (by summerz) template was injected')
         end
     elseif SQL.has_table('summerz_characters') then
         if load_extension('vrp/creative4') then
-            printf('Creative v4 (by summerz) template was injected')
+            printf('Bahamas v4 (by summerz) template was injected')
         end
     elseif GetResourceMetadata('vrp', 'creative_network') then
         if load_extension('vrp/creative_network') then
-            printf('Creative Network (by summerz) template was injected')
+            printf('Bahamas Network (by summerz) template was injected')
         end
     elseif SQL.has_table('nyo_character') then
         if load_extension('nfw') then

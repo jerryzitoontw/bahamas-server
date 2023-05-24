@@ -5,8 +5,8 @@ local Tunnel = module("vrp","lib/Tunnel")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("admin",Creative)
+Bahamas = {}
+Tunnel.bindInterface("admin",Bahamas)
 vSERVER = Tunnel.getInterface("admin")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVISIBLABLES
@@ -15,7 +15,7 @@ LocalPlayer["state"]["Spectate"] = false
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TELEPORTWAY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.teleportWay()
+function Bahamas.teleportWay()
 	local Ped = PlayerPedId()
 	if IsPedInAnyVehicle(Ped) then
 		Ped = GetVehiclePedIsUsing(Ped)
@@ -61,7 +61,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TELEPORTWAY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.teleportLimbo()
+function Bahamas.teleportLimbo()
 	local Ped = PlayerPedId()
 	local Coords = GetEntityCoords(Ped)
 	local _,xCoords = GetNthClosestVehicleNode(Coords["x"],Coords["y"],Coords["z"],1,0,0,0)

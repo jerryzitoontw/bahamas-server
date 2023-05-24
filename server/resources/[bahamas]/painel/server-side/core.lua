@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("painel",Creative)
+Bahamas = {}
+Tunnel.bindInterface("painel",Bahamas)
 vCLIENT = Tunnel.getInterface("painel")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -80,7 +80,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DIMISS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Dismiss(Number)
+function Bahamas.Dismiss(Number)
 	local source = source
 	local Number = parseInt(Number)
 	local Passport = vRP.Passport(source)
@@ -114,7 +114,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVITE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Invite(Number)
+function Bahamas.Invite(Number)
 	local source = source
 	local Number = parseInt(Number)
 	local Passport = vRP.Passport(source)
@@ -148,7 +148,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HIERARCHY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Hierarchy(OtherPassport,Mode)
+function Bahamas.Hierarchy(OtherPassport,Mode)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Panel[Passport] and OtherPassport > 1 and Passport ~= OtherPassport and vRP.Identity(OtherPassport) then
@@ -165,7 +165,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSACTIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Transactions()
+function Bahamas.Transactions()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Panel[Passport] then
@@ -180,7 +180,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WITHDRAW
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Withdraw(Value)
+function Bahamas.Withdraw(Value)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Panel[Passport] and (vRP.HasPermission(Passport,Panel[Passport],1) or vRP.HasPermission(Passport,Panel[Passport],2)) then
@@ -204,7 +204,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEPOSIT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Deposit(Value)
+function Bahamas.Deposit(Value)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Panel[Passport] and (vRP.HasPermission(Passport,Panel[Passport],1) or vRP.HasPermission(Passport,Panel[Passport],2)) then
@@ -228,7 +228,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BUY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Buy()
+function Bahamas.Buy()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Panel[Passport] and (vRP.HasPermission(Passport,Panel[Passport],1) or vRP.HasPermission(Passport,Panel[Passport],2)) then

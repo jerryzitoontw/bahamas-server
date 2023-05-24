@@ -7,12 +7,12 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("crafting", Creative)
+South = {}
+Tunnel.bindInterface("crafting", South)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Permission(Name,Type)
+function South.Permission(Type)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport then
@@ -29,26 +29,10 @@ function Creative.Permission(Name,Type)
 
     return false
 end
-
--- function Creative.requestPerm(Name,Type)
--- 	local source = source
--- 	local Passport = vRP.Passport(source)
--- 	if Passport then
--- 		if List[Type]["perm"] ~= nil then
--- 			if vRP.HasService(Passport,List[Type]["perm"]) then
--- 				return true
--- 			end
--- 		else
--- 			return true
--- 		end
--- 	end
-
--- 	return false
--- end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUESTCRAFTING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Request(Type)
+function South.Request(Type)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport then
@@ -61,17 +45,17 @@ function Creative.Request(Type)
             end
 
             inventoryShop[#inventoryShop + 1] = {
-                id = Type,
-                name = itemName(Item),
-                index = itemIndex(Item),
-                type = itemType(Item),
-                economy = parseFormat(itemEconomy(Item)),
-                key = Item,
-                weight = itemWeight(Item),
-                amount = parseInt(v["amount"]),
-                recipeItems = keyList,
-                craftable = v["craftable"],
-                time = v["time"]
+                ["id"] = Type,
+                ["name"] = itemName(Item),
+                ["index"] = itemIndex(Item),
+                ["type"] = itemType(Item),
+                ["economy"] = parseFormat(itemEconomy(Item)),
+                ["key"] = Item,
+                ["weight"] = itemWeight(Item),
+                ["amount"] = parseInt(v["amount"]),
+                ["recipeItems"] = keyList,
+                ["craftable"] = v["craftable"],
+                ["time"] = v["time"]
             }
         end
 
@@ -108,7 +92,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTIONCRAFTING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Crafting(Type, Item, Amount)
+function South.Crafting(Type, Item, Amount)
     local source = source
     local Amount = parseInt(Amount)
     local Passport = vRP.Passport(source)
@@ -152,7 +136,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OWNED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Owned(Liste, Item)
+function South.Owned(Liste, Item)
     local Owned = {}
     local source = source
     local Passport = vRP.Passport(source)
@@ -173,7 +157,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTIONDESTROY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.functionDestroy(Item, Type, Amount, Slot)
+function South.functionDestroy(Item, Type, Amount, Slot)
     local source = source
     local Amount = parseInt(Amount)
     local Passport = vRP.Passport(source)

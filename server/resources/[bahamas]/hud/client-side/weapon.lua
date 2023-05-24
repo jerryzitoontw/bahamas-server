@@ -26,13 +26,13 @@ AddEventHandler("hud:Weapon",function(Status,Hash)
 					Max = Max - Min
 				end
 
-				SendNUIMessage({ name = "Weapons", payload = { true, Min, Max, itemName(Hash) } })
+				SendNUIMessage({ Action = "Weapons", Status = true, Min = Min, Max = Max, Name = itemName(Hash) })
 			end
 
 			Wait(100)
 		end
 	else
-		SendNUIMessage({ name = "Weapons", payload = false })
+		SendNUIMessage({ Action = "Weapons", Status = false })
 		Active = false
 		AmmoMax = -1
 		AmmoMin = -1

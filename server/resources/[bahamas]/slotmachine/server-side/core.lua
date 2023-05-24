@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("slotmachine",Creative)
+Bahamas = {}
+Tunnel.bindInterface("slotmachine",Bahamas)
 vCLIENT = Tunnel.getInterface("slotmachine")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -299,7 +299,7 @@ local mulTable = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECK
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Check(Table)
+function Bahamas.Check(Table)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Machines[Table] then
@@ -315,7 +315,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLEAN
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Clean(Table)
+function Bahamas.Clean(Table)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Machines[Table] then
@@ -348,7 +348,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PAYMENT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Payment(Table)
+function Bahamas.Payment(Table)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Machines[Table] then
@@ -364,7 +364,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STARTSLOTS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.StartSlots(Table)
+function Bahamas.StartSlots(Table)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Machines[Table] then
@@ -381,7 +381,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WINNER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Winner(Table,Result)
+function Bahamas.Winner(Table,Result)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not Active[Passport] and Machines[Table] then

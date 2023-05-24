@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("shops",Creative)
+Bahamas = {}
+Tunnel.bindInterface("shops",Bahamas)
 vCLIENT = Tunnel.getInterface("shops")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -265,8 +265,9 @@ local shops = {
 			["ATTACH_MAGAZINE"] = 250,
 			["ATTACH_GRIP"] = 250,
 			["WEAPON_NIGHTSTICK"] = 450,
-			["WEAPON_STUNGUN"] = 2.250,
+			["WEAPON_STUNGUN"] = 500,
 			["WEAPON_COMBATPISTOL"] = 3000,
+			["WEAPON_APPISTOL"] = 4250,
 			["WEAPON_SMG"] = 3500,
 			["WEAPON_SMG_MK2"] = 3750,
 			["WEAPON_COLTXM177"] = 5450,
@@ -521,7 +522,7 @@ local userName2 = { "Smith","Johnson","Williams","Jones","Brown","Davis","Miller
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUESTPERM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.requestPerm(Type)
+function Bahamas.requestPerm(Type)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -541,7 +542,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUESTSHOP
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.requestShop(name)
+function Bahamas.requestShop(name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -591,12 +592,12 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GETSHOPTYPE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.getShopType(Type)
+function Bahamas.getShopType(Type)
     return shops[Type]["mode"]
 end---------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTIONSHOP
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.functionShops(Type,Item,Amount,Slot)
+function Bahamas.functionShops(Type,Item,Amount,Slot)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)

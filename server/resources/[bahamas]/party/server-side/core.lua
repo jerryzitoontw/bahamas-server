@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("party",Creative)
+Bahamas = {}
+Tunnel.bindInterface("party",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ local Amounts = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GETROOMS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.GetRooms()
+function Bahamas.GetRooms()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -50,7 +50,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GETMEMBERS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.GetMembers(Number)
+function Bahamas.GetMembers(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Config["Room"][Number] and Config["Room"][Number]["Users"] then
@@ -73,7 +73,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATEROOM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.CreateRoom(Name,Password)
+function Bahamas.CreateRoom(Name,Password)
 	local source = source
 	local Passport = vRP.Passport(source)
 
@@ -109,7 +109,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATEROOM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.EnterRoom(Number, Password)
+function Bahamas.EnterRoom(Number, Password)
 	local source = source
 	local Passport = vRP.Passport(source)
 
@@ -117,7 +117,7 @@ function Creative.EnterRoom(Number, Password)
 		if Config["Users"][Passport] then
 			if Number ~= Config["Users"][Passport] then
 				if Config["Users"][Passport] then
-					Creative.LeaveRoom(Config["Users"][Passport])
+					Bahamas.LeaveRoom(Config["Users"][Passport])
 				end
 			
 				Config["Users"][Passport] = Number
@@ -135,7 +135,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- LEAVEROOM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.LeaveRoom(Room)
+function Bahamas.LeaveRoom(Room)
 	local source = source
 	local Passport = vRP.Passport(source)
 	
@@ -159,7 +159,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- KICKROOM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.KickRoom(Kick,Passport)
+function Bahamas.KickRoom(Kick,Passport)
 	local source = source
 	local MyPassport = vRP.Passport(source)
 
@@ -175,7 +175,7 @@ function Creative.KickRoom(Kick,Passport)
 
 			vRP.rem(source, Passport, tostring(Room))
 
-			return Creative.GetRooms()
+			return Bahamas.GetRooms()
 		end
 	end
 end

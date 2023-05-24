@@ -1214,7 +1214,7 @@ RegisterNUICallback("close",function(Data,Callback)
 	vSERVER.updateTattoo(Tattoos)
 	SetNuiFocus(false,false)
 	DestroyCam(Cam,false)
-	vRP.removeObjects()
+	vRP.Destroy()
 	Cam = nil
 
 	Callback("Ok")

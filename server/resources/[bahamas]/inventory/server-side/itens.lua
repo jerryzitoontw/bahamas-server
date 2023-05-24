@@ -89,24 +89,24 @@ Use = {
 		local Hash = "ch_prop_ch_ld_bomb_01a"
 		local Application,Coords,Heading = vRPC.objectCoords(source,Hash)
 		if Application then
-			local CoordsAtm,NumberAtm = vCLIENT.Atm(source,Coords)
+			local CoordsAtm,NumberAtm = vCLIENT.checkAtm(source,Coords)
 
 			if CoordsAtm then
-				if not AtmTimers[NumberAtm] then
-					AtmTimers[NumberAtm] = os.time()
+				if not atmTimers[NumberAtm] then
+					atmTimers[NumberAtm] = os.time()
 				end
 
-				if os.time() < AtmTimers[NumberAtm] then
-					local Cooldown = parseInt(AtmTimers[NumberAtm] - os.time())
-					TriggerClientEvent("Notify",source,"azul","Caixa vazio, aguarde <b>"..Cooldown.."</b> segundos até que um transportador venha até o local efetuar reabastecimento do mesmo.",false,5000)
+				if os.time() < atmTimers[NumberAtm] then
+					local Cooldown = parseInt(atmTimers[NumberAtm] - os.time())
+					TriggerClientEvent("Notify",source,"azul","Caixa vazio, aguarde <b>"..Cooldown.."</b> segundos até que um transportador venha até o local efetuar reabastecimento do mesmo.",5000)
 					Player(source)["state"]["Buttons"] = false
 
 					return
 				end
 
 				local Service,Total = vRP.NumPermission("Police")
-				if Total <= 5 then
-					TriggerClientEvent("Notify",source,"azul","Caixa vazio, aguarde até que um transportador venha até o local efetuar reabastecimento do mesmo.",false,5000)
+				if Total <= 0 then
+					TriggerClientEvent("Notify",source,"azul","Caixa vazio, aguarde até que um transportador venha até o local efetuar reabastecimento do mesmo.",5000)
 					Player(source)["state"]["Buttons"] = false
 
 					return
@@ -122,7 +122,7 @@ Use = {
 					Objects[tostring(Number)] = { x = mathLength(Coords["x"]), y = mathLength(Coords["y"]), z = mathLength(Coords["z"]), h = mathLength(Heading), object = Hash, item = Full, Distance = 100 }
 					TriggerClientEvent("objects:Adicionar",-1,tostring(Number),Objects[tostring(Number)])
 					TriggerClientEvent("Progress",source,"Plantando",25000)
-					AtmTimers[NumberAtm] = os.time() + 10800
+					atmTimers[NumberAtm] = os.time() + 10800
 					local explosionProgress = 25
 
 					for Passports,Sources in pairs(Service) do
@@ -137,7 +137,7 @@ Use = {
 						explosionProgress = explosionProgress - 1
 					until explosionProgress <= 0
 
-					Creative.DropServer(CoordsAtm,"dollars",math.random(2500,5000))
+					Bahamas.DropServer(CoordsAtm,"dollarsroll",math.random(2500,5000))
 					TriggerClientEvent("player:Residuals",source,"Resíduo de Explosivo.")
 					TriggerClientEvent("objects:Remover",-1,tostring(Number))
 					TriggerClientEvent("vRP:Explosion",source,Coords)
@@ -151,12 +151,9 @@ Use = {
 
 	["adrenaline"] = function(source,Passport,Amount,Slot,Full,Item,Split)
 		local Distance = {
-			{ -1708.04,-372.61,47.57,150 },
-			{ -106.41,-1355.59,29.42,150 },
-			{ 1155.47,-525.17,64.6,200 },
-			{ 563.56,2677.64,42.09,150 },
-			{ 2497.96,4104.82,38.3,200 },
-			{ -397.52,6315.39,28.76,200 }
+			{ 809.87,-494.42,30.68,17.01 },
+			{ 1603.14,3568.94,38.77,212.6 },
+			{ -470.91,6289.1,13.61,235.28 }
 		}
 	
 		local Service = vRP.NumPermission("Paramedic")
@@ -2299,6 +2296,35 @@ Use = {
 	end,
 
 	["lockpick"] = function(source,Passport,Amount,Slot,Full,Item,Split)
+		local homeName = exports["propertys"]:homesTheft(source)
+		if homeName then
+			vRPC.stopActived(source)
+			vRP.upgradeStress(Passport,2)
+			TriggerClientEvent("inventory:Close",source)
+			TriggerClientEvent("inventory:Buttons",source,true)
+			vRPC.playAnim(source,false,{"missheistfbi3b_ig7","lift_fibagent_loop"},false)
+
+			if vTASKBAR.Task(source,4,20500) then
+				exports["propertys"]:enterHomes(source,Passport,homeName,true)
+			else
+				exports["propertys"]:resetTheft(homeName)
+
+				if math.random(100) >= 50 then
+					TriggerClientEvent("Notify",source,"amarelo","A vizinhança foi avisada de um suposto roubo.",5000)
+					TriggerClientEvent("inventory:DisPed",source)
+					local Players = vRPC.Players(source)
+					for _,v in ipairs(Players) do
+						async(function()
+							TriggerClientEvent("sounds:source",v,"alarm",1.0)
+						end)
+					end
+				end
+			end
+
+			TriggerClientEvent("inventory:Buttons",source,false)
+			vRPC.stopAnim(source,false)
+		end
+
 		if not Player(source)["state"]["Handcuff"] then
 			local Vehicle,Network,Plate,vehName,vehClass = vRPC.VehicleList(source,4)
 			if Vehicle then
@@ -2410,7 +2436,7 @@ Use = {
 						local Players = vRPC.Players(source)
 						for _,v in pairs(Players) do
 							async(function()
-								TriggerClientEvent("inventory:repairEngine",v,Network,Plate)
+								TriggerClientEvent("inventory:repairVehicle",v,Network,Plate)
 							end)
 						end
 					end
@@ -2567,9 +2593,9 @@ Use = {
 	end,
 
 	["rope"] = function(source,Passport,Amount,Slot,Full,Item,Split)
-		if not vRPC.InsideVehicle(source) then
+		if not vRP.InsideVehicle(source) then
 			if Carry[Passport] then
-				TriggerClientEvent("player:Rope",Carry[Passport],source)
+				TriggerClientEvent("player:ropeCarry",Carry[Passport],source)
 				TriggerClientEvent("player:Commands",Carry[Passport],false)
 				vRPC.Destroy(Carry[Passport])
 				vRPC.Destroy(source)
@@ -2580,12 +2606,12 @@ Use = {
 					if vRP.GetHealth(ClosestPed) <= 100 or Player(ClosestPed)["state"]["Handcuff"] then
 						Carry[Passport] = ClosestPed
 
-						TriggerClientEvent("player:Rope",Carry[Passport],source)
+						TriggerClientEvent("player:ropeCarry",Carry[Passport],source)
 						TriggerClientEvent("player:Commands",Carry[Passport],true)
 						TriggerClientEvent("inventory:Close",Carry[Passport])
 
-						vRPC.playAnim(source,true,{"missfinale_c2mcs_1","fin_c2_mcs_1_camman"},true)
 						vRPC.playAnim(ClosestPed,false,{"nm","firemans_carry"},true)
+						vRPC.playAnim(source,true,{"missfinale_c2mcs_1","fin_c2_mcs_1_camman"},true)
 					end
 				end
 			end

@@ -161,31 +161,32 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GIVEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.GiveItem(Passport, Item, Amount, Notify, Slot)
+function vRP.GiveItem(Passport,Item,Amount,Notify,Slot)
     local source = vRP.Source(Passport)
+    TriggerClientEvent("inventory:Update",source,"Backpack")
     if source and parseInt(Amount) > 0 then
         local Inventory = vRP.Inventory(Passport)
         if not Slot then
             local newSlot = 0
             repeat
                 newSlot = newSlot + 1
-            until Inventory[tostring(newSlot)] == nil or Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)].item == Item
+            until Inventory[tostring(newSlot)] == nil or Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)]["item"] == Item
             if not Inventory[tostring(newSlot)] then
                 Inventory[tostring(newSlot)] = { amount = parseInt(Amount), item = Item }
                 if parseInt(tostring(newSlot)) <= 5 and "Armamento" == itemType(Item) then
                     TriggerClientEvent("inventory:CreateWeapon", source, Item)
                 end
-            elseif Inventory[tostring(newSlot)] and Inventory[tostring(i)].item == Item then
-                Inventory[tostring(newSlot)].amount = Inventory[tostring(i)].amount + parseInt(Amount)
+            elseif Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)]["item"] == Item then
+                Inventory[tostring(newSlot)]["amount"] = Inventory[tostring(newSlot)]["amount"] + parseInt(Amount)
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "recebeu", itemIndex(Item), parseFormat(Amount), itemName(Item) })
+                TriggerClientEvent("itensNotify", source, { "+", itemIndex(Item), parseFormat(Amount), itemName(Item) })
             end
         else
             Slot = tostring(Slot)
             if Inventory[Slot] then
-                if Inventory[Slot].item == Item then
-                    Inventory[Slot].amount = Inventory[Slot].amount + parseInt(Amount)
+                if Inventory[Slot]["item"] == Item then
+                    Inventory[Slot]["amount"] = Inventory[Slot]["amount"] + parseInt(Amount)
                 end
             else
                 Inventory[Slot] = { amount =  parseInt(Amount), item = Item }
@@ -194,7 +195,7 @@ function vRP.GiveItem(Passport, Item, Amount, Notify, Slot)
                 end
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "recebeu", itemIndex(Item), parseFormat(Amount), itemName(Item) })
+                TriggerClientEvent("itensNotify", source, { "+", itemIndex(Item), parseFormat(Amount), itemName(Item) })
             end
         end
     end
@@ -266,14 +267,14 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.TakeItem(Passport, Item, Amount, Notify, Slot)
     local source = vRP.Source(Passport)
-    local take = false
+    TriggerClientEvent("inventory:Update",source,"Backpack")
     if source and parseInt(Amount) > 0 then
         local Inventory = vRP.Inventory(Passport)
         if not Slot then
             for k, v in pairs(Inventory) do
-                if v.item == Item and parseInt(Amount) <= v.amount then
-                    v.amount = v.amount - parseInt(Amount)
-                    if v.amount <= 0 then
+                if v["item"] == Item and parseInt(Amount) <= v["amount"] then
+                    v["amount"] = v["amount"] - parseInt(Amount)
+                    if v["amount"] <= 0 then
                         if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
                             TriggerClientEvent("inventory:verifyWeapon", source, Item)
                         end
@@ -283,30 +284,28 @@ function vRP.TakeItem(Passport, Item, Amount, Notify, Slot)
                         Inventory[k] = nil
                     end
                     if Notify and itemBody(Item) then
-                        TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                        TriggerClientEvent("itensNotify", source, { "-",itemIndex(Item),parseFormat(Amount),itemName(Item) })
                     end
-                    take = true
                     break
                 end
             end
-        elseif Inventory[tostring(Slot)].item == Item and parseInt(Amount) <= Inventory[tostring(Slot)].amount then
-            Inventory[tostring(Slot)].amount =  Inventory[tostring(Slot)].amount - parseInt(Amount)
-            if  Inventory[tostring(Slot)].amount <= 0 then
+        elseif Inventory[Slot] and Inventory[Slot]["item"] == Item and parseInt(Amount) <= Inventory[Slot]["amount"] then
+            Inventory[Slot]["amount"] = Inventory[Slot]["amount"] - parseInt(Amount)
+            if 0 >= Inventory[Slot]["amount"] then
                 if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
                     TriggerClientEvent("inventory:verifyWeapon", source, Item)
                 end
-                if parseInt(Slot) <= 5 then
+                if 5 >= parseInt(Slot) then
                     TriggerClientEvent("inventory:RemoveWeapon", source, Item)
                 end
-                Inventory[tostring(Slot)] = nil
+                Inventory[Slot] = nil
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                TriggerClientEvent("itensNotify", source, { "-",itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
-            take = true
         end
     end
-    return take
+    return true
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVEITEM

@@ -7,13 +7,13 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("painel",Creative)
+Bahamas = {}
+Tunnel.bindInterface("painel",Bahamas)
 vSERVER = Tunnel.getInterface("painel")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPEN
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Open(Data,Premium,Price)
+function Bahamas.Open(Data,Premium,Price)
 	SetNuiFocus(true,true)
 	SetCursorLocation(0.5,0.5)
 	SendNUIMessage({ name = "open", payload = { Data, Legends, Premium, Price } })

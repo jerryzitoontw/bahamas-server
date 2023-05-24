@@ -8,8 +8,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("races",Creative)
+Bahamas = {}
+Tunnel.bindInterface("races",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ local Payments = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FINISH
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Finish(Number,Points)
+function Bahamas.Finish(Number,Points)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -26,7 +26,7 @@ function Creative.Finish(Number,Points)
 
 		if Payments[Passport] then
 			local Rand = math.random(Races[Number]["Payment"][1],Races[Number]["Payment"][2])
-			vRP.GenerateItem(Passport,"dollars",Rand,true)
+			vRP.GenerateItem(Passport,"dollarsroll",Rand,true)
 
 			local Ranking = vRP.Query("races/TopFive",{ Race = Number })
 			-- print(parseInt(Ranking[1]["Points"]))
@@ -55,7 +55,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- START
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Start(Number)
+function Bahamas.Start(Number)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and Races[Number] then
@@ -96,14 +96,14 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RANKING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Ranking(Number)
+function Bahamas.Ranking(Number)
 	local Consult = vRP.Query("races/Ranking",{ Race = Number })
 	return Consult
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CANCEL
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Cancel()
+function Bahamas.Cancel()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

@@ -8,10 +8,21 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("admin",Creative)
+Bahamas = {}
+Tunnel.bindInterface("admin",Bahamas)
 vCLIENT = Tunnel.getInterface("admin")
 vKEYBOARD = Tunnel.getInterface("keyboard")
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- TUNING
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("teste",function(source)
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.HasGroup(Passport,"Admin") then
+			TriggerClientEvent("Notify",source,"verde","teste",10000)
+		end
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UGROUPS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -242,10 +253,10 @@ end)
 RegisterCommand("group",function(source,Message)
 	local Passport = vRP.Passport(source)
 	if Passport then
-		if vRP.HasGroup(Passport,"Admin") and parseInt(Message[1]) > 0 and Message[2] then
+		--if vRP.HasGroup(Passport,"Admin") and parseInt(Message[1]) > 0 and Message[2] then
 			TriggerClientEvent("Notify",source,"verde","Adicionado <b>"..Message[2].."</b> ao passaporte <b>"..Message[1].."</b>.",5000)
 			vRP.SetPermission(Message[1],Message[2],Message[3])
-		end
+		--end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -386,7 +397,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CDS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.buttonTxt()
+function Bahamas.buttonTxt()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -472,7 +483,7 @@ end)
 -- RACECOORDS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Checkpoint = 0
-function Creative.raceCoords(vehCoords,leftCoords,rightCoords)
+function Bahamas.raceCoords(vehCoords,leftCoords,rightCoords)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

@@ -278,7 +278,7 @@ List = {
 				["craftable"] = true,
 				["time"] = 15,
 				["require"] = {
-					["dollarsz"] = 2000
+					["dollarsroll"] = 2000
 				}
 			}
 		}
@@ -562,16 +562,16 @@ List = {
 					["techtrash"] = 4
 				}
 			},
-			["card03"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["plastic"] = 8,
-					["techtrash"] = 4
-				}
-			},
+			-- ["card03"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["plastic"] = 8,
+			-- 		["techtrash"] = 4
+			-- 	}
+			-- },
 			["card04"] = {
 				["amount"] = 1,
 				["destroy"] = false,
@@ -582,26 +582,26 @@ List = {
 					["techtrash"] = 4
 				}
 			},
-			["card05"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["plastic"] = 8,
-					["techtrash"] = 4
-				}
-			},
-			["card05"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["plastic"] = 8,
-					["techtrash"] = 4
-				}
-			}
+			-- ["card05"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["plastic"] = 8,
+			-- 		["techtrash"] = 4
+			-- 	}
+			-- },
+			-- ["card05"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["plastic"] = 8,
+			-- 		["techtrash"] = 4
+			-- 	}
+			-- }
 		}
 	},
 	["Vagos"] = {
@@ -682,16 +682,16 @@ List = {
 					["techtrash"] = 4
 				}
 			},
-			["card03"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["plastic"] = 8,
-					["techtrash"] = 4
-				}
-			},
+			-- ["card03"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["plastic"] = 8,
+			-- 		["techtrash"] = 4
+			-- 	}
+			-- },
 			["card04"] = {
 				["amount"] = 1,
 				["destroy"] = false,
@@ -702,26 +702,26 @@ List = {
 					["techtrash"] = 4
 				}
 			},
-			["card05"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["plastic"] = 8,
-					["techtrash"] = 4
-				}
-			},
-			["card05"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["plastic"] = 8,
-					["techtrash"] = 4
-				}
-			}
+			-- ["card05"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["plastic"] = 8,
+			-- 		["techtrash"] = 4
+			-- 	}
+			-- },
+			-- ["card05"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["plastic"] = 8,
+			-- 		["techtrash"] = 4
+			-- 	}
+			-- }
 		}
 	},
 	-- Favelas
@@ -858,24 +858,24 @@ List = {
 					["gunpowder"] = 1
 				}
 			},
-			["WEAPON_SMG_AMMO"] = {
-				["amount"] = 10,
-				["destroy"] = false,
-				["require"] = {
-					["lead_pure"] = 2,
-					["copper_pure"] = 2,
-					["gunpowder"] = 2
-				}
-			},
-			["WEAPON_RIFLE_AMMO"] = {
-				["amount"] = 10,
-				["destroy"] = false,
-				["require"] = {
-					["lead_pure"] = 2,
-					["copper_pure"] = 2,
-					["gunpowder"] = 3
-				}
-			}
+			-- ["WEAPON_SMG_AMMO"] = {
+			-- 	["amount"] = 10,
+			-- 	["destroy"] = false,
+			-- 	["require"] = {
+			-- 		["lead_pure"] = 2,
+			-- 		["copper_pure"] = 2,
+			-- 		["gunpowder"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_RIFLE_AMMO"] = {
+			-- 	["amount"] = 10,
+			-- 	["destroy"] = false,
+			-- 	["require"] = {
+			-- 		["lead_pure"] = 2,
+			-- 		["copper_pure"] = 2,
+			-- 		["gunpowder"] = 3
+			-- 	}
+			-- }
 		}
 	},
 	["Playboy"] = {
@@ -936,171 +936,171 @@ List = {
 					["pistolbody"] = 1
 				}
 			},
-			["WEAPON_MACHINEPISTOL"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 1
-				}
-			},
-			["WEAPON_MINISMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 1
-				}
-			},
-			["WEAPON_MICROSMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
-			["WEAPON_SMG_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
-			["WEAPON_SMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
-			["WEAPON_GUSENBERG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 1
-				}
-			},
-			["WEAPON_COMPACTRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 40,
-					["iron_pure"] = 40,
-					["riflebody"] = 2
-				}
-			},
-			["WEAPON_ASSAULTRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_SPECIALCARBINE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 5
-				}
-			},
-			["WEAPON_BULLPUPRIFLE_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_BULLPUPRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_ASSAULTSMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 2
-				}
-			},
-			["WEAPON_ADVANCEDRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_ASSAULTRIFLE_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 5
-				}
-			},
-			["WEAPON_SPECIALCARBINE_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 55,
-					["iron_pure"] = 55,
-					["riflebody"] = 6
-				}
-			}
+			-- ["WEAPON_MACHINEPISTOL"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 1
+			-- 	}
+			-- },
+			-- ["WEAPON_MINISMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 1
+			-- 	}
+			-- },
+			-- ["WEAPON_MICROSMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_SMG_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_SMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_GUSENBERG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 1
+			-- 	}
+			-- },
+			-- ["WEAPON_COMPACTRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 40,
+			-- 		["iron_pure"] = 40,
+			-- 		["riflebody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_ASSAULTRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_SPECIALCARBINE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 5
+			-- 	}
+			-- },
+			-- ["WEAPON_BULLPUPRIFLE_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_BULLPUPRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_ASSAULTSMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_ADVANCEDRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_ASSAULTRIFLE_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 5
+			-- 	}
+			-- },
+			-- ["WEAPON_SPECIALCARBINE_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 55,
+			-- 		["iron_pure"] = 55,
+			-- 		["riflebody"] = 6
+			-- 	}
+			-- }
 		}
 	},
 	["TheSouth"] = {
@@ -1115,24 +1115,24 @@ List = {
 					["gunpowder"] = 1
 				}
 			},
-			["WEAPON_SMG_AMMO"] = {
-				["amount"] = 10,
-				["destroy"] = false,
-				["require"] = {
-					["lead_pure"] = 2,
-					["copper_pure"] = 2,
-					["gunpowder"] = 2
-				}
-			},
-			["WEAPON_RIFLE_AMMO"] = {
-				["amount"] = 10,
-				["destroy"] = false,
-				["require"] = {
-					["lead_pure"] = 2,
-					["copper_pure"] = 2,
-					["gunpowder"] = 3
-				}
-			}
+			-- ["WEAPON_SMG_AMMO"] = {
+			-- 	["amount"] = 10,
+			-- 	["destroy"] = false,
+			-- 	["require"] = {
+			-- 		["lead_pure"] = 2,
+			-- 		["copper_pure"] = 2,
+			-- 		["gunpowder"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_RIFLE_AMMO"] = {
+			-- 	["amount"] = 10,
+			-- 	["destroy"] = false,
+			-- 	["require"] = {
+			-- 		["lead_pure"] = 2,
+			-- 		["copper_pure"] = 2,
+			-- 		["gunpowder"] = 3
+			-- 	}
+			-- }
 		}
 	},
 	["Vineyard"] = {
@@ -1193,171 +1193,171 @@ List = {
 					["pistolbody"] = 1
 				}
 			},
-			["WEAPON_MACHINEPISTOL"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 1
-				}
-			},
-			["WEAPON_MINISMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 1
-				}
-			},
-			["WEAPON_MICROSMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
-			["WEAPON_SMG_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
-			["WEAPON_SMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
-			["WEAPON_GUSENBERG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 1
-				}
-			},
-			["WEAPON_COMPACTRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 40,
-					["iron_pure"] = 40,
-					["riflebody"] = 2
-				}
-			},
-			["WEAPON_ASSAULTRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_SPECIALCARBINE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 5
-				}
-			},
-			["WEAPON_BULLPUPRIFLE_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_BULLPUPRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_ASSAULTSMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 2
-				}
-			},
-			["WEAPON_ADVANCEDRIFLE"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 4
-				}
-			},
-			["WEAPON_ASSAULTRIFLE_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 50,
-					["iron_pure"] = 50,
-					["riflebody"] = 5
-				}
-			},
-			["WEAPON_SPECIALCARBINE_MK2"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 5,
-				["require"] = {
-					["copper_pure"] = 55,
-					["iron_pure"] = 55,
-					["riflebody"] = 6
-				}
-			}
+			-- ["WEAPON_MACHINEPISTOL"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 1
+			-- 	}
+			-- },
+			-- ["WEAPON_MINISMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 1
+			-- 	}
+			-- },
+			-- ["WEAPON_MICROSMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_SMG_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_SMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_GUSENBERG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 30,
+			-- 		["iron_pure"] = 30,
+			-- 		["smgbody"] = 1
+			-- 	}
+			-- },
+			-- ["WEAPON_COMPACTRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 40,
+			-- 		["iron_pure"] = 40,
+			-- 		["riflebody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_ASSAULTRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_SPECIALCARBINE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 5
+			-- 	}
+			-- },
+			-- ["WEAPON_BULLPUPRIFLE_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_BULLPUPRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_ASSAULTSMG"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 2
+			-- 	}
+			-- },
+			-- ["WEAPON_ADVANCEDRIFLE"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 4
+			-- 	}
+			-- },
+			-- ["WEAPON_ASSAULTRIFLE_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 50,
+			-- 		["iron_pure"] = 50,
+			-- 		["riflebody"] = 5
+			-- 	}
+			-- },
+			-- ["WEAPON_SPECIALCARBINE_MK2"] = {
+			-- 	["amount"] = 1,
+			-- 	["destroy"] = false,
+			-- 	["craftable"] = true,
+			-- 	["time"] = 5,
+			-- 	["require"] = {
+			-- 		["copper_pure"] = 55,
+			-- 		["iron_pure"] = 55,
+			-- 		["riflebody"] = 6
+			-- 	}
+			-- }
 		}
 	},
 }

@@ -8,12 +8,12 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("lscustoms",Creative)
+Bahamas = {}
+Tunnel.bindInterface("lscustoms",Bahamas)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKPERMISSIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.checkPermission(hasPerm)
+function Bahamas.checkPermission(hasPerm)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then

@@ -7,8 +7,9 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("propertys",Creative)
+Bahamas = {}
+Tunnel.bindInterface("propertys",Bahamas)
+vCLIENT = Tunnel.getInterface("propertys")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 vSKINSHOP = Tunnel.getInterface("skinshop")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +21,7 @@ local Markers = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PROPERTYS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Propertys(Name)
+function Bahamas.Propertys(Name)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -169,7 +170,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLOTHES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Clothes()
+function Bahamas.Clothes()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -244,7 +245,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPENCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.OpenChest(Name,Mode)
+function Bahamas.OpenChest(Name,Mode)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -318,7 +319,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STORE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Store(Item,Slot,Amount,Target,Name,Mode)
+function Bahamas.Store(Item,Slot,Amount,Target,Name,Mode)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -351,7 +352,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Take(Slot,Amount,Target,Name,Mode)
+function Bahamas.Take(Slot,Amount,Target,Name,Mode)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
@@ -372,7 +373,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Update(Slot,Target,Amount,Name,Mode)
+function Bahamas.Update(Slot,Target,Amount,Name,Mode)
 	local source = source
 	local Amount = parseInt(Amount)
 	local Passport = vRP.Passport(source)
