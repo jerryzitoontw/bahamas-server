@@ -279,6 +279,42 @@ local shops = {
 			["WEAPON_BULLPUPRIFLE_MK2"] = 4750
 		}
 	},
+	["Harmony"] = {
+		["mode"] = "Buy",
+		["type"] = "Cash",
+		["perm"] = "Harmony",
+		["List"] = {
+			["WEAPON_WRENCH"] = 675,
+			["WEAPON_CROWBAR"] = 425,
+			["advtoolbox"] = 2775,
+			["toolbox"] = 775,
+			["tyres"] = 175
+		}
+	},
+	["Ottos"] = {
+		["mode"] = "Buy",
+		["type"] = "Cash",
+		["perm"] = "Ottos",
+		["List"] = {
+			["WEAPON_WRENCH"] = 675,
+			["WEAPON_CROWBAR"] = 425,
+			["advtoolbox"] = 2775,
+			["toolbox"] = 775,
+			["tyres"] = 175
+		}
+	},
+	["Tuners"] = {
+		["mode"] = "Buy",
+		["type"] = "Cash",
+		["perm"] = "Tuners",
+		["List"] = {
+			["WEAPON_WRENCH"] = 675,
+			["WEAPON_CROWBAR"] = 425,
+			["advtoolbox"] = 2775,
+			["toolbox"] = 775,
+			["tyres"] = 175
+		}
+	},
 	-- (Market)
 	["Brewery"] = {
 		["mode"] = "Buy",
@@ -531,7 +567,7 @@ function Bahamas.requestPerm(Type)
 		end
 
 		if shops[Type]["perm"] ~= nil then
-			if not vRP.HasService(Passport,shops[Type]["perm"]) then
+			if not vRP.HasGroup(Passport,shops[Type]["perm"]) then
 				return false
 			end
 		end

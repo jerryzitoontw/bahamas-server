@@ -13,14 +13,41 @@ Tunnel.bindInterface("admin",Bahamas)
 vCLIENT = Tunnel.getInterface("admin")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
--- TUNING
+-- MODMAIL
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("teste",function(source)
+RegisterCommand("modmail",function(source,Message)
 	local Passport = vRP.Passport(source)
 	if Passport then
-		if vRP.HasGroup(Passport,"Admin") then
-			TriggerClientEvent("Notify",source,"verde","teste",10000)
+		if vRP.HasGroup(Passport,"Admin",2) and parseInt(Message[1]) > 0 then
+			local OtherPassport = parseInt(Message[1])
+			local ClosestPed = vRP.Source(OtherPassport)
+			if ClosestPed then
+			    local Keyboard = vKEYBOARD.keyTertiary(source,"Mensagem:","Cor:","Tempo (em MS):")
+			        if Keyboard then
+			        TriggerClientEvent("Notify",ClosestPed,Keyboard[2],Keyboard[1],Keyboard[3])
+				end
+			end
 		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RESTARTED
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("restarte",function(source,Message,History)
+	if source == 0 then
+		GlobalState["Weather"] = "THUNDER"
+		TriggerClientEvent("Notify",-1,"amarelo","Um grande terremoto se aproxima, abriguem-se enquanto há tempo pois o terremoto chegará em" ..History:sub(9).. " minutos.",60000)
+		print("Terremoto anunciado")
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- RESTARTEDCANCEL
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("restartecancel",function(source)
+	if source == 0 then
+		GlobalState["Weather"] = "EXTRASUNNY"
+		TriggerClientEvent("Notify",-1,"amarelo","Nosso sistema meteorológico detectou que o terremoto passou por agora, porém o mesmo pode voltar a qualquer momento",60000)
+		print("Terremoto cancelado")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

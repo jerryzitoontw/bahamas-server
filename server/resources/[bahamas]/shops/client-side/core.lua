@@ -133,9 +133,9 @@ local List = {
 	{ 1861.93,3688.11,34.56,"Police",false },
 	{ -449.65,6015.39,37.21,"Police",false },
 	-- Mechanic (Public)
-	{ 129.32,-3031.71,7.2,"Mechanic",false },
-	{ 836.91,-817.78,26.4,"Mechanic",false },
-	{ 1189.63,2636.54,38.39,"Mechanic",false },
+	{ 1189.63,2636.54,38.39,"Harmony",false },
+	{ 836.91,-817.78,26.4,"Ottos",false },
+	{ 129.32,-3031.71,7.2,"Tuners",false },
 	-- (Market)
 	{ -1225.28,-1440.04,4.73,"Brewery",false },
 	{ -1215.6,-1468.45,4.72,"CoolBeans",false },

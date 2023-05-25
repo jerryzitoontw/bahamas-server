@@ -11,9 +11,6 @@ vSERVER = Tunnel.getInterface("chest")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Chests = {
 	-- Public
-	{ ["Name"] = "Mechanic-1", ["Coords"] = vec3(836.83,-813.62,26.45), ["Mode"] = "3" },
-	{ ["Name"] = "Mechanic-2", ["Coords"] = vec3(146.11,-3007.79,6.6), ["Mode"] = "3" },
-	{ ["Name"] = "Mechanic-3", ["Coords"] = vec3(1187.25,2635.53,38.27), ["Mode"] = "3" },
 	{ ["Name"] = "Paramedic-1", ["Coords"] = vec3(1135.06,-1540.55,35.52), ["Mode"] = "2" },
 	{ ["Name"] = "Paramedic-2", ["Coords"] = vec3(1828.41,3674.97,34.41), ["Mode"] = "2" },
 	{ ["Name"] = "Paramedic-3", ["Coords"] = vec3(-258.00,6332.62,32.72), ["Mode"] = "2" },
@@ -22,6 +19,10 @@ local Chests = {
 	{ ["Name"] = "Police-3", ["Coords"] = vec3(1844.31,2573.84,46.26), ["Mode"] = "1" },
 	{ ["Name"] = "Police-4", ["Coords"] = vec3(1851.51,3690.14,34.51), ["Mode"] = "1" },
 	{ ["Name"] = "Police-5", ["Coords"] = vec3(-449.0,6016.89,32.43), ["Mode"] = "1" },
+	-- Mechanic
+	{ ["Name"] = "Ottos", ["Coords"] = vec3(836.83,-813.62,26.45), ["Mode"] = "3" },
+	{ ["Name"] = "Tuners", ["Coords"] = vec3(146.11,-3007.79,6.6), ["Mode"] = "3" },
+	{ ["Name"] = "Harmony", ["Coords"] = vec3(1187.25,2635.53,38.27), ["Mode"] = "3" },
 	-- Restaurants
 	{ ["Name"] = "Pearls", ["Coords"] = vec3(-1841.57,-1186.37,14.2), ["Mode"] = "3" },
 	-- Contraband

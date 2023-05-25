@@ -265,6 +265,43 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterKeyMapping("openBackpack","Manusear a mochila.","keyboard","OEM_3")
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- REPAIRENGINE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("inventory:repairEngine")
+AddEventHandler("inventory:repairEngine",function(Index,Plate)
+	if NetworkDoesNetworkIdExist(Index) then
+		local Vehicle = NetToEnt(Index)
+		if DoesEntityExist(Vehicle) then
+			if GetVehicleNumberPlateText(Vehicle) == Plate then
+				local Tyres = {}
+
+				for i = 0,7 do
+					local Status = false
+
+					if GetTyreHealth(Vehicle,i) ~= 1000.0 then
+						Status = true
+					end
+
+					Tyres[i] = Status
+				end
+
+				local Fuel = GetVehicleFuelLevel(Vehicle)
+
+				SetVehicleEngineHealth(Vehicle,1000.0)
+				SetVehiclePetrolTankHealth(Vehicle,1000.0)
+
+				SetVehicleFuelLevel(Vehicle,Fuel)
+
+				for Tyre,Burst in pairs(Tyres) do
+					if Burst then
+						SetVehicleTyreBurst(Vehicle,Tyre,true,1000.0)
+					end
+				end
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- REPAIRVEHICLE
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("inventory:repairVehicle")

@@ -6568,7 +6568,7 @@ local List = {
 			["Gemstone"] = 150,
 			["Class"] = "Importados"
 	    },
-		["nissansilvia"] = {
+		["silvia"] = {
 			["Name"] = "Nissan Silvia",
 			["Weight"] = 20,
 			["Price"] = 20000,
@@ -6620,6 +6620,14 @@ local List = {
 		},
 		["audirs6avant"] = {
 			["Name"] = "Audi Avant",
+			["Weight"] = 0,
+			["Price"] = 1000,
+			["Mode"] = "Work",
+			["Gemstone"] = 0,
+			["Class"] = "Emergência"
+		},
+		["B412"] = {
+			["Name"] = "B412",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",

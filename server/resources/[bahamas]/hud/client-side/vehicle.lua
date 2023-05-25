@@ -436,11 +436,11 @@ RegisterCommand("Beltz",function(source)
 	if IsPedInAnyVehicle(Ped) then
 		if not IsPedOnAnyBike(Ped) and not IsPedInAnyHeli(Ped) and not IsPedInAnyPlane(Ped) then
 			if SeatbeltLock then
-				TriggerEvent("sounds:Private","unbelt",0.5)
+				TriggerEvent("sounds:Private","beltoff",0.5)
 				SendNUIMessage({ Action = "Seatbelt", Status = false })
 				SeatbeltLock = false
 			else
-				TriggerEvent("sounds:Private","belt",0.5)
+				TriggerEvent("sounds:Private","belton",0.5)
 				SendNUIMessage({ Action = "Seatbelt", Status = true })
 				SeatbeltLock = true
 			end

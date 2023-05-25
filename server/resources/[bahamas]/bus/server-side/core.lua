@@ -24,18 +24,18 @@ function Bahamas.Payment(Service)
 	if Passport then
 		local Experience = vRP.GetExperience(Passport,"Driver")
 		local Category = ClassCategory(Experience)
-		local Valuation = 100
+		local Valuation = 40
 
 		if Category == "B+" then
-			Valuation = Valuation + 40
+			Valuation = Valuation + 10
 		elseif Category == "A" then
-			Valuation = Valuation + 60
+			Valuation = Valuation + 20
 		elseif Category == "A+" then
-			Valuation = Valuation + 80
+			Valuation = Valuation + 30
 		elseif Category == "S" then
-			Valuation = Valuation + 100
+			Valuation = Valuation + 40
 		elseif Category == "S+" then
-			Valuation = Valuation + 120
+			Valuation = Valuation + 50
 		end
 
 		if Buffs["Dexterity"][Passport] then

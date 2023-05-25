@@ -339,69 +339,66 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GETSRVDATA
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.GetSrvData(Key, Save)
-    if not srvData[Key] then
-        if parseInt(#vRP.Query("entitydata/GetData", { dkey = Key })) > 0 then
-            if not Save then
-            end
-            srvData[Key] = { data = json.decode(vRP.Query("entitydata/GetData", { dkey = Key })[1].dvalue), timer = os.time() + 180, save = true}
-        else
-            if not Save then
-            end
-            srvData[Key] = { data = {}, timer = os.time() + 180, save = true }
-        end
-    end
-    return srvData[Key].data
+function vRP.GetSrvData(Key)
+	if srvData[Key] == nil then
+		local rows = vRP.Query("entitydata/GetData",{ dkey = Key })
+		if parseInt(#rows) > 0 then
+			srvData[Key] = { data = json.decode(rows[1]["dvalue"]), timer = 180 }
+		else
+			srvData[Key] = { data = {}, timer = 180 }
+		end
+	end
+
+	return srvData[Key]["data"]
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SETSRVDATA
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.SetSrvData(Key, Data, Save)
-    if not Save then
-        print("O resource ^2vRP^7 salvou os dados.")
-    end
-    srvData[Key] = { data = Data, timer = os.time() + 180, save = true }
+function vRP.SetSrvData(Key,Data)
+	srvData[Key] = { data = Data, timer = 180 }
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMSRVDATA
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.RemSrvData(Key, Save)
-    if not Save then
-        print("O resource ^2vRP^7 removeu os dados.")
-        srvData[Key] = nil
-    end
+function vRP.RemSrvData(Key)
+	srvData[Key] = { data = {}, timer = 180 }
 end
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SRVSYNC
+-----------------------------------------------------------------------------------------------------------------------------------------
 CreateThread(function()
-    while true do
-        for k,v in pairs(srvData) do
-            if v["timer"] > 0 then
-                v["timer"] = v["timer"] - 1
-                
-                if v["timer"] <= 0 then
-                    vRP.Query("entitydata/SetData", { dkey = k, dvalue = v.data })
-                else
-                    vRP.Query("entitydata/setData",{ dkey = k, value = json.encode(v["data"]) })
-                    srvData[k] = nil
-                end
-            end
-        end
-        
-        Citizen.Wait(60000)
-    end
+	while true do
+		for k,v in pairs(srvData) do
+			if v["timer"] > 0 then
+				v["timer"] = v["timer"] - 1
+
+				if v["timer"] <= 0 then
+					vRP.Query("entitydata/SetData",{ dkey = k, dvalue = json.encode(v["data"]) })
+					srvData[k] = nil
+				end
+			end
+		end
+
+		Wait(60000)
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SAVESERVER
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("SaveServer", function(Save)
-    for k, v in pairs(srvData) do
-        if v.save then
-            vRP.Query("entitydata/SetData", { dkey = k, dvalue = json.encode(v.data) })
-        end
-    end
-    if not Save then
-        print("O resource ^2vRP^7 salvou os dados.")
-    end
+RegisterServerEvent("SaveServer")
+AddEventHandler("SaveServer",function(Silenced)
+	for k,v in pairs(srvData) do
+		if json.encode(v["data"]) == "[]" or json.encode(v["data"]) == "{}" then
+			vRP.Query("entitydata/RemoveData",{ dkey = k })
+		else
+			vRP.Query("entitydata/SetData",{ dkey = k, dvalue = json.encode(v["data"]) })
+		end
+	end
+
+	if not Silenced then
+		print("Powered by viniciux#0999")
+		print("Save no banco de dados terminou, ja pode reiniciar o servidor.")
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKECHEST

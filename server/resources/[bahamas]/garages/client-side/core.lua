@@ -294,12 +294,12 @@ local Garages = {
 		["1"] = { 1865.28,3647.61,35.69,215.44 }
 	},
 	-- Police-5 (Public)
-	["58"] = { x = -458.99, y = 6031.32, z = 31.34,
-		["1"] = { -469.04,6038.77,31.0,226.78 },
-		["2"] = { -472.45,6035.42,31.0,226.78 },
+	["58"] = { x = -480.38, y = 6017.54, z = 31.34,
+		["1"] = { -482.7,6024.95,31.0,226.78 },
+		["2"] = { -479.61,6028.09,31.0,226.78 },
 		["3"] = { -476.09,6031.71,31.0,226.78 },
-		["4"] = { -479.61,6028.09,31.0,226.78 },
-		["5"] = { -482.7,6024.95,31.0,226.78 }
+		["4"] = { -472.45,6035.42,31.0,226.78 },
+		["5"] = { -469.04,6038.77,31.0,226.78 }
 	},
 	-- HeliPolice-5 (Public)
 	["59"] = { x = -479.35, y = 6011.16, z = 31.29,
@@ -650,7 +650,7 @@ CreateThread(function()
 		if IsPedInAnyVehicle(Ped) then
 			local Vehicle = GetVehiclePedIsUsing(Ped)
 			local Plate = GetVehicleNumberPlateText(Vehicle)
-			if GetPedInVehicleSeat(Vehicle,-1) == Ped and not GlobalState["Plates"][Plate] then
+			if GetPedInVehicleSeat(Vehicle,-1) == Ped and not GlobalState["Plates"][Plate] and not Plate ~= "BMHS-PDM" then
 				SetVehicleEngineOn(Vehicle,false,true,true)
 				DisablePlayerFiring(Ped,true)
 				TimeDistance = 1

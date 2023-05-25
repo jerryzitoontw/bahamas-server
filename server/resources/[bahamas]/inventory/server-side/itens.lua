@@ -2415,7 +2415,7 @@ Use = {
 						local Players = vRPC.Players(source)
 						for _,v in pairs(Players) do
 							async(function()
-								TriggerClientEvent("inventory:repairVehicle",v,Network,Plate)
+								TriggerClientEvent("inventory:repairEngine",v,Network,Plate)
 							end)
 						end
 					end

@@ -52,35 +52,35 @@ Buffs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 DrugsList = {
 	["cocaine"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["crack"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["heroin"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["joint"] = {
-		Price = { ["Min"] = 175, ["Max"] = 200 },
-		Amount = { ["Min"] = 1, ["Max"] = 2 }
+		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["lean"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["metadone"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["meth"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["oxy"] = {
-		Price = { ["Min"] = 75, ["Max"] = 85 },
+		Price = { ["Min"] = 180, ["Max"] = 220 },
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	}
 }

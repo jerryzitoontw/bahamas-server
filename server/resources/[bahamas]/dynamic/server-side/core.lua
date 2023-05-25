@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
+vRPC = Tunnel.getInterface("vRP")
 vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
@@ -64,21 +65,25 @@ end
 -- TENCODES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Tencodes = {
-	[13] = {
-		text = "Oficial desmaiado/ferido",
+	[1] = {
+		tag = "QTI",
+		text = "Abordagem de trânsito",
+		blip = 77
+	},
+	[2] = {
+		tag = "QTH",
+		text = "Localização",
 		blip = 1
 	},
-	[20] = {
-		text = "Localização",
+	[3] = {
+		tag = "QRR",
+		text = "Apoio com prioridade",
 		blip = 38
 	},
-	[38] = {
-		text = "Abordagem de trânsito",
-		blip = 83
-	},
-	[78] = {
-		text = "Apoio com prioridade",
-		blip = 4
+	[4] = {
+		tag = "QRT",
+		text = "Oficial desmaiado/ferido",
+		blip = 6
 	}
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -95,7 +100,11 @@ AddEventHandler("dynamic:Tencode",function(Code)
 		local Service = vRP.NumPermission("Police")
 		for Passports,Sources in pairs(Service) do
 			async(function()
-				TriggerClientEvent("NotifyPush",Sources,{ code = Code, title = Tencodes[parseInt(Code)]["text"], x = Coords["x"], y = Coords["y"], z = Coords["z"], name = Identity["name"].." "..Identity["name2"], time = "Recebido às "..os.date("%H:%M"), blipColor = Tencodes[parseInt(Code)]["blip"] })
+				if Code ~= 4 then
+					vRPC.PlaySound(Sources,"Event_Start_Text","GTAO_FM_Events_Soundset")
+				end
+
+				TriggerClientEvent("NotifyPush",Sources,{ code = Tencodes[parseInt(Code)]["tag"], title = Tencodes[parseInt(Code)]["text"], x = Coords["x"], y = Coords["y"], z = Coords["z"], name = Identity["name"].." "..Identity["name2"], time = "Recebido às "..os.date("%H:%M"), blipColor = Tencodes[parseInt(Code)]["blip"] })
 			end)
 		end
 	end

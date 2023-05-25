@@ -148,7 +148,7 @@ RegisterNUICallback("Drive",function(Data,Callback)
 			SetVehicleMod(Mount,13,GetNumVehicleMods(Mount,13) - 1,false)
 			SetVehicleMod(Mount,15,GetNumVehicleMods(Mount,15) - 1,false)
 
-			SetVehicleNumberPlateText(Mount,"PDMSPORT")
+			SetVehicleNumberPlateText(Mount,"BMHS-PDM")
 			SetPedIntoVehicle(PlayerPedId(),Mount,-1)
 			SetEntityInvincible(Mount,true)
 			SetModelAsNoLongerNeeded(Data)
