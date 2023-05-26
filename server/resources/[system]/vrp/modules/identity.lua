@@ -141,7 +141,7 @@ function vRP.UpgradeGemstone(Passport, Amount)
     if parseInt(Amount) > 0 and License then
         vRP.Query("accounts/AddGems", { license = License.license, gems = parseInt(Amount) })
         if Characters[Source] then
-            TriggerClientEvent("hud:AddGems", Source, (parseInt(Amount)))
+            Characters[Source].gems = Characters[Source].gems + Amount
         end
     end
 end

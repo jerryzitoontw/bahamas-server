@@ -39,7 +39,7 @@ AddEventHandler("pdm:Open",function()
 	end
 
 	local Ped = PlayerPedId()
-	if not LocalPlayer["state"]["Buttons"] and not LocalPlayer["state"]["Commands"] and GetEntityHealth(Ped) > 100 --[[ and not exports["hud"]:Wanted() ]] then
+	if not LocalPlayer["state"]["Buttons"] and not LocalPlayer["state"]["Commands"] and GetEntityHealth(Ped) > 100 and not exports["hud"]:Wanted() then
 		CameraActive()
 		SetNuiFocus(true,true)
 		SetCursorLocation(0.5,0.5)
@@ -148,7 +148,7 @@ RegisterNUICallback("Drive",function(Data,Callback)
 			SetVehicleMod(Mount,13,GetNumVehicleMods(Mount,13) - 1,false)
 			SetVehicleMod(Mount,15,GetNumVehicleMods(Mount,15) - 1,false)
 
-			SetVehicleNumberPlateText(Mount,"BMHS-PDM")
+			SetVehicleNumberPlateText(Mount,"PDMSPORT")
 			SetPedIntoVehicle(PlayerPedId(),Mount,-1)
 			SetEntityInvincible(Mount,true)
 			SetModelAsNoLongerNeeded(Data)

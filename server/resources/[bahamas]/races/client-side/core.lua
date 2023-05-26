@@ -11,7 +11,7 @@ vSERVER = Tunnel.getInterface("races")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Saved = 0
 local Objects = {}
-local Selected = 1
+local Race = 1
 local Markers = {}
 local Checkpoint = 1
 local Rankings = false
@@ -57,33 +57,45 @@ CreateThread(function()
 					StopCircuit()
 				end
 
-				local Distance = #(Coords - Races[Selected]["Coords"][Checkpoint]["Center"])
-				if Distance <= (Races[Selected]["Coords"][Checkpoint]["Distance"] + 0.25) then
-					if Checkpoint >= #Races[Selected]["Coords"] then
-						SendNUIMessage({ name = "Display", payload = { false } })
-						vSERVER.Finish(Selected,Points)
+				local Distance = #(Coords - Races[Race]["Coords"][Checkpoint])
+				if Distance <= 500 then
+					TimeDistance = 1
 
-						CleanCircuit()
-
-						Saved = 0
-						Checkpoint = 1
-						ExplodeTimers = false
-						LocalPlayer["state"]:set("Races",false,false)
-						SendNUIMessage({ name = "Ranking", payload = { true,vSERVER.Ranking(Selected) } })
-						Selected = 1
-
-						SetTimeout(5000,function()
-							SendNUIMessage({ name = "Ranking", payload = { false } })
-						end)
+					if Checkpoint >= #Races[Race]["Coords"] then
+						DrawMarker(22,Races[Race]["Coords"][Checkpoint]["x"],Races[Race]["Coords"][Checkpoint]["y"],Races[Race]["Coords"][Checkpoint]["z"] + 3.0,0.0,0.0,0.0,0.0,180.0,GetEntityHeading(Ped) - 90,7.5,7.5,5.0,245,10,70,100,0,0,0,1)
 					else
-						if DoesBlipExist(Markers[Checkpoint]) then
-							RemoveBlip(Markers[Checkpoint])
-							Markers[Checkpoint] = nil
-						end
+						DrawMarker(22,Races[Race]["Coords"][Checkpoint]["x"],Races[Race]["Coords"][Checkpoint]["y"],Races[Race]["Coords"][Checkpoint]["z"] + 3.0,0.0,0.0,0.0,0.0,180.0,0.0,7.5,7.5,5.0,245,10,70,100,0,0,0,1)
+					end
 
-						Checkpoint = Checkpoint + 1
-						SetBlipRoute(Markers[Checkpoint],true)
-						SendNUIMessage({ name = "Checkpoint" })
+					DrawMarker(1,Races[Race]["Coords"][Checkpoint]["x"],Races[Race]["Coords"][Checkpoint]["y"],Races[Race]["Coords"][Checkpoint]["z"] - 3.0,0.0,0.0,0.0,0.0,0.0,0.0,15.0,15.0,10.0,255,255,255,50,0,0,0,0)
+
+					if Distance <= 15 then
+						if Checkpoint >= #Races[Race]["Coords"] then
+							SendNUIMessage({ name = "Display", payload = { false } })
+							vSERVER.Finish(Race,Points)
+
+							CleanCircuit()
+
+							Saved = 0
+							Checkpoint = 1
+							ExplodeTimers = false
+							LocalPlayer["state"]:set("Races",false,false)
+							SendNUIMessage({ name = "Ranking", payload = { true,vSERVER.Ranking(Race) } })
+							Race = 1
+
+							SetTimeout(5000,function()
+								SendNUIMessage({ name = "Ranking", payload = { false } })
+							end)
+						else
+							if DoesBlipExist(Markers[Checkpoint]) then
+								RemoveBlip(Markers[Checkpoint])
+								Markers[Checkpoint] = nil
+							end
+
+							Checkpoint = Checkpoint + 1
+							SetBlipRoute(Markers[Checkpoint],true)
+							SendNUIMessage({ name = "Checkpoint" })
+						end
 					end
 				end
 			else
@@ -114,7 +126,7 @@ CreateThread(function()
 									end
 
 									Saved = GetGameTimer()
-									Selected = Number
+									Race = Number
 									Checkpoint = 1
 
 									LocalPlayer["state"]:set("Races",true,false)
@@ -147,32 +159,18 @@ function InitCircuit()
 	LoadModel("prop_beachflag_01")
 	LoadModel("prop_offroad_tyres02")
 
-	for Number = 1,#Races[Selected]["Coords"] do
-		Markers[Number] = AddBlipForCoord(Races[Selected]["Coords"][Number]["Center"]["x"],Races[Selected]["Coords"][Number]["Center"]["y"],Races[Selected]["Coords"][Number]["Center"]["z"])
+	for Number = 1,#Races[Race]["Coords"] do
+		Markers[Number] = AddBlipForCoord(Races[Race]["Coords"][Number]["x"],Races[Race]["Coords"][Number]["y"],Races[Race]["Coords"][Number]["z"])
 		SetBlipSprite(Markers[Number],1)
-		SetBlipColour(Markers[Number],77)
+		SetBlipColour(Markers[Number],6)
 		SetBlipScale(Markers[Number],0.85)
 		SetBlipRoute(Markers[Checkpoint],true)
 		SetBlipAsShortRange(Markers[Number],true)
 
 		local Prop = "prop_offroad_tyres02"
-		if Number == #Races[Selected]["Coords"] then
+		if Number == #Races[Race]["Coords"] then
 			Prop = "prop_beachflag_01"
 		end
-
-		local LeftObject = CreateObjectNoOffset(Prop,Races[Selected]["Coords"][Number]["Left"]["x"],Races[Selected]["Coords"][Number]["Left"]["y"],Races[Selected]["Coords"][Number]["Left"]["z"],false,false,false)
-		local RightObject = CreateObjectNoOffset(Prop,Races[Selected]["Coords"][Number]["Right"]["x"],Races[Selected]["Coords"][Number]["Right"]["y"],Races[Selected]["Coords"][Number]["Right"]["z"],false,false,false)
-
-		SetEntityLodDist(LeftObject,0xFFFF)
-		PlaceObjectOnGroundProperly(LeftObject)
-		SetEntityCollision(LeftObject,false,false)
-
-		SetEntityLodDist(RightObject,0xFFFF)
-		PlaceObjectOnGroundProperly(RightObject)
-		SetEntityCollision(RightObject,false,false)
-
-		Objects[#Objects + 1] = LeftObject
-		Objects[#Objects + 1] = RightObject
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------

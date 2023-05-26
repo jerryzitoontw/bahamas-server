@@ -357,6 +357,12 @@ local List = {
 		Model = "g_f_y_ballas_01",
 		anim = { "amb@lo_res_idles@","world_human_lean_male_foot_up_lo_res_base" }
 	},
+	{ -- Informations (Ilegal)
+		Distance = 100,
+		Coords = { -95.09,-2767.85,6.08,93.55 },
+		Model = "ig_beverly",
+		anim = { "amb@lo_res_idles@","world_human_lean_male_foot_up_lo_res_base" }
+	},
 
 	{ -- Chiliad (Routes)
 		Distance = 10,

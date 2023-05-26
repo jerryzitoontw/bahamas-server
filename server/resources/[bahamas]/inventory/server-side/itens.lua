@@ -73,8 +73,6 @@ Use = {
 				vRP.GenerateItem(Passport,"copper_pure",1)
 				vRP.GenerateItem(Passport,"iron_pure",1)
 				vRP.GenerateItem(Passport,"pistolbody",1)
-				vRP.GenerateItem(Passport,"smgbody",1)
-				vRP.GenerateItem(Passport,"riflebody",1)
 				TriggerClientEvent("inventory:Update",source,"Backpack")
 			end
 		else
@@ -1005,7 +1003,7 @@ Use = {
 		if Armors[Passport] then
 			if os.time() < Armors[Passport] then
 				local armorTimers = parseInt(Armors[Passport] - os.time())
-				TriggerClientEvent("Notify",source,false,"Aguarde <b>"..armorTimers.."</b> segundos.","azul",5000)
+				TriggerClientEvent("Notify",source,"azul","Aguarde <b>"..armorTimers.."</b> segundos.",5000)
 				return
 			end
 		end
@@ -1024,7 +1022,7 @@ Use = {
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
 					TriggerClientEvent("Methamphetamine",source)
-					Armors[Passport] = os.time() + 60
+					Armors[Passport] = os.time() + 30
 					vRP.ChemicalTimer(Passport,10)
 					vRP.SetArmour(source,10)
 				end
@@ -2510,7 +2508,7 @@ Use = {
 						TriggerClientEvent("inventory:Close",source)
 						vRPC.playAnim(source,false,{"anim@amb@clubhouse@tutorial@bkr_tut_ig3@","machinic_loop_mechandplayer"},true)
 
-						if vTASKBAR.Task(source,3,70500) then
+						if vTASKBAR.Task(source,3,40500) then
 							if vRP.TakeItem(Passport,Full,1,true,Slot) then
 								local Players = vRPC.Players(source)
 								for _,v in pairs(Players) do

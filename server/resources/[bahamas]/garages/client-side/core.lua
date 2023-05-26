@@ -306,17 +306,17 @@ local Garages = {
 		["1"] = { -475.29,5988.55,31.0,317.49 }
 	},
 
-	-- Mechanic-1 (Public)
-	["60"] = { x = 821.94, y = -831.87, z = 26.25,
+	-- Harmony (Public)
+	["60"] = { x = 1169.53, y = 2644.21, z = 37.81,
+		["1"] = { 1167.02,2640.32,37.9,0.0 }
+	},
+	-- Ottos (Public)
+	["61"] = { x = 821.94, y = -831.87, z = 26.25,
 		["1"] = { 819.05,-826.03,26.3,0.0 }
 	},
-	-- Mechanic-2 (Public)
-	["61"] = { x = 157.76, y = -3009.03, z = 7.03,
+	-- Tuners (Public)
+	["62"] = { x = 157.76, y = -3009.03, z = 7.03,
 		["1"] = { 165.14,-3009.37,6.0,272.13 }
-	},
-	-- Mechanic-3 (Public)
-	["62"] = { x = 1169.53, y = 2644.21, z = 37.81,
-		["1"] = { 1167.02,2640.32,37.9,0.0 }
 	},
 
 	-- Pearls (Restaurants)
@@ -644,27 +644,29 @@ end
 -- LOOPHOTWIRED
 -----------------------------------------------------------------------------------------------------------------------------------------
 CreateThread(function()
-	while true do
-		local TimeDistance = 999
-		local Ped = PlayerPedId()
-		if IsPedInAnyVehicle(Ped) then
-			local Vehicle = GetVehiclePedIsUsing(Ped)
-			local Plate = GetVehicleNumberPlateText(Vehicle)
-			if GetPedInVehicleSeat(Vehicle,-1) == Ped and not GlobalState["Plates"][Plate] and not Plate ~= "BMHS-PDM" then
-				SetVehicleEngineOn(Vehicle,false,true,true)
-				DisablePlayerFiring(Ped,true)
-				TimeDistance = 1
+	--if not LocalPlayer["state"]["TestDrive"] then
+		while true do
+			local TimeDistance = 999
+			local Ped = PlayerPedId()
+			if IsPedInAnyVehicle(Ped) then
+				local Vehicle = GetVehiclePedIsUsing(Ped)
+				local Plate = GetVehicleNumberPlateText(Vehicle)
+				if GetPedInVehicleSeat(Vehicle,-1) == Ped and not GlobalState["Plates"][Plate] and Plate ~= "PDMSPORT" then
+					SetVehicleEngineOn(Vehicle,false,true,true)
+					DisablePlayerFiring(Ped,true)
+					TimeDistance = 1
+				end
+
+				if Hotwired and Vehicle then
+					DisableControlAction(1,75,true)
+					DisableControlAction(1,20,true)
+					TimeDistance = 1
+				end
 			end
 
-			if Hotwired and Vehicle then
-				DisableControlAction(1,75,true)
-				DisableControlAction(1,20,true)
-				TimeDistance = 1
-			end
+			Wait(TimeDistance)
 		end
-
-		Wait(TimeDistance)
-	end
+	--end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGES:IMPOUND

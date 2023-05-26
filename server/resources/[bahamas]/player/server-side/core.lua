@@ -14,6 +14,31 @@ vCLIENT = Tunnel.getInterface("player")
 vSKINSHOP = Tunnel.getInterface("skinshop")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- PLAYER:INFORMATIONS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("player:Informations")
+AddEventHandler("player:Informations",function()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if not vRP.HasGroup(Passport,"Police") and not vRP.HasGroup(Passport,"Paramedic") then
+			if vRP.Request(source,"Quer receber informações por <b>$10.000</b>?","Sim, por favor","Não, decido depois") then
+				if vRP.ConsultItem(Passport,"dollarsroll",10000) and vRP.TakeItem(Passport,"dollarsroll",10000) then
+					local Paramedic = vRP.NumPermission("Paramedic")
+					local Police = vRP.NumPermission("Police")
+
+		    	    TriggerClientEvent("Notify",source,"amarelo","Há <b>"..parseInt(Paramedic).."</b> Paramedicos em serviço",10000)
+					TriggerClientEvent("Notify",source,"amarelo","Há <b>"..parseInt(Police).."</b> Policiais em serviço",10000)
+				else
+					TriggerClientEvent("Notify",source,"vermelho","Vcoê não possui <b>10.000 Rolo de Dólares</b>",10000)
+				end
+			end
+		else
+			TriggerClientEvent("Notify",source,"amarelo","Não há nada pra você aqui",10000)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- SKIN
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("skin",function(source,Message)
@@ -238,17 +263,7 @@ AddEventHandler("player:carryPlayer",function()
 		end
 	end
 end)
------------------------------------------------------------------------------------------------------------------------------------------
--- PLAYER:WINSFUNCTIONS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("player:winsFunctions")
-AddEventHandler("player:winsFunctions",function(Mode)
-	local source = source
-	local vehicle,Network = vRPC.VehicleList(source,10)
-	if vehicle then
-		TriggerClientEvent("player:syncWins",source,Network,Mode)
-	end
-end)
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYER:CVFUNCTIONS
 -----------------------------------------------------------------------------------------------------------------------------------------

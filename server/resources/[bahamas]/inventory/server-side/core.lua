@@ -275,8 +275,10 @@ function Bahamas.requestInventory()
 							v["Passport"] = Number
 							v["idPremium"] = "Nenhum"
 							v["idRolepass"] = "Inativo"
+							v["idGemstone"] = "Nenhuma"
 							v["idBlood"] = Sanguine(Identity["blood"])
 							v["idName"] = Identity["name"].." "..Identity["name2"]
+							v["idGemstone"] = Identity["gems"]
 
 							if Number == Passport and Split[1] == "identity" then
 								if Identity["premium"] > os.time() then
@@ -1725,6 +1727,7 @@ function Bahamas.PaymentDrugs()
 
 		if vRP.TakeItem(Passport,Drugs[Passport][1],Drugs[Passport][2],true) then
 			vRP.GenerateItem(Passport,"dollarsroll",Drugs[Passport][3] + (Points * 2),true)
+			vRP.UpgradeStress(Passport,math.random(1,2))
 
 			local Ped = GetPlayerPed(source)
 			local Coords = GetEntityCoords(Ped)

@@ -235,6 +235,20 @@ CreateThread(function()
 	RegisterCommand("-entityTarget",TargetDisable)
 	RegisterKeyMapping("+entityTarget","Interação auricular.","keyboard","LMENU")
 
+	AddCircleZone("Informations01",vec3(-95.33,-2767.89,6.46),0.5,{
+		name = "Informations01",
+		heading = 3374176
+	},{
+		Distance = 1.0,
+		options = {
+			{
+				event = "player:Informations",
+				label = "Informações",
+				tunnel = "server"
+			}
+		}
+	})
+
 	AddBoxZone("WorkBus",vec3(453.47,-602.34,28.59),0.5,0.5,{
 		name = "WorkBus",
 		heading = 266.46,

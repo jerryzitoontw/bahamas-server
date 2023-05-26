@@ -259,6 +259,7 @@ function vRP.CharacterChosen(source, Passport, Model)
             Characters[source].cardlimit = Query[1].cardlimit
             Characters[source].spending = Query[1].spending
             Characters[source].license = Query[1].license
+            Characters[source].gems = Account.gems
             Characters[source].rolepass = Account.rolepass
             Characters[source].premium = Account.premium
             Characters[source].discord = Account.discord
