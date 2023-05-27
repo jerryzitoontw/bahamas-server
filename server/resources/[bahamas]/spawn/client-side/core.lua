@@ -203,6 +203,13 @@ function Customization(Table,Check)
 			TaskPlayAnim(Ped,Anims[Random]["Dict"],Anims[Random]["Name"],8.0,8.0,-1,1,0,0,0,0)
 		end
 
+		exports["skinshop"]:Apply(Table["Clothes"],Ped)
+		exports["barbershop"]:Apply(Table["Barber"],Ped)
+
+		for Index,Overlay in pairs(Table["Tattoos"]) do
+			AddPedDecorationFromHashes(Ped,Overlay,Index)
+		end
+
 		SetEntityVisible(Ped,true,false)
 		LocalPlayer["state"]:set("Invisible",false,true)
 	end

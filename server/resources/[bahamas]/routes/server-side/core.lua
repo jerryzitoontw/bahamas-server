@@ -202,8 +202,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ 264.03,-2504.0,6.44 },
@@ -247,8 +247,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ -2565.73,2307.22,33.21 },
@@ -289,8 +289,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ 264.03,-2504.0,6.44 },
@@ -334,8 +334,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ -2565.73,2307.22,33.21 },
@@ -376,8 +376,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ 264.03,-2504.0,6.44 },
@@ -421,8 +421,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ 264.03,-2504.0,6.44 },
@@ -466,8 +466,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ -2565.73,2307.22,33.21 },
@@ -508,8 +508,8 @@ local routes = {
 		["collectDuration"] = 15000,
 		["collectAnim"] = { false,"amb@prop_human_parking_meter@female@idle_a","idle_a_female",true },
 		["collectConsume"] = {
-			["min"] = 1,
-			["max"] = 2
+			["min"] = 3,
+			["max"] = 5
 		},
 		["collectCoords"] = {
 			{ -2565.73,2307.22,33.21 },

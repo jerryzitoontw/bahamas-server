@@ -1,17 +1,20 @@
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- VARIABLES
+-----------------------------------------------------------------------------------------------------------------------------------------
 local Salary = {}
-
--- GetHierarquia
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- GETHIERARQUIA
+-----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.GetHierarquia(Passport,Permission)
-    local Datatable = vRP.GetSrvData("Permissions:" ..Permission)
+    local Datatable = vRP.GetSrvData("Permissions:"..Permission)
     for k, v in pairs(Datatable) do
         return k,v
     end
 end
-
--- UPDATEROLEPASS
-
-AddEventHandler("Salary:Add", function(Passport, Permission)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SALARY:ADD
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("Salary:Add",function(Passport,Permission)
     if not Salary[Permission] then
         Salary[Permission] = {}
     end
@@ -19,10 +22,10 @@ AddEventHandler("Salary:Add", function(Passport, Permission)
         Salary[Permission][Passport] = os.time() + SalarySeconds
     end
 end)
-
--- UPDATEROLEPASS
-
-AddEventHandler("Salary:Remove", function(Passport, Permission)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SALARY:REMOVE
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("Salary:Remove",function(Passport,Permission)
     if Permission then
         if Salary[Permission] and Salary[Permission][Passport] then
             Salary[Permission][Passport] = nil
@@ -35,9 +38,9 @@ AddEventHandler("Salary:Remove", function(Passport, Permission)
         end
     end
 end)
-
--- UPDATEROLEPASS
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- THREADSTART
+-----------------------------------------------------------------------------------------------------------------------------------------
 CreateThread(function()
     while true do
         Wait(SalarySeconds * 1000)
@@ -46,8 +49,8 @@ CreateThread(function()
                 local id,level = vRP.GetHierarquia(Passport,k)
                 Salary[k][Passport] = os.time() + SalarySeconds
                 if vRP.HasGroup(Passport, k,level) then
-                    if Groups[k] and Groups[k].Salary[level]  and vRP.HasService(Passport,k) then
-                        vRP.GiveBank(Passport, Groups[k].Salary[level])
+                    if Groups[k] and Groups[k]["Salary"][level]  and vRP.HasService(Passport,k) then
+                        vRP.GiveBank(Passport,Groups[k]["Salary"][level])
                     end
                 else
                     Salary[k][Passport] = nil
@@ -56,11 +59,11 @@ CreateThread(function()
         end
     end
 end)
-
--- UPDATEROLEPASS
-
-AddEventHandler("Disconnect", function(Passport)
-    for k, v in pairs(Salary) do
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DISCONNECT
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("Disconnect",function(Passport)
+    for k,v in pairs(Salary) do
         if Salary[k][Passport] then
             Salary[k][Passport] = nil
         end

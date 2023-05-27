@@ -472,7 +472,7 @@ space {
 }
 
 .march circle:nth-child(2) {
-	stroke: #4182e2;
+	stroke: #f50a46;
 	stroke-dashoffset: calc(440 - (440 * 0) / 100);
 }
 

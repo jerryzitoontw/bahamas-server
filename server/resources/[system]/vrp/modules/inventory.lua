@@ -5,11 +5,11 @@ local srvData = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONSULTITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ConsultItem(Passport, Item, Amount)
+function vRP.ConsultItem(Passport,Item,Amount)
     if vRP.Source(Passport) then
-        if Amount > vRP.InventoryItemAmount(Passport, Item)[1] then
+        if Amount > vRP.InventoryItemAmount(Passport,Item)[1] then
             return false
-        elseif vRP.CheckDamaged(vRP.InventoryItemAmount(Passport, Item)[1]) then
+        elseif vRP.CheckDamaged(vRP.InventoryItemAmount(Passport,Item)[1]) then
             return false
         end
     end
@@ -22,43 +22,43 @@ function vRP.GetWeight(Passport)
     local Source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Source and Datatable then
-        if not Datatable.Weight then
-            Datatable.Weight = BackpackWeightDefault
+        if not Datatable["Weight"] then
+            Datatable["Weight"] = BackpackWeightDefault
         end
-        return Datatable.Weight
+        return Datatable["Weight"]
     end
     return 0
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SETWEIGHT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.SetWeight(Passport, Amount)
+function vRP.SetWeight(Passport,Amount)
     local Source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Source and Datatable then
-        if not Datatable.Weight then
-            Datatable.Weight = BackpackWeightDefault
+        if not Datatable["Weight"] then
+            Datatable["Weight"] = BackpackWeightDefault
         end
-        Datatable.Weight = Datatable.Weight + Amount
+        Datatable["Weight"] = Datatable["Weight"] + Amount
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVEWEIGHT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.RemoveWeight(Passport, Amount)
+function vRP.RemoveWeight(Passport,Amount)
     local Source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Source and Datatable then
-        if not Datatable.Weight then
-            Datatable.Weight = BackpackWeightDefault
+        if not Datatable["Weight"] then
+            Datatable["Weight"] = BackpackWeightDefault
         end
-        Datatable.Weight = Datatable.Weight - Amount
+        Datatable["Weight"] = Datatable["Weight"] - Amount
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SWAPSLOT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.SwapSlot(Passport, Slot, Target)
+function vRP.SwapSlot(Passport,Slot,Target)
     local source = vRP.Source(Passport)
     local Inventory = vRP.Inventory(Passport)
     Slot = tostring(Slot)
@@ -67,17 +67,17 @@ function vRP.SwapSlot(Passport, Slot, Target)
         Inventory[Target], Inventory[Slot] = Inventory[Slot], Inventory[Target]
         if parseInt(Target) <= 5 then
             if parseInt(Slot) > 5 then
-                if "Armamento" == itemType(Inventory[Target].item) then
-                    TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Target].item)
+                if "Armamento" == itemType(Inventory[Target]["item"]) then
+                    TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Target]["item"])
                 end
-                if "Armamento" == itemType(Inventory[Slot].item) then
-                    TriggerClientEvent("inventory:CreateWeapon", source, Inventory[Slot].item)
+                if "Armamento" == itemType(Inventory[Slot]["item"]) then
+                    TriggerClientEvent("inventory:CreateWeapon",source,Inventory[Slot]["item"])
                 end
             end
-        elseif parseInt(Slot) <= 5 and parseInt(Target) > 5 and "Armamento" == itemType(Inventory[Slot].item) then
-            TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Slot].item)
-            if "Armamento" == itemType(Inventory[Target].item) then
-                TriggerClientEvent("inventory:CreateWeapon", source, Inventory[Target].item)
+        elseif parseInt(Slot) <= 5 and parseInt(Target) > 5 and "Armamento" == itemType(Inventory[Slot]["item"]) then
+            TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Slot]["item"])
+            if "Armamento" == itemType(Inventory[Target]["item"]) then
+                TriggerClientEvent("inventory:CreateWeapon",source,Inventory[Target]["item"])
             end
         end
     end
@@ -90,8 +90,8 @@ function vRP.InventoryWeight(Passport)
     local source = vRP.Source(Passport)
     if source then
         local Inventory = vRP.Inventory(Passport)
-        for k, v in pairs(Inventory) do
-            Weight = Weight + itemWeight(v.item) * v.amount
+        for k,v in pairs(Inventory) do
+            Weight = Weight + itemWeight(v["item"]) * v["amount"]
         end
     end
     return Weight
@@ -111,7 +111,7 @@ end
 function vRP.ChestWeight(items)
     local weight = 0
     for k, v in pairs(items) do
-        weight = weight + (itemWeight(v.item) * v.amount)
+        weight = weight + (itemWeight(v["item"]) * v["amount"])
     end
     return weight
 end
@@ -122,13 +122,13 @@ function vRP.InventoryItemAmount(Passport, Item)
     if vRP.Source(Passport) then
         local Inventory = vRP.Inventory(Passport)
         for k, v in pairs(Inventory) do
-            if splitString(Item, "-")[1] == splitString(v.item, "-")[1] then
-                return { v.amount, v.item }
+            if splitString(Item, "-")[1] == splitString(v["item"], "-")[1] then
+                return { v["amount"], v["item"] }
             end
         end
     end
     
-    return { 0, "" }
+    return { 0,"" }
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVENTORYFULL
@@ -136,8 +136,8 @@ end
 function vRP.InventoryFull(Passport, Item)
     if vRP.Source(Passport) then
         local Inventory = vRP.Inventory(Passport)
-        for k, v in pairs(Inventory) do
-            if v.item == Item then
+        for k,v in pairs(Inventory) do
+            if v["item"] == Item then
                 return true
             end
         end
@@ -147,12 +147,12 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ITEMAMOUNT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ItemAmount(Passport, Item)
+function vRP.ItemAmount(Passport,Item)
     if vRP.Source(Passport) then
         local Inventory = vRP.Inventory(Passport)
-        for k, v in pairs(Inventory) do
-            if splitString(v.item, "-")[1] == splitString(Item, "-")[1] then
-                return v.amount
+        for k,v in pairs(Inventory) do
+            if splitString(v["item"], "-")[1] == splitString(Item, "-")[1] then
+                return v["amount"]
             end
         end
     end
@@ -174,13 +174,13 @@ function vRP.GiveItem(Passport,Item,Amount,Notify,Slot)
             if not Inventory[tostring(newSlot)] then
                 Inventory[tostring(newSlot)] = { amount = parseInt(Amount), item = Item }
                 if parseInt(tostring(newSlot)) <= 5 and "Armamento" == itemType(Item) then
-                    TriggerClientEvent("inventory:CreateWeapon", source, Item)
+                    TriggerClientEvent("inventory:CreateWeapon",source,Item)
                 end
             elseif Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)]["item"] == Item then
                 Inventory[tostring(newSlot)]["amount"] = Inventory[tostring(newSlot)]["amount"] + parseInt(Amount)
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "+", itemIndex(Item), parseFormat(Amount), itemName(Item) })
+                TriggerClientEvent("itensNotify",source,{ "+",itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
         else
             Slot = tostring(Slot)
@@ -191,11 +191,11 @@ function vRP.GiveItem(Passport,Item,Amount,Notify,Slot)
             else
                 Inventory[Slot] = { amount =  parseInt(Amount), item = Item }
                 if parseInt(Slot) <= 5 and "Armamento" == itemType(Item) then
-                    TriggerClientEvent("inventory:CreateWeapon", source, Item)
+                    TriggerClientEvent("inventory:CreateWeapon",source,Item)
                 end
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "+", itemIndex(Item), parseFormat(Amount), itemName(Item) })
+                TriggerClientEvent("itensNotify",source,{ "+", itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
         end
     end
@@ -203,46 +203,46 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GENERATEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.GenerateItem(Passport, Item, Amount, Notify, Slot)
+function vRP.GenerateItem(Passport,Item,Amount,Notify,Slot)
     local source = vRP.Source(Passport)
     if source and parseInt(Amount) > 0 then
         local Inventory = vRP.Inventory(Passport)
         if itemDurability(Item) then
-            Item = Item .. "-" .. os.time()
+            Item = Item .."-"..os.time()
         elseif itemCharges(Item) then
-            Item = Item .. "-" .. itemCharges(Item)
+            Item = Item .."-"..itemCharges(Item)
         end
         if not Slot then
             local newSlot = 0
             repeat
                 newSlot = newSlot + 1
-            until Inventory[tostring(newSlot)] == nil or Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)].item == Item
+            until Inventory[tostring(newSlot)] == nil or Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)]["item"] == Item
             
             if not Inventory[tostring(newSlot)] then
                 Inventory[tostring(newSlot)] = { amount = parseInt(Amount), item = Item }
                 if parseInt(tostring(i)) <= 5 and "Armamento" == itemType(Item) then
-                    TriggerClientEvent("inventory:CreateWeapon", source, Item)
+                    TriggerClientEvent("inventory:CreateWeapon",source,Item)
                 end
-            elseif Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)].item == Item then
-                Inventory[tostring(newSlot)].amount = Inventory[tostring(newSlot)].amount + parseInt(Amount)
+            elseif Inventory[tostring(newSlot)] and Inventory[tostring(newSlot)]["item"] == Item then
+                Inventory[tostring(newSlot)]["amount"] = Inventory[tostring(newSlot)]["amount"] + parseInt(Amount)
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "recebeu", itemIndex(Item), parseFormat(Amount), itemName(Item) })
+                TriggerClientEvent("itensNotify",source,{ "recebeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
         else
             Slot = tostring(Slot)
             if Inventory[Slot] then
-                if Inventory[Slot].item == Item then
-                    Inventory[Slot].amount = Inventory[Slot].amount + parseInt(Amount)
+                if Inventory[Slot]["item"] == Item then
+                    Inventory[Slot]["amount"] = Inventory[Slot]["amount"] + parseInt(Amount)
                 end
             else
                 Inventory[Slot] = { amount = parseInt(Amount), item = Item }
                 if parseInt(Slot) <= 5 and "Armamento" == itemType(Item) then
-                    TriggerClientEvent("inventory:CreateWeapon", source, Item)
+                    TriggerClientEvent("inventory:CreateWeapon",source,Item)
                 end
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "recebeu", itemIndex(Item), parseFormat(Amount), itemName(Item) })
+                TriggerClientEvent("itensNotify",source,{ "recebeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
         end
     end
@@ -250,13 +250,13 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- MAXITENS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.MaxItens(Passport, Item, Amount)
+function vRP.MaxItens(Passport,Item,Amount)
     if itemBody(Item) and vRP.Source(Passport) and itemMaxAmount(Item) then
-        if vRP.HasService(Passport, "Restaurants") then
-            if itemScape(Item) and vRP.ItemAmount(Passport, Item) + parseInt(Amount) > itemMaxAmount(Item) * 5 then
+        if vRP.HasService(Passport,"Restaurants") then
+            if itemScape(Item) and vRP.ItemAmount(Passport,Item) + parseInt(Amount) > itemMaxAmount(Item) * 5 then
                 return true
             end
-        elseif vRP.ItemAmount(Passport, Item) + parseInt(Amount) > itemMaxAmount(Item) then
+        elseif vRP.ItemAmount(Passport,Item) + parseInt(Amount) > itemMaxAmount(Item) then
             return true
         end
     end
@@ -265,44 +265,44 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.TakeItem(Passport, Item, Amount, Notify, Slot)
+function vRP.TakeItem(Passport,Item,Amount,Notify,Slot)
     local source = vRP.Source(Passport)
     local take = false
     if source and parseInt(Amount) > 0 then
         local Inventory = vRP.Inventory(Passport)
         if not Slot then
-            for k, v in pairs(Inventory) do
-                if v.item == Item and parseInt(Amount) <= v.amount then
-                    v.amount = v.amount - parseInt(Amount)
-                    if v.amount <= 0 then
+            for k,v in pairs(Inventory) do
+                if v["item"] == Item and parseInt(Amount) <= v["amount"] then
+                    v["amount"] = v["amount"] - parseInt(Amount)
+                    if v["amount"] <= 0 then
                         if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
-                            TriggerClientEvent("inventory:verifyWeapon", source, Item)
+                            TriggerClientEvent("inventory:verifyWeapon",source,Item)
                         end
                         if parseInt(k) <= 5 then
-                            TriggerClientEvent("inventory:RemoveWeapon", source, Item)
+                            TriggerClientEvent("inventory:RemoveWeapon",source,Item)
                         end
                         Inventory[k] = nil
                     end
                     if Notify and itemBody(Item) then
-                        TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                        TriggerClientEvent("itensNotify",source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
                     end
                     take = true
                     break
                 end
             end
-        elseif Inventory[tostring(Slot)].item == Item and parseInt(Amount) <= Inventory[tostring(Slot)].amount then
-            Inventory[tostring(Slot)].amount =  Inventory[tostring(Slot)].amount - parseInt(Amount)
-            if  Inventory[tostring(Slot)].amount <= 0 then
+        elseif Inventory[tostring(Slot)]["item"] == Item and parseInt(Amount) <= Inventory[tostring(Slot)]["amount"] then
+            Inventory[tostring(Slot)]["amount"] =  Inventory[tostring(Slot)]["amount"] - parseInt(Amount)
+            if  Inventory[tostring(Slot)]["amount"] <= 0 then
                 if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
-                    TriggerClientEvent("inventory:verifyWeapon", source, Item)
+                    TriggerClientEvent("inventory:verifyWeapon",source,Item)
                 end
                 if parseInt(Slot) <= 5 then
-                    TriggerClientEvent("inventory:RemoveWeapon", source, Item)
+                    TriggerClientEvent("inventory:RemoveWeapon",source,Item)
                 end
                 Inventory[tostring(Slot)] = nil
             end
             if Notify and itemBody(Item) then
-                TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                TriggerClientEvent("itensNotify",source,{ "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
             end
             take = true
         end
@@ -312,24 +312,24 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVEITEM
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.RemoveItem(Passport, Item, Amount, Notify)
+function vRP.RemoveItem(Passport,Item,Amount,Notify)
     local source = vRP.Source(Passport)
     if source and parseInt(Amount) > 0 then
         local Inventory = vRP.Inventory(Passport)
         for k, v in pairs(Inventory) do
-            if v.item == Item and parseInt(Amount) <= v.amount then
-                v.amount = v.amount - parseInt(Amount)
-                if v.amount <= 0 then
+            if v["item"] == Item and parseInt(Amount) <= v["amount"] then
+                v["amount"] = v["amount"] - parseInt(Amount)
+                if v["amount"] <= 0 then
                     if "Armamento" == itemType(Item) or "Throwing" ~= itemType(Item) then
                     end
-                    TriggerClientEvent("inventory:verifyWeapon", source, Item)
+                    TriggerClientEvent("inventory:verifyWeapon",source,Item)
                     if parseInt(k) <= 5 then
-                        TriggerClientEvent("inventory:RemoveWeapon", source, Item)
+                        TriggerClientEvent("inventory:RemoveWeapon",source,Item)
                     end
                     Inventory[k] = nil
                 end
                 if Notify and itemBody(Item) then
-                    TriggerClientEvent("itensNotify", source, { "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
+                    TriggerClientEvent("itensNotify",source,{ "removeu",itemIndex(Item),parseFormat(Amount),itemName(Item) })
                 end
                 break
             end
@@ -403,33 +403,33 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKECHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.TakeChest(Passport, Data, Amount, Slot, Target)
+function vRP.TakeChest(Passport,Data,Amount,Slot,Target)
     local source = vRP.Source(Passport)
     local Datatable = vRP.GetSrvData(Data)
     Slot = tostring(Slot)
     Target = tostring(Target)
     if source and parseInt(Amount) > 0 and Datatable[Slot] then
         local Inventory = vRP.Inventory(Passport)
-        if vRP.MaxItens(Passport, Datatable[Slot].item, (parseInt(Amount))) then
-            TriggerClientEvent("Notify", source, "amarelo", "Limite atingido.", 3000)
+        if vRP.MaxItens(Passport, Datatable[Slot]["item"], (parseInt(Amount))) then
+            TriggerClientEvent("Notify",source,"amarelo","Limite atingido.",3000)
             return true
         end
-        if vRP.InventoryWeight(Passport) + itemWeight(Datatable[Slot].item) * parseInt(Amount) <= vRP.GetWeight(Passport) then
+        if vRP.InventoryWeight(Passport) + itemWeight(Datatable[Slot]["item"]) * parseInt(Amount) <= vRP.GetWeight(Passport) then
             if Inventory[Target] then
-                if Datatable[Slot] and Inventory[Target].item == Datatable[Slot].item and parseInt(Amount) <= Datatable[Slot].amount then
-                    Inventory[Target].amount = Inventory[Target].amount + parseInt(Amount)
-                    Datatable[Slot].amount = Datatable[Slot].amount - parseInt(Amount)
-                    if 0 >= Datatable[Slot].amount then
+                if Datatable[Slot] and Inventory[Target]["item"] == Datatable[Slot]["item"] and parseInt(Amount) <= Datatable[Slot]["amount"] then
+                    Inventory[Target]["amount"] = Inventory[Target]["amount"] + parseInt(Amount)
+                    Datatable[Slot]["amount"] = Datatable[Slot]["amount"] - parseInt(Amount)
+                    if 0 >= Datatable[Slot]["amount"] then
                         Datatable[Slot] = nil
                     end
                 end
-            elseif Datatable[Slot] and parseInt(Amount) <= Datatable[Slot].amount then
-                Inventory[Target] = { amount = parseInt(Amount), item = Datatable[Slot].item}
-                Datatable[Slot].amount = Datatable[Slot].amount - parseInt(Amount)
-                if parseInt(Target) <= 5 and "Armamento" == itemType(Datatable[Slot].item) then
-                    TriggerClientEvent("inventory:CreateWeapon", source, Datatable[Slot].item)
+            elseif Datatable[Slot] and parseInt(Amount) <= Datatable[Slot]["amount"] then
+                Inventory[Target] = { amount = parseInt(Amount), item = Datatable[Slot]["item"]}
+                Datatable[Slot]["amount"] = Datatable[Slot]["amount"] - parseInt(Amount)
+                if parseInt(Target) <= 5 and "Armamento" == itemType(Datatable[Slot]["item"]) then
+                    TriggerClientEvent("inventory:CreateWeapon",source,Datatable[Slot]["item"])
                 end
-                if 0 >= Datatable[Slot].amount then
+                if 0 >= Datatable[Slot]["amount"] then
                     Datatable[Slot] = nil
                 end
             end
@@ -440,41 +440,41 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STORECHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.StoreChest(Passport, Data, Amount, Weight, Slot, Target)
+function vRP.StoreChest(Passport,Data,Amount,Weight,Slot,Target)
     local Inventory = vRP.Inventory(Passport)
     local Datatable = vRP.GetSrvData(Data)
     local source = vRP.Source(Passport)
     Slot = tostring(Slot)
     Target = tostring(Target)
-    if source and parseInt(Amount) > 0 and Inventory[Slot] and Weight >= vRP.ChestWeight(Datatable) + itemWeight(Inventory[Slot].item) * parseInt(Amount) then
+    if source and parseInt(Amount) > 0 and Inventory[Slot] and Weight >= vRP.ChestWeight(Datatable) + itemWeight(Inventory[Slot]["item"]) * parseInt(Amount) then
         if Datatable[Target] then
             if Inventory[Slot] then
-                if Inventory[Slot].item ~= Datatable[Target].item then
+                if Inventory[Slot]["item"] ~= Datatable[Target]["item"] then
                     return
                 end
-                if not (parseInt(Amount) <= Inventory[Slot].amount) then
+                if not (parseInt(Amount) <= Inventory[Slot]["amount"]) then
                     return
                 end
-                Datatable[Target].amount = Datatable[Target].amount + parseInt(Amount)
-                Inventory[Slot].amount = Inventory[Slot].amount - parseInt(Amount)
-                if 0 >= Inventory[Slot].amount then
-                    if "Armamento" == itemType(Inventory[Slot].item) or "Throwing" ~= itemType(Inventory[Slot].item) then
-                        TriggerClientEvent("inventory:verifyWeapon", source, Inventory[Slot].item)
+                Datatable[Target]["amount"] = Datatable[Target]["amount"] + parseInt(Amount)
+                Inventory[Slot]["amount"] = Inventory[Slot]["amount"] - parseInt(Amount)
+                if 0 >= Inventory[Slot]["amount"] then
+                    if "Armamento" == itemType(Inventory[Slot]["item"]) or "Throwing" ~= itemType(Inventory[Slot]["item"]) then
+                        TriggerClientEvent("inventory:verifyWeapon",source,Inventory[Slot]["item"])
                         if parseInt(Slot) <= 5 then
-                            TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Slot].item)
+                            TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Slot]["item"])
                         end
                     end
                     Inventory[Slot] = nil
                 end
             end
-        elseif Inventory[Slot] and parseInt(Amount) <= Inventory[Slot].amount then
-            Datatable[Target] = { amount = parseInt(Amount), item = Inventory[Slot].item }
-            Inventory[Slot].amount = Inventory[Slot].amount - parseInt(Amount)
-            if 0 >= Inventory[Slot].amount then
-                if "Armamento" == itemType(Inventory[Slot].item) or "Throwing" ~= itemType(Inventory[Slot].item) then
-                    TriggerClientEvent("inventory:verifyWeapon", source, Inventory[Slot].item)
+        elseif Inventory[Slot] and parseInt(Amount) <= Inventory[Slot]["amount"] then
+            Datatable[Target] = { amount = parseInt(Amount), item = Inventory[Slot]["item"] }
+            Inventory[Slot]["amount"] = Inventory[Slot]["amount"] - parseInt(Amount)
+            if 0 >= Inventory[Slot]["amount"] then
+                if "Armamento" == itemType(Inventory[Slot]["item"]) or "Throwing" ~= itemType(Inventory[Slot]["item"]) then
+                    TriggerClientEvent("inventory:verifyWeapon",source,Inventory[Slot]["item"])
                     if parseInt(Slot) <= 5 then
-                        TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Slot].item)
+                        TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Slot]["item"])
                     end
                 end
                 Inventory[Slot] = nil
@@ -486,29 +486,29 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATECHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpdateChest(Passport, Data, Slot, Target, Amount)
+function vRP.UpdateChest(Passport,Data,Slot,Target,Amount)
     local Datatable = vRP.GetSrvData(Data)
     Slot = tostring(Slot)
     Target = tostring(Target)
     if vRP.Source(Passport) and parseInt(Amount) > 0 and Datatable[Slot] then
         if Datatable[Target] then
             if Datatable[Slot] then
-                if Datatable[Slot].item == Datatable[Target].item then
-                    if parseInt(Amount) <= Datatable[Slot].amount then
-                        Datatable[Slot].amount = Datatable[Slot].amount - parseInt(Amount)
-                        if 0 >= Datatable[Slot].amount then
+                if Datatable[Slot]["item"] == Datatable[Target]["item"] then
+                    if parseInt(Amount) <= Datatable[Slot]["amount"] then
+                        Datatable[Slot]["amount"] = Datatable[Slot]["amount"] - parseInt(Amount)
+                        if 0 >= Datatable[Slot]["amount"] then
                             Datatable[Slot] = nil
                         end
-                        Datatable[Target].amount = Datatable[Target].amount + parseInt(Amount)
+                        Datatable[Target]["amount"] = Datatable[Target]["amount"] + parseInt(Amount)
                     end
                 else
                     Datatable[Target], Datatable[Slot] = Datatable[Slot], Datatable[Target]
                 end
             end
-        elseif Datatable[Slot] and parseInt(Amount) <= Datatable[Slot].amount then
-            Datatable[Slot].amount = Datatable[Slot].amount - parseInt(Amount)
-            Datatable[Target] = { item = Datatable[Slot].item, amount = parseInt(Amount) }
-            if 0 >= Datatable[Slot].amount then
+        elseif Datatable[Slot] and parseInt(Amount) <= Datatable[Slot]["amount"] then
+            Datatable[Slot]["amount"] = Datatable[Slot]["amount"] - parseInt(Amount)
+            Datatable[Target] = { item = Datatable[Slot]["item"], amount = parseInt(Amount) }
+            if 0 >= Datatable[Slot]["amount"] then
                 Datatable[Slot] = nil
             end
         end
@@ -518,11 +518,11 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DIRECTCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.DirectChest(Chest, Slot, Amount)
-    local Datatable = vRP.GetSrvData("Chest:" .. Chest)
+function vRP.DirectChest(Chest,Slot,Amount)
+    local Datatable = vRP.GetSrvData("Chest:"..Chest)
     if Datatable[Slot] then
-        if "dollars" == Datatable[Slot].item then
-            Datatable[Slot].amount = Datatable[Slot].amount + parseInt(Amount)
+        if "dollars" == Datatable[Slot]["item"] then
+            Datatable[Slot]["amount"] = Datatable[Slot]["amount"] + parseInt(Amount)
         else
             Datatable[Slot] = { item = "dollars", amount = parseInt(Amount) }
         end
@@ -533,7 +533,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INVENTORYITEMUPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function tvRP.invUpdate(Slot, Target, Amount)
+function tvRP.invUpdate(Slot,Target,Amount)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport and parseInt(Amount) > 0 then
@@ -542,40 +542,40 @@ function tvRP.invUpdate(Slot, Target, Amount)
         Target = tostring(Target)
         if Inventory[Slot] then
             if Inventory[Target] then
-                if Inventory[Slot].item == Inventory[Target].item then
-                    if parseInt(Amount) <= Inventory[Slot].amount then
-                        Inventory[Slot].amount = Inventory[Slot].amount - parseInt(Amount)
-                        Inventory[Target].amount = Inventory[Target].amount + parseInt(Amount)
-                        if Inventory[Slot].amount <= 0 then
-                            if parseInt(Slot) <= 5 and "Armamento" == itemType(Inventory[Slot].item) then
-                                TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Slot].item)
+                if Inventory[Slot]["item"] == Inventory[Target]["item"] then
+                    if parseInt(Amount) <= Inventory[Slot]["amount"] then
+                        Inventory[Slot]["amount"] = Inventory[Slot]["amount"] - parseInt(Amount)
+                        Inventory[Target]["amount"] = Inventory[Target]["amount"] + parseInt(Amount)
+                        if Inventory[Slot]["amount"] <= 0 then
+                            if parseInt(Slot) <= 5 and "Armamento" == itemType(Inventory[Slot]["item"]) then
+                                TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Slot]["item"])
                             end
                             Inventory[Slot] = nil
                         end
                     end
                 else
-                    if Inventory[Slot].item and Inventory[Target].item then
-                        if Inventory[Slot].item == "dollars" and "suitcase" == splitString(Inventory[Target].item, "-")[1] then 
+                    if Inventory[Slot]["item"] and Inventory[Target]["item"] then
+                        if Inventory[Slot]["item"] == "dollars" and "suitcase" == splitString(Inventory[Target]["item"], "-")[1] then 
                             if vRP.TakeItem(Passport, "dollars", parseInt(Amount), false, Slot) then
-                                if splitString(Inventory[Target].item, "-")[2] then
-                                    Inventory[Target].item = "suitcase-" .. splitString(Inventory[Target].item, "-")[2] + parseInt(Amount)
+                                if splitString(Inventory[Target]["item"], "-")[2] then
+                                    Inventory[Target]["item"] = "suitcase-"..splitString(Inventory[Target]["item"], "-")[2] + parseInt(Amount)
                                     TriggerClientEvent("inventory:Update",source,"Backpack")
                                 else
-                                    Inventory[Target].item = "suitcase-" .. parseInt(Amount)
+                                    Inventory[Target]["item"] = "suitcase-"..parseInt(Amount)
                                     TriggerClientEvent("inventory:Update",source,"Backpack")
                                 end
                             end
-                        elseif Inventory[Slot].item == "repairkit0" .. string.sub(Inventory[Slot].item, 11, 12) then
-                            if vRP.CheckDamaged(Inventory[Target].item) and 1 == Inventory[Target].amount then
-                                if Inventory[Slot].item == "repairkit0" .. string.sub(Inventory[Slot].item, 11, 12) then
-                                    if itemRepair(Inventory[Target].item) then
-                                        if itemRepair(Inventory[Target].item) == Inventory[Slot].item then
-                                            if vRP.TakeItem(Passport, Inventory[Slot].item, 1, false, Slot) then
-                                                Inventory[Target].item = splitString(Inventory[Target].item, "-")[1] .. "-" .. os.time()
-                                                TriggerClientEvent("Notify", source, "verde", "Reparado.", 5000)
+                        elseif Inventory[Slot]["item"] == "repairkit0"..string.sub(Inventory[Slot]["item"],11,12) then
+                            if vRP.CheckDamaged(Inventory[Target]["item"]) and 1 == Inventory[Target]["amount"] then
+                                if Inventory[Slot]["item"] == "repairkit0"..string.sub(Inventory[Slot]["item"],11,12) then
+                                    if itemRepair(Inventory[Target]["item"]) then
+                                        if itemRepair(Inventory[Target]["item"]) == Inventory[Slot]["item"] then
+                                            if vRP.TakeItem(Passport, Inventory[Slot]["item"], 1, false, Slot) then
+                                                Inventory[Target]["item"] = splitString(Inventory[Target]["item"], "-")[1] .."-"..os.time()
+                                                TriggerClientEvent("Notify",source,"verde","Reparado.",5000)
                                             end
                                         else
-                                            TriggerClientEvent("Notify", source, "amarelo", "Seu item pode ser reparado com <b>" .. itemName((itemRepair(Inventory[Target].item))) .. "</b>.", 5000)
+                                            TriggerClientEvent("Notify",source,"amarelo","Seu item pode ser reparado com <b>"..itemName((itemRepair(Inventory[Target]["item"]))).."</b>.",5000)
                                         end
                                     end
                                 end
@@ -584,39 +584,39 @@ function tvRP.invUpdate(Slot, Target, Amount)
                             Inventory[Target], Inventory[Slot] = Inventory[Slot], Inventory[Target]
                             if parseInt(Target) <= 5 then
                                 if parseInt(Slot) > 5 then
-                                    if "Armamento" == itemType(Inventory[Target].item) then
-                                        TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Target].item)
+                                    if "Armamento" == itemType(Inventory[Target]["item"]) then
+                                        TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Target]["item"])
                                     end
-                                    if "Armamento" == itemType(Inventory[Slot].item) then
-                                        TriggerClientEvent("inventory:CreateWeapon", source, Inventory[Slot].item)
+                                    if "Armamento" == itemType(Inventory[Slot]["item"]) then
+                                        TriggerClientEvent("inventory:CreateWeapon",source,Inventory[Slot]["item"])
                                     end
                                 end
                             elseif parseInt(Slot) <= 5 and parseInt(Target) > 5 then
-                                if "Armamento" == itemType(Inventory[Slot].item) then
-                                    TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Slot].item)
+                                if "Armamento" == itemType(Inventory[Slot]["item"]) then
+                                    TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Slot]["item"])
                                 end
-                                if "Armamento" == itemType(Inventory[Target].item) then
-                                    TriggerClientEvent("inventory:CreateWeapon", source, Inventory[Target].item)
+                                if "Armamento" == itemType(Inventory[Target]["item"]) then
+                                    TriggerClientEvent("inventory:CreateWeapon",source,Inventory[Target]["item"])
                                 end
                             end
                         end
                     end
                 end
-            elseif Inventory[Slot] and parseInt(Amount) <= Inventory[Slot].amount then
-                Inventory[Target] = { item = Inventory[Slot].item, amount = parseInt(Amount) }
-                Inventory[Slot].amount = Inventory[Slot].amount - parseInt(Amount)
-                if Inventory[Slot].amount <= 0 then
-                    if parseInt(Slot) <= 5 and parseInt(Target) > 5 and "Armamento" == itemType(Inventory[Slot].item) then
-                        TriggerClientEvent("inventory:RemoveWeapon", source, Inventory[Slot].item)
+            elseif Inventory[Slot] and parseInt(Amount) <= Inventory[Slot]["amount"] then
+                Inventory[Target] = { item = Inventory[Slot]["item"], amount = parseInt(Amount) }
+                Inventory[Slot]["amount"] = Inventory[Slot]["amount"] - parseInt(Amount)
+                if Inventory[Slot]["amount"] <= 0 then
+                    if parseInt(Slot) <= 5 and parseInt(Target) > 5 and "Armamento" == itemType(Inventory[Slot]["item"]) then
+                        TriggerClientEvent("inventory:RemoveWeapon",source,Inventory[Slot]["item"])
                     end
-                    if parseInt(Target) <= 5 and parseInt(Slot) > 5 and "Armamento" == itemType(Inventory[Slot].item) then
-                        TriggerClientEvent("inventory:CreateWeapon", source, Inventory[Slot].item)
+                    if parseInt(Target) <= 5 and parseInt(Slot) > 5 and "Armamento" == itemType(Inventory[Slot]["item"]) then
+                        TriggerClientEvent("inventory:CreateWeapon",source,Inventory[Slot]["item"])
                     end
                     Inventory[Slot] = nil
                 end
             end
         else
-            TriggerClientEvent("inventory:Update", source, "Backpack")
+            TriggerClientEvent("inventory:Update",source,"Backpack")
         end
     end
 end

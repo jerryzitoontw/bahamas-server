@@ -14,13 +14,7 @@ vRP.Prepare("characters/UserLicense","SELECT * FROM characters WHERE id = @id an
 vRP.Prepare("characters/Characters","SELECT * FROM characters WHERE license = @license and deleted = 0")
 vRP.Prepare("characters/removePrison","UPDATE characters SET prison = prison - @prison WHERE id = @Passport")
 vRP.Prepare("characters/updateName","UPDATE characters SET name = @name, name2 = @name2 WHERE id = @Passport")
-vRP.Prepare("characters/Tracking","UPDATE characters SET tracking = tracking + @tracking WHERE id = @Passport")
-vRP.Prepare("characters/UpgradeSpending","UPDATE characters SET spending = spending + @spending WHERE id = @Passport")
-vRP.Prepare("characters/DowngradeSpending","UPDATE characters SET spending = spending - @spending WHERE id = @Passport")
-vRP.Prepare("characters/ResetSpending","UPDATE characters SET spending = 0 WHERE id = @Passport")
 vRP.Prepare("characters/lastCharacters","SELECT id FROM characters WHERE license = @license ORDER BY id DESC LIMIT 1")
-vRP.Prepare("characters/UpgradeCardlimit","UPDATE characters SET cardlimit = cardlimit + @cardlimit WHERE id = @Passport")
-vRP.Prepare("characters/DowngradeCardlimit","UPDATE characters SET cardlimit = cardlimit - @cardlimit WHERE id = @Passport")
 vRP.Prepare("characters/countPersons","SELECT COUNT(license) as qtd FROM characters WHERE license = @license and deleted = 0")
 vRP.Prepare("characters/newCharacter","INSERT INTO characters(license,name,name2,sex,phone,blood) VALUES(@license,@name,@name2,@sex,@phone,@blood)")
 -----------------------------------------------------------------------------------------------------------------------------------------

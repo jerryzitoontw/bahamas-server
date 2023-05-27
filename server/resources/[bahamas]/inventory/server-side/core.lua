@@ -52,35 +52,35 @@ Buffs = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 DrugsList = {
 	["cocaine"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["crack"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["heroin"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["joint"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["lean"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["metadone"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["meth"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	},
 	["oxy"] = {
-		Price = { ["Min"] = 180, ["Max"] = 220 },
+		Price = { ["Min"] = 220, ["Max"] = 320},
 		Amount = { ["Min"] = 2, ["Max"] = 3 }
 	}
 }
@@ -665,18 +665,18 @@ function Bahamas.Deliver(Slot)
 				if vRP.TakeItem(Passport,Full,1,false,Slot) then
 					local Experience = vRP.GetExperience(Passport,"Delivery")
 					local Category = ClassCategory(Experience)
-					local Valuation = 200
+					local Valuation = 40
 
 					if Category == "B+" then
-						Valuation = Valuation + 15
+						Valuation = Valuation + 10
 					elseif Category == "A" then
-						Valuation = Valuation + 30
+						Valuation = Valuation + 15
 					elseif Category == "A+" then
-						Valuation = Valuation + 45
+						Valuation = Valuation + 20
 					elseif Category == "S" then
-						Valuation = Valuation + 60
+						Valuation = Valuation + 25
 					elseif Category == "S+" then
-						Valuation = Valuation + 75
+						Valuation = Valuation + 30
 					end
 
 					if Buffs["Dexterity"][Passport] then

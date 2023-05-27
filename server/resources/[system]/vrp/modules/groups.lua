@@ -8,15 +8,15 @@ end
 -- DATAGROUPS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.DataGroups(Permission)
-    return vRP.GetSrvData("Permissions:" ..Permission)
+    return vRP.GetSrvData("Permissions:"..Permission)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.GetUserType(Passport, Type)
-    for k, v in pairs(Groups) do
-        local Datatable = vRP.GetSrvData("Permissions:" .. k)
-        if Groups[k].Type and Groups[k].Type == Type and Datatable[tostring(Passport)] then
+function vRP.GetUserType(Passport,Type)
+    for k,v in pairs(Groups) do
+        local Datatable = vRP.GetSrvData("Permissions:"..k)
+        if Groups[k]["Type"] and Groups[k]["Type"] == Type and Datatable[tostring(Passport)] then
             return k
         end
     end
@@ -26,8 +26,8 @@ end
 -- HIERARCHY
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.Hierarchy(Permission)
-    if Groups[Permission] and Groups[Permission].Hierarchy then
-        return Groups[Permission].Hierarchy
+    if Groups[Permission] and Groups[Permission]["Hierarchy"] then
+        return Groups[Permission]["Hierarchy"]
     end
     return false
 end
@@ -35,36 +35,32 @@ end
 -- NUMPERMISSION
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.NumPermission(Permission)
-    local services = {}
-    local amount = 0
+    local Services = {}
+    local Amount = 0
 
-    for i, v in pairs(vRP.Players()) do
-        local user_id = vRP.Passport(v)
+    for i,v in pairs(vRP.Players()) do
+        local Passport = vRP.Passport(v)
 
-        if vRP.HasGroup(user_id, Permission) then
-            amount = amount + 1
-            services[user_id] = v
+        if vRP.HasGroup(Passport,Permission) then
+            Amount = Amount + 1
+            Services[Passport] = v
         end
     end
 
-    return services, amount
+    return Services,Amount
 
 end
-
-RegisterCommand("perm",function()
-    vRP.NumPermission("Nitro")
-end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SERVICETOGGLE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ServiceToggle(Source, Passport, Permission, Silenced)
-    local Perm = splitString(Permission, "-")
-    if (Characters[Source] and Groups[Perm[1]]) and Groups[Perm[1]].Service then
-        if Groups[Perm[1]].Service[tostring(Passport)] == Source then
-            vRP.ServiceLeave(Source, tostring(Passport), Perm[1], Silenced)
+function vRP.ServiceToggle(Source,Passport,Permission,Silenced)
+    local Perm = splitString(Permission,"-")
+    if (Characters[Source] and Groups[Perm[1]]) and Groups[Perm[1]]["Service"] then
+        if Groups[Perm[1]]["Service"][tostring(Passport)] == Source then
+            vRP.ServiceLeave(Source,tostring(Passport),Perm[1],Silenced)
         else
-            if vRP.HasGroup(tostring(Passport), Perm[1]) and not Groups[Perm[1]].Service[tostring(Passport)] then
-                vRP.ServiceEnter(Source, tostring(Passport), Perm[1], Silenced)
+            if vRP.HasGroup(tostring(Passport),Perm[1]) and not Groups[Perm[1]]["Service"][tostring(Passport)] then
+                vRP.ServiceEnter(Source,tostring(Passport),Perm[1],Silenced)
             end
         end
     end
@@ -72,53 +68,53 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SERVICEENTER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ServiceEnter(Source, Passport, Permission, Silenced)
+function vRP.ServiceEnter(Source,Passport,Permission,Silenced)
     if Characters[Source] then
         if ClientState[Permission] then
-            Player(Source).state[Permission] = true
-            TriggerClientEvent("service:Label", Source, Permission, "Sair de Serviço")
+            Player(Source)["state"][Permission] = true
+            TriggerClientEvent("service:Label",Source,Permission,"Sair de Serviço")
         end
         if GroupBlips[Permission] then
-            TriggerEvent("blipsystem:Enter", Source, Permission, true)
+            TriggerEvent("blipsystem:Enter",Source,Permission,true)
         end
-        if Groups[Permission] and Groups[Permission].Salary then
-            TriggerEvent("Salary:Add", tostring(Passport), Permission)
+        if Groups[Permission] and Groups[Permission]["Salary"] then
+            TriggerEvent("Salary:Add", tostring(Passport),Permission)
         end
-        Groups[Permission].Service[tostring(Passport)] = Source
+        Groups[Permission]["Service"][tostring(Passport)] = Source
         if not Silenced then
-            TriggerClientEvent("Notify", Source, "verde", "Entrou em serviço.", 5000)
+            TriggerClientEvent("Notify",Source,"verde","Entrou em serviço.", 5000)
         end
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SERVICELEAVE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ServiceLeave(Source, Passport, Permission, Silenced)
+function vRP.ServiceLeave(Source,Passport,Permission,Silenced)
     if Characters[Source] then
         if ClientState[Permission] then
-            Player(Source).state[Permission] = false
-            TriggerClientEvent("service:Label", Source, Permission, "Entrar em Serviço")
+            Player(Source)["state"][Permission] = false
+            TriggerClientEvent("service:Label",Source,Permission,"Entrar em Serviço")
         end
         if GroupBlips[Permission] then
-            TriggerEvent("blipsystem:Exit", Source)
-            TriggerClientEvent("radio:RadioClean", Source)
+            TriggerEvent("blipsystem:Exit",Source)
+            TriggerClientEvent("radio:RadioClean",Source)
         end
-        if Groups[Permission] and Groups[Permission].Salary then
-            TriggerEvent("Salary:Remove", tostring(Passport), Permission)
+        if Groups[Permission] and Groups[Permission]["Salary"] then
+            TriggerEvent("Salary:Remove",tostring(Passport),Permission)
         end
-        if Groups[Permission].Service and Groups[Permission].Service[tostring(Passport)] then
-            Groups[Permission].Service[tostring(Passport)] = nil
+        if Groups[Permission]["Service"] and Groups[Permission]["Service"][tostring(Passport)] then
+            Groups[Permission]["Service"][tostring(Passport)] = nil
         end
         if not Silenced then
-            TriggerClientEvent("Notify", Source, "verde", "Saiu de serviço.", 5000)
+            TriggerClientEvent("Notify",Source,"verde","Saiu de serviço.",5000)
         end
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SETPERMISSION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.SetPermission(Passport, Permission, Level, Mode)
-    local Datatable = vRP.GetSrvData("Permissions:" .. Permission)
+function vRP.SetPermission(Passport,Permission,Level,Mode)
+    local Datatable = vRP.GetSrvData("Permissions:"..Permission)
     if Groups[Permission] then
         if Mode then
             if "Demote" == Mode then
@@ -148,31 +144,31 @@ function vRP.SetPermission(Passport, Permission, Level, Mode)
                 Datatable[tostring(Passport)] = #Groups[Permission]["Hierarchy"]
             end
         end
-        vRP.ServiceEnter(vRP.Source(Passport), tostring(Passport), Permission, true)
-        vRP.Query("entitydata/SetData", { dkey = "Permissions:" .. Permission, dvalue = json.encode(Datatable) })
+        vRP.ServiceEnter(vRP.Source(Passport),tostring(Passport),Permission,true)
+        vRP.Query("entitydata/SetData",{ dkey = "Permissions:"..Permission,dvalue = json.encode(Datatable) })
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REMOVEPERMISSION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.RemovePermission(Passport, Permission)
-    local Datatable = vRP.GetSrvData("Permissions:" ..Permission)
+function vRP.RemovePermission(Passport,Permission)
+    local Datatable = vRP.GetSrvData("Permissions:"..Permission)
     if Groups[Permission] then
-        if Groups[Permission].Service and Groups[Permission].Service[tostring(Passport)] then
-            Groups[Permission].Service[tostring(Passport)] = nil
+        if Groups[Permission]["Service"] and Groups[Permission]["Service"][tostring(Passport)] then
+            Groups[Permission]["Service"][tostring(Passport)] = nil
         end
         if Datatable[tostring(Passport)] then
             Datatable[tostring(Passport)] = nil
-            vRP.ServiceLeave(vRP.Source(tostring(Passport)), tostring(Passport), Permission, true)
-            vRP.Query("entitydata/SetData", { dkey = "Permissions:" .. Permission, dvalue = json.encode(Datatable) })
+            vRP.ServiceLeave(vRP.Source(tostring(Passport)),tostring(Passport),Permission,true)
+            vRP.Query("entitydata/SetData",{ dkey = "Permissions:"..Permission,dvalue = json.encode(Datatable) })
         end
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HASPERMISSION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.HasPermission(Passport, Permission, Level)
-    local Datatable = vRP.GetSrvData("Permissions:" ..Permission)
+function vRP.HasPermission(Passport,Permission,Level)
+    local Datatable = vRP.GetSrvData("Permissions:"..Permission)
     if Datatable[tostring(Passport)] then
         if not Level or not (Datatable[tostring(Passport)] > Level) then
             return true
@@ -183,10 +179,10 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HASGROUP
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.HasGroup(Passport, Permission, Level)
+function vRP.HasGroup(Passport,Permission,Level)
     if Groups[Permission] then
         for k, v in pairs(Groups[Permission].Parent) do
-            local Datatable = vRP.GetSrvData("Permissions:" .. k)
+            local Datatable = vRP.GetSrvData("Permissions:"..k)
             if Datatable[tostring(Passport)] then
                 if not Level or not (Datatable[tostring(Passport)] > Level) then
                     return true
@@ -199,10 +195,10 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HASSERVICE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.HasService(Passport, Permission)
+function vRP.HasService(Passport,Permission)
     if Groups[Permission] then
         for k, v in pairs(Groups[Permission].Parent) do
-            if Groups[k].Service[tostring(Passport)] then
+            if Groups[k]["Service"][tostring(Passport)] then
                 return true
             end
         end
@@ -212,26 +208,26 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("Connect", function(Passport, Source)
-    for k, v in pairs(Groups) do
+AddEventHandler("Connect",function(Passport, Source)
+    for k,v in pairs(Groups) do
         if vRP.HasPermission(tostring(Passport), k) then
-            vRP.ServiceEnter(Source, tostring(Passport), k, true)
+            vRP.ServiceEnter(Source,tostring(Passport),k,true)
         end
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("Disconnect", function(Passport, Source)
+AddEventHandler("Disconnect", function(Passport,Source)
     for k, v in pairs(Groups) do
-        if Groups[k].Service[tostring(Passport)] then
+        if Groups[k]["Service"][tostring(Passport)] then
             if GroupBlips[k] then
-                TriggerEvent("blipsystem:Exit", Source)
+                TriggerEvent("blipsystem:Exit",Source)
             end
-            Groups[k].Service[tostring(Passport)] = false
+            Groups[k]["Service"][tostring(Passport)] = false
         end
-        if Groups[k] and Groups[k].Salary then
-            TriggerEvent("Salary:Remove", tostring(Passport), k)
+        if Groups[k] and Groups[k]["Salary"] then
+            TriggerEvent("Salary:Remove",tostring(Passport),k)
         end
     end
 end)

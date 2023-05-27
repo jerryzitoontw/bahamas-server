@@ -13,7 +13,7 @@ end
 local Tunnel = {}
 local function tunnel_resolve(itable,key)
 	local mtable = getmetatable(itable)
-	local iname = mtable.name
+	local iname = mtable["name"]
 	local ids = mtable.tunnel_ids
 	local callbacks = mtable.tunnel_callbacks
 	local identifier = mtable.identifier

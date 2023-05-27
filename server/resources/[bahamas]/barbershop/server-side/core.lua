@@ -8,12 +8,13 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Bahamas = {}
-Tunnel.bindInterface("barbershop",Bahamas)
+South = {}
+Tunnel.bindInterface("barbershop",South)
+local Debug = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BARBER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.CheckWanted()
+function South.CheckWanted()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not exports["hud"]:Wanted(Passport,source) then
@@ -25,7 +26,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATESKIN
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.updateSkin(Barbers)
+function South.Update(Barbers)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -35,3 +36,28 @@ function Bahamas.updateSkin(Barbers)
 		end
 	end
 end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DEBUG
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("barbershop:Debug")
+AddEventHandler("barbershop:Debug",function()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport and not Debug[Passport] or os.time() > Debug[Passport] then
+		TriggerClientEvent("barbershop:Apply",source,vRP.UserData(Passport,"Barbershop"))
+		TriggerClientEvent("skinshop:Apply",source,vRP.UserData(Passport,"Clothings"))
+		TriggerClientEvent("tattoos:Apply",source,vRP.UserData(Passport,"Tatuagens"))
+		TriggerClientEvent("target:Debug",source)
+		TriggerEvent("DebugObjects",Passport)
+
+		Debug[Passport] = os.time() + 300
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DISCONNECT
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("Disconnect",function(Passport)
+	if Debug[Passport] then
+		Debug[Passport] = nil
+	end
+end)

@@ -4,7 +4,7 @@ local Proxy = {}
 
 local function proxy_resolve(itable,key)
 	local mtable = getmetatable(itable)
-	local iname = mtable.name
+	local iname = mtable["name"]
 	local ids = mtable.ids
 	local callbacks = mtable.callbacks
 	local identifier = mtable.identifier

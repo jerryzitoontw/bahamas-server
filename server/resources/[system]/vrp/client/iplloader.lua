@@ -4,7 +4,6 @@
 CreateThread(function()
 	OnEnterMp()
 	SetInstancePriorityMode(true)
-
 	RequestIpl("coronertrash")
 	RequestIpl("Coroner_Int_On")
 	RequestIpl("chop_props")
@@ -284,9 +283,6 @@ CreateThread(function()
 	RemoveIpl("prologue_DistantLights")
 	RemoveIpl("prologue_LODLights")
 	RemoveIpl("prologue_m2_door")
-	-- CASSINO
 	RequestIpl("vw_casino_main")
-	--RequestIpl("vw_dlc_casino_door")
-	--RequestIpl("hei_dlc_casino_door")
 	RequestIpl("hei_dlc_windows_casino")
 end)

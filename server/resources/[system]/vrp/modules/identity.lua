@@ -2,7 +2,7 @@
 -- FALSEIDENTITY
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.FalseIdentity(Passport)
-    return vRP.Query("fidentity/Result", { id = Passport })[1] or false
+    return vRP.Query("fidentity/Result",{ id = Passport })[1] or false
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- IDENTITY
@@ -12,107 +12,36 @@ function vRP.Identity(Passport)
     if Characters[Source] then
         return Characters[Source] or false
     else
-        return vRP.Query("characters/Person", { id = Passport })[1] or false
+        return vRP.Query("characters/Person",{ id = Passport })[1] or false
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- INITPRISON
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.InitPrison(Passport, Amount)
+function vRP.InitPrison(Passport,Amount)
     local Source = vRP.Source(Passport)
     if parseInt(Amount) > 0 then
-        vRP.Query("characters/setPrison", { Passport = Passport, prison = parseInt(Amount) })
+        vRP.Query("characters/setPrison",{ Passport = Passport, prison = parseInt(Amount) })
         if Characters[Source] then
-            Characters[Source].prison = parseInt(Amount)
+            Characters[Source]["prison"] = parseInt(Amount)
         end
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATEPRISON
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpdatePrison(Passport, Amount)
+function vRP.UpdatePrison(Passport,Amount)
     local Source = vRP.Source(Passport)
     if parseInt(Amount) > 0 then
-        vRP.Query("characters/removePrison", { Passport = Passport, prison = parseInt(Amount) })
+        vRP.Query("characters/removePrison",{ Passport = Passport, prison = parseInt(Amount) })
         if Characters[Source] then
-            Characters[Source].prison = Characters[Source].prison - parseInt(Amount)
-            if 0 >= Characters[Source].prison then
-                Characters[Source].prison = 0
-                vRP.Teleport(Source, BackPrison.x, BackPrison.y, BackPrison.z)
-                TriggerClientEvent("Notify", Source, "verde", "Serviços finalizados.", 5000)
+            Characters[Source]["prison"] = Characters[Source]["prison"] - parseInt(Amount)
+            if 0 >= Characters[Source]["prison"] then
+                Characters[Source]["prison"] = 0
+                vRP.Teleport(Source,BackPrison["x"],BackPrison["y"],BackPrison["z"])
+                TriggerClientEvent("Notify",Source,"verde","Serviços finalizados.",5000)
             else
-                TriggerClientEvent("Notify", Source, "azul", "Restam <b>" .. Characters[Source].prison .. " serviços</b>.", 5000)
-            end
-        end
-    end
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- UPGRADESPENDING
------------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeSpending(Passport, Amount)
-    local Source = vRP.Source(Passport)
-    if parseInt(Amount) > 0 then
-        vRP.Query("characters/UpgradeSpending", { Passport = Passport, spending = parseInt(Amount) })
-        if Characters[Source] then
-            Characters[Source].spending = Characters[Source].spending + parseInt(Amount)
-        end
-    end
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- DOWNGRADESPENDING
------------------------------------------------------------------------------------------------------------------------------------------
-function vRP.DowngradeSpending(Passport, Amount)
-    local Source = vRP.Source(Passport)
-    if parseInt(Amount) > 0 then
-        vRP.Query("characters/DowngradeSpending", { Passport = Passport, spending = parseInt(Amount) })
-        if Characters[Source] then
-            Characters[Source].spending = Characters[Source].spending - parseInt(Amount)
-            if 0 >= Characters[Source].spending then
-                Characters[Source].spending = 0
-            end
-        end
-    end
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- RESETSPENDING
------------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ResetSpending(Passport)
-    local Source = vRP.Source(Passport)
-    vRP.Query("characters/ResetSpending", { Passport = Passport })
-    if Characters[Source] then
-        Characters[Source].spending = 0
-    end
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- RESETSPENDING
------------------------------------------------------------------------------------------------------------------------------------------
-function vRP.Spending(Passport)
-    local Source = vRP.Source(Passport)
-    return Characters[Source].spending or false
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- UPGRADECARDLIMIT
------------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeCardlimit(Passport, Amount)
-    local Source = vRP.Source(Passport)
-    if parseInt(Amount) > 0 then
-        vRP.Query("characters/UpgradeCardlimit", { Passport = Passport, cardlimit = parseInt(Amount) })
-        if Characters[Source] then
-            Characters[Source].cardlimit = Characters[Source].cardlimit + parseInt(Amount)
-        end
-    end
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- DOWNGRADECARDLIMIT
------------------------------------------------------------------------------------------------------------------------------------------
-function vRP.DowngradeCardlimit(Passport, Amount)
-    local Source = vRP.Source(Passport)
-    if parseInt(Amount) > 0 then
-        vRP.Query("characters/DowngradeCardlimit", { Passport = Passport, cardlimit = parseInt(Amount) })
-        if Characters[Source] then
-            Characters[Source].cardlimit = Characters[Source].cardlimit - parseInt(Amount)
-            if 0 >= Characters[Source].cardlimit then
-                Characters[Source].cardlimit = 0
+                TriggerClientEvent("Notify", Source,"azul","Restam <b>"..Characters[Source]["prison"].." serviços</b>.",5000)
             end
         end
     end
@@ -122,61 +51,61 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UpgradeChars(source)
     if Characters[source] then
-        vRP.Query("accounts/infosUpdatechars", { license = Characters[source].license })
-        Characters[source].chars = Characters[source].chars + 1
+        vRP.Query("accounts/infosUpdatechars",{ license = Characters[source]["license"] })
+        Characters[source]["chars"] = Characters[source]["chars"] + 1
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- USERGEMSTONE
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UserGemstone(License)
-    return vRP.Account(License).gems or 0
+    return vRP.Account(License)["gems"] or 0
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPGRADEGEMSTONE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeGemstone(Passport, Amount)
+function vRP.UpgradeGemstone(Passport,Amount)
     local Source = vRP.Source(Passport)
     local License = vRP.Identity(Passport)
     if parseInt(Amount) > 0 and License then
-        vRP.Query("accounts/AddGems", { license = License.license, gems = parseInt(Amount) })
+        vRP.Query("accounts/AddGems",{ license = License["license"], gems = parseInt(Amount) })
         if Characters[Source] then
-            Characters[Source].gems = Characters[Source].gems + Amount
+            Characters[Source]["gems"] = Characters[Source]["gems"] + Amount
         end
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPGRADENAMES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeNames(Passport, Name, Name2)
+function vRP.UpgradeNames(Passport,Name,Name2)
     local Source = vRP.Source(Passport)
-    vRP.Query("characters/updateName", { Passport = Passport, name = Name, name2 = Name2 })
+    vRP.Query("characters/updateName",{ Passport = Passport, name = Name, name2 = Name2 })
     if Characters[Source] then
-        Characters[Source].name2 = Name2
-        Characters[Source].name = Name
+        Characters[Source]["name2"] = Name2
+        Characters[Source]["name"] = Name
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPGRADEPHONE
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradePhone(Passport, Phone)
+function vRP.UpgradePhone(Passport,Phone)
     local Source = vRP.Source(Passport)
-    vRP.Query("characters/updatePhone", { id = Passport, phone = Phone })
+    vRP.Query("characters/updatePhone",{ id = Passport, phone = Phone })
     if Characters[Source] then
-        Characters[Source].phone = Phone
+        Characters[Source]["phone"] = Phone
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PASSPORTPLATE
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.PassportPlate(Plate)
-    return vRP.Query("vehicles/plateVehicles", { plate = Plate })[1] or false
+    return vRP.Query("vehicles/plateVehicles",{ plate = Plate })[1] or false
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- USERPHONE
 -----------------------------------------------------------------------------------------------------------------------------------------
 function vRP.UserPhone(Phone)
-    return vRP.Query("characters/getPhone", { phone = Phone })[1] or false
+    return vRP.Query("characters/getPhone",{ phone = Phone })[1] or false
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GENERATESTRING
@@ -184,12 +113,12 @@ end
 function vRP.GenerateString(Format)
     local Number = ""
     for i = 1, #Format do
-        if string.sub(Format, i, i) == "D" then
+        if string.sub(Format, i,i) == "D" then
             Number = Number..string.char(string.byte("0") + math.random(0,9))
-        elseif "L" == string.sub(Format, i, i) then
+        elseif "L" == string.sub(Format,i,i) then
             Number = Number..string.char(string.byte("A") + math.random(0,25))
         else
-            Number = Number..string.sub(Format, i, i)
+            Number = Number..string.sub(Format,i,i)
         end
     end
     return Number

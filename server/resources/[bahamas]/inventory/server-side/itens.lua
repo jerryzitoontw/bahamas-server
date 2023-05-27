@@ -25,14 +25,14 @@ Use = {
 	["contrabandbox1"] = function(source,Passport,Amount,Slot,Full,Item,Split)
 		if (vRP.InventoryWeight(Passport) + itemWeight(Full)) <= vRP.GetWeight(Passport) then
 			if vRP.TakeItem(Passport,Full,1,true,Slot) then
-				vRP.GenerateItem(Passport,"plastic",1)
-				vRP.GenerateItem(Passport,"techtrash",1)
-				vRP.GenerateItem(Passport,"explosives",1)
-				vRP.GenerateItem(Passport,"aluminum",1)
-				vRP.GenerateItem(Passport,"iron_pure",1)
-				vRP.GenerateItem(Passport,"fabric",1)
-				vRP.GenerateItem(Passport,"sheetmetal",1)
-				vRP.GenerateItem(Passport,"tarp",1)
+				vRP.GenerateItem(Passport,"plastic",3)
+				vRP.GenerateItem(Passport,"techtrash",3)
+				vRP.GenerateItem(Passport,"explosives",3)
+				vRP.GenerateItem(Passport,"aluminum",3)
+				vRP.GenerateItem(Passport,"iron_pure",3)
+				vRP.GenerateItem(Passport,"fabric",3)
+				vRP.GenerateItem(Passport,"sheetmetal",3)
+				vRP.GenerateItem(Passport,"tarp",3)
 				TriggerClientEvent("inventory:Update",source,"Backpack")
 			end
 		else
@@ -43,10 +43,10 @@ Use = {
 	["contrabandbox2"] = function(source,Passport,Amount,Slot,Full,Item,Split)
 		if (vRP.InventoryWeight(Passport) + itemWeight(Full)) <= vRP.GetWeight(Passport) then
 			if vRP.TakeItem(Passport,Full,1,true,Slot) then
-				vRP.GenerateItem(Passport,"tin_pure",1)
-				vRP.GenerateItem(Passport,"glass",1)
-				vRP.GenerateItem(Passport,"plastic",1)
-				vRP.GenerateItem(Passport,"techtrash",1)
+				vRP.GenerateItem(Passport,"tin_pure",3)
+				vRP.GenerateItem(Passport,"glass",3)
+				vRP.GenerateItem(Passport,"plastic",3)
+				vRP.GenerateItem(Passport,"techtrash",3)
 				TriggerClientEvent("inventory:Update",source,"Backpack")
 			end
 		else
@@ -57,9 +57,9 @@ Use = {
 	["ammobox"] = function(source,Passport,Amount,Slot,Full,Item,Split)
 		if (vRP.InventoryWeight(Passport) + itemWeight(Full)) <= vRP.GetWeight(Passport) then
 			if vRP.TakeItem(Passport,Full,1,true,Slot) then
-				vRP.GenerateItem(Passport,"lead_pure",1)
-				vRP.GenerateItem(Passport,"copper_pure",1)
-				vRP.GenerateItem(Passport,"gunpowder",1)
+				vRP.GenerateItem(Passport,"lead_pure",math.random(3,5))
+				vRP.GenerateItem(Passport,"copper_pure",math.random(3,5))
+				vRP.GenerateItem(Passport,"gunpowder",math.random(3,5))
 				TriggerClientEvent("inventory:Update",source,"Backpack")
 			end
 		else

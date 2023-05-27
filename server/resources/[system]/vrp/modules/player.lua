@@ -10,65 +10,68 @@ AddEventHandler("CharacterChosen", function(Passport, source)
     local Datatable = vRP.Datatable(Passport)
     local Identity = vRP.Identity(Passport)
     if Datatable and Identity then
-        if Datatable.Pos then
-            if not (Datatable.Pos.x and Datatable.Pos.y and Datatable.Pos.z) then
-                Datatable.Pos = { x = SpawnCoords.x, y = SpawnCoords.y, z = SpawnCoords.z }
+        if Datatable["Pos"] then
+            if not (Datatable["Pos"]["x"] and Datatable["Pos"]["y"] and Datatable["Pos"]["z"]) then
+                Datatable["Pos"] = { x = SpawnCoords["x"], y = SpawnCoords["y"], z = SpawnCoords["z"] }
             end
         else
-            Datatable.Pos = { x = SpawnCoords.x, y = SpawnCoords.y,  z = SpawnCoords.z }
+            Datatable["Pos"] = { x = SpawnCoords["x"], y = SpawnCoords["y"],  z = SpawnCoords["z"] }
         end
-        if not Datatable.Skin then
-            Datatable.Skin = "mp_m_freemode_01"
+
+        if not Datatable["Skin"] then
+            Datatable["Skin"] = "mp_m_freemode_01"
         end
-        if not Datatable.Inventory then
-            Datatable.Inventory = {}
+
+        if not Datatable["Inventory"] then
+            Datatable["Inventory"] = {}
         end
-        if not Datatable.Health then
-            Datatable.Health = 200
+
+        if not Datatable["Health"] then
+            Datatable["Health"] = 200
         end
-        if not Datatable.Armour then
-            Datatable.Armour = 0
+
+        if not Datatable["Armour"] then
+            Datatable["Armour"] = 0
         end
-        if not Datatable.Stress then
-            Datatable.Stress = 0
+
+        if not Datatable["Stress"] then
+            Datatable["Stress"] = 0
         end
-        if not Datatable.Hunger then
-            Datatable.Hunger = 100
+
+        if not Datatable["Hunger"] then
+            Datatable["Hunger"] = 100
         end
-        if not Datatable.Thirst then
-            Datatable.Thirst = 100
+
+        if not Datatable["Thirst"] then
+            Datatable["Thirst"] = 100
         end
-        if not Datatable.Weight then
-            Datatable.Weight = BackpackWeightDefault
+
+        if not Datatable["Weight"] then
+            Datatable["Weight"] = BackpackWeightDefault
         end
-        vRPC.Skin(source, Datatable.Skin)
-        vRP.SetArmour(source, Datatable.Armour)
-        vRPC.SetHealth(source, Datatable.Health)
-        vRP.Teleport(source, Datatable.Pos.x, Datatable.Pos.y, Datatable.Pos.z)
-        TriggerClientEvent("barbershop:Apply", source, vRP.UserData(Passport, "Barbershop"))
-        TriggerClientEvent("skinshop:Apply", source, vRP.UserData(Passport, "Clothings"))
-        TriggerClientEvent("tattoos:Apply", source, vRP.UserData(Passport, "Tatuagens"))
-        TriggerClientEvent("hud:Thirst", source, Datatable.Thirst)
-        TriggerClientEvent("hud:Hunger", source, Datatable.Hunger)
-        TriggerClientEvent("hud:Stress", source, Datatable.Stress)
-        TriggerClientEvent("vRP:Active", source, Passport, Identity.name .. " " .. Identity.name2)
-        if GetResourceMetadata("vrp", "creator") == "yes" then
-            if vRP.UserData(Passport, "Creator") == 1 then
-                if Global[Passport] then
-                    TriggerClientEvent("spawn:justSpawn", source, false, false)
-                else
-                    TriggerClientEvent("spawn:justSpawn", source, true, vec3(Datatable.Pos.x, Datatable.Pos.y, Datatable.Pos.z))
-                end
-            else
-                vRP.Query("playerdata/SetData", { Passport = Passport, dkey = "Creator", dvalue = json.encode(1) })
-                TriggerClientEvent("spawn:justSpawn", source, false, true)
-            end
-        elseif Global[Passport] then
-            TriggerClientEvent("spawn:justSpawn", source, false, false)
+
+        vRPC.Skin(source,Datatable["Skin"])
+        vRP.SetArmour(source,Datatable["Armour"])
+        vRPC.SetHealth(source,Datatable["Health"])
+        vRP.Teleport(source,Datatable["Pos"]["x"],Datatable["Pos"]["y"],Datatable["Pos"]["z"])
+
+        TriggerClientEvent("barbershop:Apply",source,vRP.UserData(Passport,"Barbershop"))
+        TriggerClientEvent("skinshop:Apply",source,vRP.UserData(Passport,"Clothings"))
+        TriggerClientEvent("tattoos:Apply",source,vRP.UserData(Passport,"Tatuagens"))
+
+        TriggerClientEvent("hud:Thirst",source,Datatable["Thirst"])
+        TriggerClientEvent("hud:Hunger",source,Datatable["Hunger"])
+        TriggerClientEvent("hud:Stress",source,Datatable["Stress"])
+
+        TriggerClientEvent("vRP:Active",source,Passport,Identity["name"].." "..Identity["name2"])
+        
+        if Global[Passport] then
+            TriggerClientEvent("spawn:justSpawn",source,false,false)
         else
-            TriggerClientEvent("spawn:justSpawn", source, true, vec3(Datatable.Pos.x, Datatable.Pos.y, Datatable.Pos.z))
+            TriggerClientEvent("spawn:justSpawn",source,true,vec3(Datatable["Pos"]["x"],Datatable["Pos"]["y"],Datatable["Pos"]["z"]))
         end
-        TriggerEvent("Connect", Passport, source, Global[Passport] == nil)
+
+        TriggerEvent("Connect",Passport,source,Global[Passport] == nil)
         Global[Passport] = true
     end
 end)
@@ -76,14 +79,14 @@ end)
 -- JUSTOBJECTS
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("vRP:justObjects")
-AddEventHandler("vRP:justObjects", function()
+AddEventHandler("vRP:justObjects",function()
     local source = source
     local Passport = vRP.Passport(source)
     local Inventory = vRP.Inventory(Passport)
     if Passport then
         for i = 1, 5 do
-            if Inventory[tostring(i)] and "Armamento" == itemType(Inventory[tostring(i)].item) then
-                TriggerClientEvent("inventory:CreateWeapon", source, Inventory[tostring(i)].item)
+            if Inventory[tostring(i)] and "Armamento" == itemType(Inventory[tostring(i)]["item"]) then
+                TriggerClientEvent("inventory:CreateWeapon",source,Inventory[tostring(i)]["item"])
             end
         end
     end
@@ -92,14 +95,14 @@ end)
 -- BACKPACKWEIGHT
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("vRP:BackpackWeight")
-AddEventHandler("vRP:BackpackWeight", function(value)
+AddEventHandler("vRP:BackpackWeight",function(value)
     local source = source
     local Passport = vRP.Passport(source)
     local Datatable = vRP.Datatable(Passport)
     if Passport then
         if value then
             if not Global[Passport] then
-                Datatable.Weight = Datatable.Weight + 50
+                Datatable["Weight"] = Datatable["Weight"] + 50
                 Global[Passport] = true
             end
         end
@@ -109,7 +112,7 @@ end)
 -- DELETEOBJECT
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("DeleteObject")
-AddEventHandler("DeleteObject", function(index, value)
+AddEventHandler("DeleteObject",function(index,value)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport then
@@ -118,12 +121,12 @@ AddEventHandler("DeleteObject", function(index, value)
             Objects[Passport][value] = nil
         end
     end
-    TriggerEvent("DeleteObjectServer", index)
+    TriggerEvent("DeleteObjectServer",index)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DELETEOBJECTSERVER
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("DeleteObjectServer", function(entIndex)
+AddEventHandler("DeleteObjectServer",function(entIndex)
     local NetworkGetEntityFromNetworkId = NetworkGetEntityFromNetworkId(entIndex)
     if DoesEntityExist(NetworkGetEntityFromNetworkId) and not IsPedAPlayer(NetworkGetEntityFromNetworkId) and 3 == GetEntityType(NetworkGetEntityFromNetworkId) then
         DeleteEntity(NetworkGetEntityFromNetworkId)
@@ -133,7 +136,7 @@ end)
 -- DELETEPED
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("DeletePed")
-AddEventHandler("DeletePed", function(entIndex)
+AddEventHandler("DeletePed",function(entIndex)
     local NetworkGetEntityFromNetworkId = NetworkGetEntityFromNetworkId(entIndex)
     if DoesEntityExist(NetworkGetEntityFromNetworkId) and not IsPedAPlayer(NetworkGetEntityFromNetworkId) and 1 == GetEntityType(NetworkGetEntityFromNetworkId) then
         DeleteEntity(NetworkGetEntityFromNetworkId)
@@ -142,9 +145,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEBUGOBJECTS
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("DebugObjects", function(value)
+AddEventHandler("DebugObjects",function(value)
     if Objects[value] then
-        for k, v in pairs(Objects[value]) do
+        for k,v in pairs(Objects[value]) do
             Objects[value][k] = nil
             TriggerEvent("DeleteObjectServer", k)
         end
@@ -153,9 +156,9 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DEBUGWEAPONS
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("DebugWeapons", function(value)
+AddEventHandler("DebugWeapons",function(value)
     if Objects[value] then
-        for k, v in pairs(Objects[value]) do
+        for k,v in pairs(Objects[value]) do
             TriggerEvent("DeleteObjectServer", v)
             Objects[value] = nil
         end
@@ -165,23 +168,23 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GG
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("gg", function(source)
+RegisterCommand("gg",function(source)
     local source = source
     local Passport = vRP.Passport(source)
-    if GetPlayerRoutingBucket(source) < 900000 and Passport and SURVIVAL.CheckDeath(source) then
-        if CleanDeathInventory then
-            vRP.ClearInventory(Passport)
-        end
+    if Passport and SURVIVAL.CheckDeath(source) then
+        vRP.ClearInventory(Passport)
+
         if not vRP.UserPremium(Passport) then
             local Datatable = vRP.Datatable(Passport)
-            if WipeBackpackDeath and Datatable and Datatable.Weight then
-                Datatable.Weight = BackpackWeightDefault
+            if WipeBackpackDeath and Datatable and Datatable["Weight"] then
+                Datatable["Weight"] = BackpackWeightDefault
             end
         end
-        vRP.UpgradeThirst(Passport, 100)
-        vRP.UpgradeHunger(Passport, 100)
-        vRP.DowngradeStress(Passport, 100)
-        TriggerEvent("Discord", "Airport", "**Source:** " .. source .. [[ **Passaporte:** ]] .. Passport .. [[ **Address:** ]] .. GetPlayerEndpoint(source), 3092790)
+    
+        vRP.UpgradeThirst(Passport,100)
+        vRP.UpgradeHunger(Passport,100)
+        vRP.DowngradeStress(Passport,100)
+        TriggerEvent("Discord","Airport","**Source:** "..source..[[ **Passaporte:** ]]..Passport..[[ **Address:** ]]..GetPlayerEndpoint(source),3092790)
         SURVIVAL.Respawn(source)
     end
 end)
@@ -191,113 +194,127 @@ end)
 function vRP.ClearInventory(Passport)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
-    if source and Datatable and Datatable.Inventory then
-        exports.inventory:CleanWeapons(parseInt(Passport), true)
-        TriggerEvent("DebugObjects", parseInt(Passport))
-        TriggerEvent("DebugWeapons", parseInt(Passport))
-        Datatable.Inventory = {}
+    if source and Datatable and Datatable["Inventory"] then
+        exports["inventory"]:CleanWeapons(parseInt(Passport),true)
+
+        TriggerEvent("DebugObjects",parseInt(Passport))
+        TriggerEvent("DebugWeapons",parseInt(Passport))
+
+        Datatable["Inventory"] = {}
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPGRADETHIRST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeThirst(Passport, Amount)
+function vRP.UpgradeThirst(Passport,Amount)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Datatable and source then
-        if not Datatable.Thirst then
-            Datatable.Thirst = 0
+        if not Datatable["Thirst"] then
+            Datatable["Thirst"] = 0
         end
-        Datatable.Thirst = Datatable.Thirst + parseInt(Amount)
-        if Datatable.Thirst > 100 then
-            Datatable.Thirst = 100
+
+        Datatable["Thirst"] = Datatable["Thirst"] + parseInt(Amount)
+        if Datatable["Thirst"] > 100 then
+            Datatable["Thirst"] = 100
         end
-        TriggerClientEvent("hud:Thirst", source, Datatable.Thirst)
+
+        TriggerClientEvent("hud:Thirst",source,Datatable["Thirst"])
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPGRADEHUNGER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeHunger(Passport, Amount)
+function vRP.UpgradeHunger(Passport,Amount)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Datatable and source then
-        if not Datatable.Hunger then
-            Datatable.Hunger = 0
+        if not Datatable["Hunger"] then
+            Datatable["Hunger"] = 0
         end
-        Datatable.Hunger = Datatable.Hunger + parseInt(Amount)
-        if Datatable.Hunger > 100 then
-            Datatable.Hunger = 100
+
+        Datatable["Hunger"] = Datatable["Hunger"] + parseInt(Amount)
+        if Datatable["Hunger"] > 100 then
+            Datatable["Hunger"] = 100
         end
-        TriggerClientEvent("hud:Hunger", source, Datatable.Hunger)
+
+        TriggerClientEvent("hud:Hunger",source,Datatable["Hunger"])
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPGRADESTRESS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.UpgradeStress(Passport, Amount)
+function vRP.UpgradeStress(Passport,Amount)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Datatable and source then
-        if not Datatable.Stress then
-            Datatable.Stress = 0
+        if not Datatable["Stress"] then
+            Datatable["Stress"] = 0
         end
-        Datatable.Stress = Datatable.Stress + parseInt(Amount)
-        if Datatable.Stress > 100 then
-            Datatable.Stress = 100
+
+        Datatable["Stress"] = Datatable["Stress"] + parseInt(Amount)
+        if Datatable["Stress"] > 100 then
+            Datatable["Stress"] = 100
         end
-        TriggerClientEvent("hud:Stress", source, Datatable.Stress)
+
+        TriggerClientEvent("hud:Stress",source,Datatable["Stress"])
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DOWNGRADETHIRST
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.DowngradeThirst(Passport, Amount)
+function vRP.DowngradeThirst(Passport,Amount)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Datatable and source then
-        if not Datatable.Thirst then
-            Datatable.Thirst = 100
+        if not Datatable["Thirst"] then
+            Datatable["Thirst"] = 100
         end
-        Datatable.Thirst = Datatable.Thirst - parseInt(Amount)
-        if Datatable.Thirst < 0 then
-            Datatable.Thirst = 0
+
+        Datatable["Thirst"] = Datatable["Thirst"] - parseInt(Amount)
+        if Datatable["Thirst"] < 0 then
+            Datatable["Thirst"] = 0
         end
-        TriggerClientEvent("hud:Thirst", source, Datatable.Thirst)
+
+        TriggerClientEvent("hud:Thirst",source,Datatable["Thirst"])
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DOWNGRADEHUNGER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.DowngradeHunger(Passport, Amount)
+function vRP.DowngradeHunger(Passport,Amount)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Datatable and source then
-        if not Datatable.Hunger then
-            Datatable.Hunger = 100
+        if not Datatable["Hunger"] then
+            Datatable["Hunger"] = 100
         end
-        Datatable.Hunger = Datatable.Hunger - parseInt(Amount)
-        if Datatable.Hunger < 0 then
-            Datatable.Hunger = 0
+
+        Datatable["Hunger"] = Datatable["Hunger"] - parseInt(Amount)
+        if Datatable["Hunger"] < 0 then
+            Datatable["Hunger"] = 0
         end
-        TriggerClientEvent("hud:Hunger", source, Datatable.Hunger)
+
+        TriggerClientEvent("hud:Hunger",source,Datatable["Hunger"])
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DOWNGRADESTRESS
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.DowngradeStress(Passport, Amount)
+function vRP.DowngradeStress(Passport,Amount)
     local source = vRP.Source(Passport)
     local Datatable = vRP.Datatable(Passport)
     if Datatable and source then
-        if not Datatable.Stress then
-            Datatable.Stress = 0
+        if not Datatable["Stress"] then
+            Datatable["Stress"] = 0
         end
-        Datatable.Stress = Datatable.Stress - parseInt(Amount)
-        if Datatable.Stress < 0 then
-            Datatable.Stress = 0
+
+        Datatable["Stress"] = Datatable["Stress"] - parseInt(Amount)
+        if Datatable["Stress"] < 0 then
+            Datatable["Stress"] = 0
         end
-        TriggerClientEvent("hud:Stress", source, Datatable.Stress)
+
+        TriggerClientEvent("hud:Stress",source,Datatable["Stress"])
     end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -308,19 +325,23 @@ function tvRP.Foods()
     local Passport = vRP.Passport(source)
     local Datatable = vRP.Datatable(Passport)
     if source and Datatable then
-        if not Datatable.Thirst then
-            Datatable.Thirst = 100
+        if not Datatable["Thirst"] then
+            Datatable["Thirst"] = 100
         end
-        if not Datatable.Hunger then
-            Datatable.Hunger = 100
+
+        if not Datatable["Hunger"] then
+            Datatable["Hunger"] = 100
         end
-        Datatable.Hunger = Datatable.Hunger - 1
-        Datatable.Thirst = Datatable.Thirst - 1
-        if Datatable.Thirst < 0 then
-            Datatable.Thirst = 0
+
+        Datatable["Hunger"] = Datatable["Hunger"] - 1
+        Datatable["Thirst"] = Datatable["Thirst"] - 1
+
+        if Datatable["Thirst"] < 0 then
+            Datatable["Thirst"] = 0
         end
-        if Datatable.Hunger < 0 then
-            Datatable.Hunger = 0
+
+        if Datatable["Hunger"] < 0 then
+            Datatable["Hunger"] = 0
         end
     end
 end
@@ -367,17 +388,17 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SETARMOUR
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.SetArmour(source, Amount)
+function vRP.SetArmour(source,Amount)
     local GetPlayerPed = GetPlayerPed(source)
     if GetPedArmour(GetPlayerPed) + Amount > 100 then
         Amount = 100 - GetPedArmour(GetPlayerPed)
     end
-    SetPedArmour(GetPlayerPed, GetPedArmour(GetPlayerPed) + Amount)
+    SetPedArmour(GetPlayerPed,GetPedArmour(GetPlayerPed) + Amount)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TELEPORT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.Teleport(source, x, y, z)
+function vRP.Teleport(source,x,y,z)
     local GetPlayerPed = GetPlayerPed(source)
     SetEntityCoords(GetPlayerPed, x + 1.0E-4, y + 1.0E-4, z + 1.0E-4, false, false, false, false)
 end
@@ -400,10 +421,10 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATEPED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function tvRP.CreatePed(Model, x, y, z, heading, typ)
+function tvRP.CreatePed(Model,x,y,z,heading,typ)
     local SpawnPed = 0
     local Hash = GetHashKey(Model)
-    local Ped = CreatePed(typ, Hash, x, y, z, heading, true, false)
+    local Ped = CreatePed(typ,Hash,x,y,z,heading,true,false)
     while true do
         if not DoesEntityExist(Ped) and SpawnPed <= 1000 then
             SpawnPed = SpawnPed + 1
@@ -411,24 +432,25 @@ function tvRP.CreatePed(Model, x, y, z, heading, typ)
         end
     end
     if DoesEntityExist(Ped) then
-        return true, NetworkGetNetworkIdFromEntity(Ped)
+        return true,NetworkGetNetworkIdFromEntity(Ped)
     end
     return false
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATEOBJECT
 -----------------------------------------------------------------------------------------------------------------------------------------
-function tvRP.CreateObject(Model, x, y, z, Weapon)
+function tvRP.CreateObject(Model,x,y,z,Weapon)
     local Passport = vRP.Passport(source)
     if Passport then
         local SpawnObjects = 0
         local Hash = GetHashKey(Model)
-        local Object = CreateObject(Hash, x, y, z, true, true, false)
+        local Object = CreateObject(Hash,x,y,z,true,true,false)
 
         while not DoesEntityExist(Object) and SpawnObjects <= 1000 do
             SpawnObjects = SpawnObjects + 1
             Wait(1)
         end
+    
         local NetworkGetNetworkIdFromEntity = NetworkGetNetworkIdFromEntity(Object)
         if DoesEntityExist(Object) then
             if Weapon then
@@ -452,9 +474,9 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 CreateThread(function()
     while true do
-        for k, v in pairs(Sources) do
-            vRP.DowngradeHunger(k, ConsumeHunger)
-            vRP.DowngradeThirst(k, ConsumeThirst)
+        for k,v in pairs(Sources) do
+            vRP.DowngradeHunger(k,ConsumeHunger)
+            vRP.DowngradeThirst(k,ConsumeThirst)
         end
         Wait(CooldownHungerThrist)
     end
@@ -463,16 +485,16 @@ end)
 -- BUCKETCLIENT
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("vRP:BucketClient")
-AddEventHandler("vRP:BucketClient", function(value)
+AddEventHandler("vRP:BucketClient",function(value)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport then
         if value == "Enter" then
-            Player(source).state.Route = Passport
+            Player(source)["state"]["Route"] = Passport
             SetPlayerRoutingBucket(source, Passport)
         else
-            Player(source).state.Route = 0
-            SetPlayerRoutingBucket(source, 0)
+            Player(source)["state"]["Route"] = 0
+            SetPlayerRoutingBucket(source,0)
         end
     end
 end)
@@ -480,26 +502,25 @@ end)
 -- BUCKETSERVER
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("vRP:BucketServer")
-AddEventHandler("vRP:BucketServer", function(source, value, bucket)
+AddEventHandler("vRP:BucketServer",function(source,value,bucket)
     if value == "Enter" then
-        Player(source).state.Route = bucket
-        SetPlayerRoutingBucket(source, bucket)
+        Player(source)["state"]["Route"] = bucket
+        SetPlayerRoutingBucket(source,bucket)
         if bucket > 0 then
-            SetRoutingBucketEntityLockdownMode(bucket, "inactive")
-            -- SetRoutingBucketEntityLockdownMode(bucket, "relaxed")
-            SetRoutingBucketPopulationEnabled(bucket, false)
+            SetRoutingBucketEntityLockdownMode(bucket,"inactive")
+            SetRoutingBucketPopulationEnabled(bucket,false)
         end
     else
-        Player(source).state.Route = 0
-        SetPlayerRoutingBucket(source, 0)
+        Player(source)["state"]["Route"] = 0
+        SetPlayerRoutingBucket(source,0)
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DISCONNECT
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("Disconnect", function(Passport)
-    TriggerEvent("DebugObjects", Passport)
-    TriggerEvent("DebugWeapons", Passport)
+AddEventHandler("Disconnect",function(Passport)
+    TriggerEvent("DebugObjects",Passport)
+    TriggerEvent("DebugWeapons",Passport)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- RESOURCESTART

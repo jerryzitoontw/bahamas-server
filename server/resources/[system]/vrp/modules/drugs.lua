@@ -18,7 +18,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEEDTIMER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.WeedTimer(Passport, Time)
+function vRP.WeedTimer(Passport,Time)
     if Timer[Passport] then
         Timer[Passport] = Timer[Passport] + Time * 60
     else
@@ -41,7 +41,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHEMICALTIMER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.ChemicalTimer(Passport, Time)
+function vRP.ChemicalTimer(Passport,Time)
     if Timer[Passport] then
         Timer[Passport] = Timer[Passport] + Time * 60
     else
@@ -64,7 +64,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ALCOHOLTIMER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function vRP.AlcoholTimer(Passport, Time)
+function vRP.AlcoholTimer(Passport,Time)
     if Timer[Passport] then
         Timer[Passport] = Timer[Passport] + Time * 60
     else

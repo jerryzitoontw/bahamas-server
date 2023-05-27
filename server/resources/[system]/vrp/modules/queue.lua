@@ -437,7 +437,7 @@ CreateThread(function()
 				data.timeout = 0
 			end
 
-			if not data.ids or not data.name or not data.firstconnect or data.priority == nil or not data.source then
+			if not data.ids or not data["name"] or not data.firstconnect or data.priority == nil or not data.source then
 				data.deferrals.done(Lang.Error)
 				table.remove(Queue.QueueList,i)
 			elseif (data.timeout >= 120) and os.time() - data.firstconnect > 5 then
