@@ -40,7 +40,7 @@ Groups = {
 			["Paramedic"] = true
 		},
 		["Hierarchy"] = { "Chefe","Gerente","Membro" },
-		["Salary"] = { 2500,2250,2000 },
+		["Salary"] = { 4500,4250,4000 },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
@@ -49,7 +49,7 @@ Groups = {
 			["Police"] = true
 		},
 		["Hierarchy"] = { "Chefe","Gerente","Membro" },
-		["Salary"] = { 2500,2250,2000 },
+		["Salary"] = { 4500,4250,4000 },
 		["Service"] = {},
 		["Type"] = "Work"
 	},

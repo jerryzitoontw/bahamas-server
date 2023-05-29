@@ -74,44 +74,48 @@ end
 -- SKINSHOPS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Skinshops = {
-	{ -1124.28,-1442.92,5.22 },
-	{ 74.88,-1400.08,29.37 },
-	{ 80.42,-1400.13,29.37 },
-	{ -709.09,-143.23,37.41 },
-	{ -701.47,-156.89,37.41 },
-	{ -166.04,-294.02,39.73 },
-	{ -171.45,-308.83,39.73 },
-	{ -828.87,-1076.69,11.32 },
-	{ -826.14,-1081.52,11.32 },
-	{ -1198.62,-770.67,17.3 },
-	{ -1451.4,-247.0,49.82 },
-	{ -1440.71,-235.17,49.82 },
-	{ 10.38,6516.93,31.88 },
-	{ 6.66,6521.02,31.88 },
-	{ 1693.48,4829.94,42.06 },
-	{ 1688.02,4829.23,42.06 },
-	{ 129.04,-218.61,54.56 },
-	{ 613.28,2756.72,42.09 },
-	{ 1189.51,2710.73,38.22 },
-	{ 1189.46,2705.23,38.22 },
-	{ -3167.03,1048.69,20.86 },
-	{ -1107.17,2706.14,19.11 },
-	{ -1103.47,2702.0,19.11 },
-	{ 426.08,-799.02,29.49 },
-	{ 420.55,-799.1,29.49 },
-	{ 1210.61,-1474.0,34.85 }, -- Bombeiros
-	{ -1181.86,-900.55,13.99 }, -- BurgerShot
-	{ 461.46,-998.05,31.19 }, -- Departamento LSPD
-	{ 387.29,799.17,187.45 }, -- Departamento Ranger
-	{ 1841.13,3679.86,34.19 }, -- Departamento Sheriff
-	{ -437.49,6009.62,36.99 }, -- Departamento Sheriff
-	{ 361.77,-1593.19,25.9 }, -- Departamento State
-	{ -586.89,-1049.92,22.34 }, -- Uwu Café
-	{ 300.2,-598.85,43.29 }, -- Hospital Sul
-	{ -256.56,6327.32,32.42 }, -- Hospital Norte
-	{ 841.11,-824.54,26.34 }, -- Mecânica Sul
-	{ 801.62,-830.37,26.34 }, -- Mecânica Sul
-	{ 810.31,-760.23,31.26 } -- Pizza This
+	-- Skinshops
+	{ 72.78,-1399.34,29.37 },
+	{ -710.22,-153.07,37.41 },
+	{ -163.14,-302.99,39.73 },
+	{ -829.16,-1074.3,11.32 },
+	{ -1188.06,-768.69,17.32 },
+	{ -1450.43,-237.04,49.81 },
+	{ 11.28,6514.82,31.88 },
+	{ 428.6,-799.93,29.49 },
+	{ -1107.66,2707.98,19.11 },
+	{ -3175.35,1042.19,20.86 },
+	{ 1190.27,2712.99,38.22 },
+	{ 617.75,2766.35,42.09 },
+	{ 121.01,-225.53,54.56 },
+	{ 1695.53,4829.45,42.06 },
+	-- Paramedic-1
+	{ 1150.58,-1589.28,35.28 },
+	{ 1150.36,-1583.34,35.28 },
+	-- Paramedic-2
+	{ 1824.44,3672.56,34.27 },
+	-- Paramedic-3
+	{ -256.85,6327.76,32.42 },
+	-- Police-1
+	{ -951.89,-2046.51,12.92 },
+	{ -954.51,-2050.76,12.92 },
+	-- Police-2
+	{ 853.51,-1312.91,28.24 },
+	-- Police-3
+	{ 1771.42,2573.39,45.73 },
+	-- Police-4
+	{ 1853.45,3688.83,29.81 },
+	-- Police-5
+	{ -437.67,6009.04,36.99 },
+	{ -439.37,6011.13,36.99 },
+	-- Harmony
+	{ 1187.54,2636.33,38.4 },
+	-- Ottos
+	{ 841.05,-824.74,26.34 },
+	-- Tuners
+	{ 153.22,-3013.93,7.04 },
+	-- Pearls
+	{ -1838.29,-1186.62,14.31 }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- THREADSTART
@@ -404,28 +408,6 @@ RegisterNUICallback("Rotate",function(Data,Callback)
 	Callback("Ok")
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- SETMASK
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("skinshop:setMask")
-AddEventHandler("skinshop:setMask",function()
-	if not Animation and not LocalPlayer["state"]["Buttons"] then
-		Animation = true
-		local Ped = PlayerPedId()
-		vRP.playAnim(true,{"missfbi4","takeoff_mask"},true)
-
-		Wait(1000)
-
-		if GetPedDrawableVariation(Ped,1) == Dataset["mask"]["item"] then
-			SetPedComponentVariation(Ped,1,0,0,1)
-		else
-			SetPedComponentVariation(Ped,1,Dataset["mask"]["item"],Dataset["mask"]["texture"],1)
-		end
-
-		vRP.removeObjects()
-		Animation = false
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
 -- SETHAT
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("skinshop:setHat")
@@ -443,7 +425,29 @@ AddEventHandler("skinshop:setHat",function()
 			SetPedPropIndex(Ped,0,Dataset["hat"]["item"],Dataset["hat"]["texture"],1)
 		end
 
-		vRP.removeObjects()
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETMASK
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setMask")
+AddEventHandler("skinshop:setMask",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		local Ped = PlayerPedId()
+		vRP.playAnim(true,{"missfbi4","takeoff_mask"},true)
+
+		Wait(1000)
+
+		if GetPedDrawableVariation(Ped,1) == Dataset["mask"]["item"] then
+			SetPedComponentVariation(Ped,1,0,0,1)
+		else
+			SetPedComponentVariation(Ped,1,Dataset["mask"]["item"],Dataset["mask"]["texture"],1)
+		end
+
+		vRP.Destroy()
 		Animation = false
 	end
 end)
@@ -465,7 +469,145 @@ AddEventHandler("skinshop:setGlasses",function()
 			SetPedPropIndex(Ped,1,Dataset["glass"]["item"],Dataset["glass"]["texture"],1)
 		end
 
-		vRP.removeObjects()
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETSHIRT
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setShirt")
+AddEventHandler("skinshop:setShirt",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		vRP.playAnim(true,{"clothingtie","try_tie_negative_a"},true)
+		Wait(1000)
+	
+		local Ped = PlayerPedId()
+	
+		if GetPedDrawableVariation(Ped,8) == Dataset["tshirt"]["item"] then
+			SetPedComponentVariation(Ped,8,15,0,1)
+			SetPedComponentVariation(Ped,3,15,0,1)
+		else
+			SetPedComponentVariation(Ped,8,Dataset["tshirt"]["item"],Dataset["tshirt"]["texture"],1)
+		end
+	
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETTORSO
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setTorso")
+AddEventHandler("skinshop:setTorso",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		vRP.playAnim(true,{"clothingtie","try_tie_negative_a"},true)
+		Wait(1000)
+
+		local Ped = PlayerPedId()
+
+		if GetPedDrawableVariation(Ped,11) == Dataset["torso"]["item"] then
+			SetPedComponentVariation(Ped,11,15,0,1)
+			SetPedComponentVariation(Ped,3,15,0,1)
+		else
+			SetPedComponentVariation(Ped,11,Dataset["torso"]["item"],Dataset["torso"]["texture"],1)
+		end
+
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETARMS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setArms")
+AddEventHandler("skinshop:setArms",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		vRP.playAnim(true,{"clothingtie","try_tie_negative_a"},true)
+		Wait(1000)
+
+		local Ped = PlayerPedId()
+
+		if GetPedDrawableVariation(Ped,3) == Dataset["arms"]["item"] then
+			SetPedComponentVariation(Ped,3,15,0,1)
+		else
+			SetPedComponentVariation(Ped,3,Dataset["arms"]["item"],Dataset["arms"]["texture"],1)
+		end
+
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETVEST
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setVest")
+AddEventHandler("skinshop:setVest",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		vRP.playAnim(true,{"clothingtie","try_tie_negative_a"},true)
+		Wait(1000)
+
+		local Ped = PlayerPedId()
+
+		if GetPedDrawableVariation(Ped,9) == Dataset["vest"]["item"] then
+			SetPedComponentVariation(Ped,9,0,0,1)
+		else
+			SetPedComponentVariation(Ped,9,Dataset["vest"]["item"],Dataset["vest"]["texture"],1)
+		end
+
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETPANTS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setPants")
+AddEventHandler("skinshop:setPants",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		vRP.playAnim(true,{"clothingtie","try_tie_negative_a"},true)
+		Wait(1000)
+
+		local Ped = PlayerPedId()
+
+		if GetPedDrawableVariation(Ped,4) == Dataset["pants"]["item"] then
+			if GetEntityModel(Ped) == GetHashKey("mp_m_freemode_01") then
+				SetPedComponentVariation(Ped,4,14,0,1)
+			elseif GetEntityModel(Ped) == GetHashKey("mp_f_freemode_01") then
+				SetPedComponentVariation(Ped,4,15,0,1)
+			end
+		else
+			SetPedComponentVariation(Ped,4,Dataset["pants"]["item"],Dataset["pants"]["texture"],1)
+		end
+
+		vRP.Destroy()
+		Animation = false
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SETSHOES
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("skinshop:setShoes")
+AddEventHandler("skinshop:setShoes",function()
+	if not Animation and not LocalPlayer["state"]["Buttons"] then
+		Animation = true
+		vRP.playAnim(true,{"clothingtie","try_tie_negative_a"},true)
+		Wait(1000)
+
+		local Ped = PlayerPedId()
+
+		if GetPedDrawableVariation(Ped,6) == Dataset["shoes"]["item"] then
+			SetPedComponentVariation(Ped,6,5,0,1)
+		else
+			SetPedComponentVariation(Ped,6,Dataset["shoes"]["item"],Dataset["shoes"]["texture"],1)
+		end
+
+		vRP.Destroy()
 		Animation = false
 	end
 end)

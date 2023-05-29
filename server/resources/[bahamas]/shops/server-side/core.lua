@@ -235,16 +235,16 @@ local shops = {
 		["type"] = "Cash",
 		["perm"] = "Paramedic",
 		["List"] = {
-			["adrenaline"] = 925,
+			["adrenaline"] = 425,
 			["badge02"] = 10,
 			["syringe"] = 2,
-			["bandage"] = 225,
-			["gauze"] = 100,
+			["bandage"] = 85,
+			["gauze"] = 40,
 			["gdtkit"] = 20,
-			["medkit"] = 575,
-			["sinkalmy"] = 375,
-			["analgesic"] = 125,
-			["ritmoneury"] = 475
+			["medkit"] = 275,
+			["sinkalmy"] = 175,
+			["analgesic"] = 85,
+			["ritmoneury"] = 175,
 		}
 	},
 	["Police"] = {
@@ -284,11 +284,11 @@ local shops = {
 		["type"] = "Cash",
 		["perm"] = "Harmony",
 		["List"] = {
-			["WEAPON_WRENCH"] = 675,
-			["WEAPON_CROWBAR"] = 425,
-			["advtoolbox"] = 2775,
-			["toolbox"] = 775,
-			["tyres"] = 175
+			["WEAPON_WRENCH"] = 375,
+			["WEAPON_CROWBAR"] = 225,
+			["advtoolbox"] = 1375,
+			["toolbox"] = 375,
+			["tyres"] = 85
 		}
 	},
 	["Ottos"] = {
@@ -296,11 +296,11 @@ local shops = {
 		["type"] = "Cash",
 		["perm"] = "Ottos",
 		["List"] = {
-			["WEAPON_WRENCH"] = 675,
-			["WEAPON_CROWBAR"] = 425,
-			["advtoolbox"] = 2775,
-			["toolbox"] = 775,
-			["tyres"] = 175
+			["WEAPON_WRENCH"] = 375,
+			["WEAPON_CROWBAR"] = 225,
+			["advtoolbox"] = 1375,
+			["toolbox"] = 375,
+			["tyres"] = 85
 		}
 	},
 	["Tuners"] = {
@@ -308,11 +308,11 @@ local shops = {
 		["type"] = "Cash",
 		["perm"] = "Tuners",
 		["List"] = {
-			["WEAPON_WRENCH"] = 675,
-			["WEAPON_CROWBAR"] = 425,
-			["advtoolbox"] = 2775,
-			["toolbox"] = 775,
-			["tyres"] = 175
+			["WEAPON_WRENCH"] = 375,
+			["WEAPON_CROWBAR"] = 225,
+			["advtoolbox"] = 1375,
+			["toolbox"] = 375,
+			["tyres"] = 85
 		}
 	},
 	-- (Market)

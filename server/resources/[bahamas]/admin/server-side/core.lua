@@ -13,6 +13,18 @@ Tunnel.bindInterface("admin",Bahamas)
 vCLIENT = Tunnel.getInterface("admin")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- DEBUG
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("debug",function(source)
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.HasGroup(Passport,"Admin") then
+			TriggerClientEvent("ToggleDebug",source)
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- MODMAIL
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("modmail",function(source,Message)
