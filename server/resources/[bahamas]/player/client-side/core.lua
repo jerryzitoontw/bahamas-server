@@ -24,6 +24,16 @@ LocalPlayer["state"]["Handcuff"] = false
 LocalPlayer["state"]["Commands"] = false
 LocalPlayer["state"]["Rope"] = false
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- CARRYPLAYER
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("carryplayer",function(source,args)
+	vSERVER.CarryPlayer()
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- TABLET:KEYMAPPING
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterKeyMapping("carryplayer","Carregar pelo braço","keyboard","H")
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- FPS
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("fps",function()
@@ -309,6 +319,25 @@ AddStateBagChangeHandler("Windows",nil,function(Name,Key,Value)
 				RollUpWindow(Vehicle,1)
 				RollUpWindow(Vehicle,2)
 				RollUpWindow(Vehicle,3)
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- SYNCDOORS
+-----------------------------------------------------------------------------------------------------------------------------------------
+local doorStatus = { ["1"] = 0, ["2"] = 1, ["3"] = 2, ["4"] = 3, ["5"] = 5, ["6"] = 4 }
+RegisterNetEvent("player:syncDoors")
+AddEventHandler("player:syncDoors",function(Network,Active)
+	if NetworkDoesNetworkIdExist(Network) then
+		local v = NetToEnt(Network)
+		if DoesEntityExist(v) and GetVehicleDoorLockStatus(v) == 1 then
+			if doorStatus[Active] then
+				if GetVehicleDoorAngleRatio(v,doorStatus[Active]) == 0 then
+					SetVehicleDoorOpen(v,doorStatus[Active],0,0)
+				else
+					SetVehicleDoorShut(v,doorStatus[Active],0)
+				end
 			end
 		end
 	end

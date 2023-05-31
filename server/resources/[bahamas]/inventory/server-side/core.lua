@@ -40,6 +40,7 @@ Registers = {}
 Objects = {}
 verifyObjects = {}
 verifyAnimals = {}
+Stockade = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BUFFS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1654,6 +1655,76 @@ AddEventHandler("inventory:Drink",function()
 
 			Wait(100)
 		until not Active[Passport]
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- INVENTORY:CHECKSTOCKADE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("inventory:checkStockade")
+AddEventHandler("inventory:checkStockade",function(Entity)
+	local Service = vRP.NumPermission("Police")
+	if parseInt(#Service) <= 6 then
+		TriggerClientEvent("Notify",source,"amarelo","Sistema indisponível no momento.",5000)
+		return false
+	else
+		local source = source
+		local Plate = Entity[1]
+		local Passport = vRP.Passport(source)
+		if Passport and Active[Passport] == nil then
+			if Plates[Plate] then
+				TriggerClientEvent("Notify",source,"vermelho","Não foi encontrado o registro do veículo no sistema.",5000)
+				return
+			end
+
+			if Stockade[Plate] == nil then
+				Stockade[Plate] = 0
+			end
+
+			if Stockade[Plate] >= 15 then
+				TriggerClientEvent("Notify",source,"amarelo","Vazio.",5000)
+				return
+			end
+
+			if GlobalState["Plates"][Plate] == Passport then
+				TriggerClientEvent("Notify",source,"amarelo","Veículo protegido pela seguradora.",5000)
+				return
+			end
+
+			if vRP.ConsultItem(Passport,"lockpick",1) then
+				TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>1x "..itemName("lockpick").."</b>.",5000)
+				return
+			end
+
+			Stockade[Plate] = Stockade[Plate] + 1
+
+			if vTASKBAR.Task(source,6,10000) then
+				vRP.upgradeStress(Passport,10)
+				Active[Passport] = os.time() + 15
+				TriggerClientEvent("Progress",source,15000)
+				TriggerClientEvent("inventory:Buttons",source,true)
+				vRPC.playAnim(source,false,{"anim@amb@clubhouse@tutorial@bkr_tut_ig3@","machinic_loop_mechandplayer"},true)
+
+				repeat
+					if os.time() >= parseInt(Active[Passport]) then
+						Active[Passport] = nil
+						vRPC.stopAnim(source,false)
+						TriggerClientEvent("inventory:Buttons",source,false)
+						vRP.GenerateItem(Passport,"dollarsroll",math.random(225,275),true)
+					end
+
+					Wait(100)
+				until Active[Passport] == nil
+			else
+				local Coords = vRP.GetEntityCoords(source)
+				Stockade[Plate] = Stockade[Plate] - 1
+
+				for Passports,Sources in pairs(Service) do
+					async(function()
+						TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Roubo de Carro Forte", x = Coords["x"], y = Coords["y"], z = Coords["z"], criminal = "Alarme de segurança", time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
+					end)
+				end
+			end
+		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

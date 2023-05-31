@@ -27,20 +27,6 @@ local Anims = {
 	{ ["Dict"] = "anim@amb@nightclub@mini@dance@dance_solo@male@var_b@", ["Name"] = "high_center_down" },
 	{ ["Dict"] = "anim@amb@nightclub@mini@dance@dance_solo@female@var_a@", ["Name"] = "med_center_up" }
 }
-
-
-
-RegisterCommand("spawn",function()	
-	if vSERVER.checkPerm() then
-		
-		TriggerEvent("spawn:Opened")
-	end
-end)
-AddEventHandler("onResourceStart",function(Resource)
-	if "spawn" == Resource then
-		TriggerEvent("spawn:Opened")
-	end
-end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SPAWN:OPENED
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -84,10 +70,7 @@ RegisterNUICallback("CharacterChosen",function(Data,Callback)
 	if vSERVER.CharacterChosen(Data["Passport"]) then
 		SendNUIMessage({ Action = "Close" })
 	end
-	Characters = vSERVER.Characters()
-	if parseInt(#Characters) > 0 then
-		Customization(Characters[1])
-	end
+
 	vSERVER.FinshSpawn()
 	Callback("Ok")
 end)
@@ -186,6 +169,10 @@ end)
 -- CUSTOMIZATION
 -----------------------------------------------------------------------------------------------------------------------------------------
 function Customization(Table,Check)
+	if not Table["Skin"] then
+		Table["Skin"] = "mp_m_freemode_01"
+	end
+
 	if LoadModel(Table["Skin"]) then
 		if Check then
 			if GetEntityModel(PlayerPedId()) ~= GetHashKey(Table["Skin"]) then

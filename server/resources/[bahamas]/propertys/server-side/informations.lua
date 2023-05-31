@@ -1,4 +1,9 @@
 Informations = {
+	["Hotel"] = {
+		["Price"] = 200000,
+		["Vault"] = 200,
+		["Fridge"] = 20
+	},
 	["Emerald"] = {
 		["Price"] = 200000,
 		["Vault"] = 200,

@@ -529,7 +529,7 @@ AddEventHandler("CEventGunShot",function(_,OtherPeds)
 			Recoil = Recoil / 2
 		end
 
-		SetGameplayCamRelativePitch(Camera + Recoil,1.0)
+		SetGameplayCamRelativePitch(Camera + Recoil,0.2)
 
 		ShakeGameplayCam("JOLT_SHAKE",0.075)
 	end

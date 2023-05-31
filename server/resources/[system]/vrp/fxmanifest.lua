@@ -3,6 +3,7 @@ game "gta5"
 lua54 "yes"
 version "1.6.1"
 author "ImagicTheCat"
+viniciux "yes"
 creator "no"
 
 client_scripts {

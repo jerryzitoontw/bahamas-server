@@ -32,9 +32,9 @@ CreateThread(function()
         if load_extension('vrp/creative4') then
             printf('Bahamas v4 (by summerz) template was injected')
         end
-    elseif GetResourceMetadata('vrp', 'creative_network') then
+    elseif GetResourceMetadata('vrp', 'viniciux') then
         if load_extension('vrp/creative_network') then
-            printf('Bahamas Network (by summerz) template was injected')
+            printf('Bahamas City (by viniciux) injected')
         end
     elseif SQL.has_table('nyo_character') then
         if load_extension('nfw') then

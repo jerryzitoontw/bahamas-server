@@ -965,6 +965,10 @@ function TargetEnable()
 
 										Menu[#Menu + 1] = { event = "garages:Key", label = "Criar Chave Cópia", tunnel = "police" }
 										Menu[#Menu + 1] = { event = "inventory:applyPlate", label = "Trocar Placa", tunnel = "server" }
+									else
+										if Selected[2] == "stockade" then
+											Menu[#Menu + 1] = { event = "inventory:checkStockade", label = "Vasculhar", tunnel = "police" })
+										end
 									end
 
 									if not IsThisModelABike(vehModel) then

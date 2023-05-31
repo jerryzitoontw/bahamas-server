@@ -43,6 +43,7 @@ RegisterServerEvent("barbershop:Debug")
 AddEventHandler("barbershop:Debug",function()
 	local source = source
 	local Passport = vRP.Passport(source)
+	TriggerClientEvent("Notify",source,"verde","Limpeza efetuada.","Sucesso",5000)
 	if Passport and not Debug[Passport] or os.time() > Debug[Passport] then
 		TriggerClientEvent("barbershop:Apply",source,vRP.UserData(Passport,"Barbershop"))
 		TriggerClientEvent("skinshop:Apply",source,vRP.UserData(Passport,"Clothings"))

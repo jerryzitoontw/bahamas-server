@@ -62,16 +62,13 @@ function Bahamas.NewCharacter(name, name2, sex)
     local license = vRP.Identities(source)
     local account = vRP.Account(license)
     local query = vRP.Query("characters/countPersons", { license = license })
-    local AmountCharactersPremium = parseInt(account["chars"])
-    if vRP.LicensePremium(License) then
-			AmountCharactersPremium = AmountCharactersPremium + 2
-		end
+    local AmountCharacters = parseInt(account["chars"])
 
-    if parseInt(account.chars + AmountCharactersPremium) <= parseInt(query[1].qtd) then
-      TriggerClientEvent("Notify", source, "amarelo", "Limite de personagem atingido.", 3000)
-      Global[source] = nil
-      return false
-    end
+    if parseInt(AmountCharacters) <= parseInt(query[1]["qtd"]) then
+			TriggerClientEvent("Notify",source,"amarelo","Limite de personagem atingido.",3000)
+			Global[source] = nil
+			return
+		end
 
     local sexo = "F"
 		if sex == "mp_m_freemode_01" then

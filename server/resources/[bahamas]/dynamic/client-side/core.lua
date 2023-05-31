@@ -157,28 +157,32 @@ RegisterCommand("emergencyFunctions",function()
 			local Ped = PlayerPedId()
 			if GetEntityHealth(Ped) > 100 then
 				if not IsPedInAnyVehicle(Ped) then
+					exports["dynamic"]:AddButton("Anunciar","Fazer um anúncio para todos os moradores.","dynamic:EmergencyAnnounce","",false,true)
+
+					exports["dynamic"]:AddButton("Remover Chapéu","Remover da pessoa mais próxima.","skinshop:Remove","Hat","player",true)
+					exports["dynamic"]:AddButton("Remover Máscara","Remover da pessoa mais próxima.","skinshop:Remove","Mask","player",true)
+					exports["dynamic"]:AddButton("Remover Óculos","Remover da pessoa mais próxima.","skinshop:Remove","Glasses","player",true)
+
 					exports["dynamic"]:AddButton("Carregar","Carregar a pessoa mais próxima.","player:carryPlayer","","player",true)
 					exports["dynamic"]:AddButton("Colocar no Veículo","Colocar no veículo mais próximo.","player:cvFunctions","cv","player",true)
 					exports["dynamic"]:AddButton("Remover do Veículo","Remover do veículo mais próximo.","player:cvFunctions","rv","player",true)
 					exports["dynamic"]:SubMenu("Jogador","Pessoa mais próxima de você.","player")
+
+					if LocalPlayer["state"]["Police"] then
+						exports["dynamic"]:AddButton("Computador","Computador de bordo policial.","police:Open","",false,false)
+					end
 				end
-
-				if LocalPlayer["state"]["Police"] then
-					exports["dynamic"]:AddButton("Remover Chapéu","Remover da pessoa mais próxima.","skinshop:Remove","Hat","player",true)
-					exports["dynamic"]:AddButton("Remover Máscara","Remover da pessoa mais próxima.","skinshop:Remove","Mask","player",true)
-					exports["dynamic"]:AddButton("Remover Óculos","Remover da pessoa mais próxima.","skinshop:Remove","Glasses","player",true)
-	
-					exports["dynamic"]:AddButton("QTI","Deslocamento.","dynamic:Tencode","1","tencode",true)
-					exports["dynamic"]:AddButton("QTH","Localização.","dynamic:Tencode","2","tencode",true)
-					exports["dynamic"]:AddButton("QRR","Apoio com prioridade.","dynamic:Tencode","3","tencode",true)
-					exports["dynamic"]:AddButton("QRT","Oficial desmaiado/ferido.","dynamic:Tencode","4","tencode",true)
-					exports["dynamic"]:SubMenu("Emergência","Avisos emergenciais.","tencode")
-
-					exports["dynamic"]:AddButton("Computador","Computador de bordo policial.","police:Open","",false,false)
-				end
-
-				exports["dynamic"]:openMenu()
 			end
+
+			if LocalPlayer["state"]["Police"] then
+				exports["dynamic"]:AddButton("QTI","Deslocamento.","dynamic:Tencode","1","tencode",true)
+				exports["dynamic"]:AddButton("QTH","Localização.","dynamic:Tencode","2","tencode",true)
+				exports["dynamic"]:AddButton("QRR","Apoio com prioridade.","dynamic:Tencode","3","tencode",true)
+				exports["dynamic"]:AddButton("QRT","Oficial desmaiado/ferido.","dynamic:Tencode","4","tencode",true)
+				exports["dynamic"]:SubMenu("Emergência","Avisos emergenciais.","tencode")
+			end
+
+			exports["dynamic"]:openMenu()
 		end
 	end
 end)

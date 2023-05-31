@@ -14,6 +14,33 @@ vCLIENT = Tunnel.getInterface("player")
 vSKINSHOP = Tunnel.getInterface("skinshop")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- CARRYPLAYER
+-----------------------------------------------------------------------------------------------------------------------------------------
+local playerCarry = {}
+function Bahamas.CarryPlayer()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.HasService(Passport,"Paramedic") or vRP.HasService(Passport,"Police") then
+			if not vRP.InsideVehicle(source) then
+				if playerCarry[Passport] then
+					TriggerClientEvent("player:playerCarry",playerCarry[Passport],source)
+					TriggerClientEvent("player:Commands",playerCarry[Passport],false)
+					playerCarry[Passport] = nil
+				else
+					local ClosestPed = vRPC.ClosestPed(source,2)
+					if ClosestPed then
+						playerCarry[Passport] = ClosestPed
+
+						TriggerClientEvent("player:playerCarry",playerCarry[Passport],source)
+						TriggerClientEvent("player:Commands",playerCarry[Passport],true)
+					end
+				end
+			end
+		end
+	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYER:INFORMATIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("player:Informations")
@@ -44,7 +71,7 @@ end)
 RegisterCommand("skin",function(source,Message)
 	local Passport = vRP.Passport(source)
 	if Passport and Message[1] and Message[2] then
-		if vRP.HasService(Passport,"Paramedic") then
+		if vRP.HasGroup(Passport,"Admin") then
 			local ClosestPed = vRP.Source(Message[1])
 			if ClosestPed then
 				vRPC.Skin(ClosestPed,Message[2])

@@ -73,6 +73,7 @@ Use = {
 				vRP.GenerateItem(Passport,"copper_pure",1)
 				vRP.GenerateItem(Passport,"iron_pure",1)
 				vRP.GenerateItem(Passport,"pistolbody",1)
+				vRP.GenerateItem(Passport,"smgbody",1)
 				TriggerClientEvent("inventory:Update",source,"Backpack")
 			end
 		else
@@ -2302,35 +2303,68 @@ Use = {
 			vRPC.stopAnim(source,false)
 		end
 
-		if not Player(source)["state"]["Handcuff"] then
-			local Vehicle,Network,Plate,vehName,vehClass = vRPC.VehicleList(source,4)
-			if Vehicle then
-				local Brokenpick = 950
-				if vehClass == 15 or vehClass == 16 or vehClass == 19 then
-					return
+		local Vehicle,Network,Plate,vehName,vehClass = vRPC.VehicleList(source,4)
+		if Vehicle then
+			local Brokenpick = 950
+			if vehClass == 15 or vehClass == 16 or vehClass == 19 then
+				return
+			end
+
+			if vRP.InsideVehicle(source) then
+				vRPC.AnimActive(source)
+				vGARAGE.StartHotwired(source)
+				Active[Passport] = os.time() + 100
+				Player(source)["state"]["Buttons"] = true
+				TriggerClientEvent("inventory:Close",source)
+
+				if vTASKBAR.Task(source,3,20000) then
+					if math.random(100) >= 20 then
+						Brokenpick = 900
+						TriggerEvent("plateEveryone",Plate)
+						TriggerEvent("platePlayers",Plate,Passport)
+						TriggerClientEvent("inventory:vehicleAlarm",source,Network,Plate)
+
+						local Network = NetworkGetEntityFromNetworkId(Network)
+						if GetVehicleDoorLockStatus(Network) == 2 then
+							SetVehicleDoorsLocked(Network,1)
+						end
+					end
+
+					if math.random(100) >= 75 then
+						local Coords = vRP.GetEntityCoords(source)
+						local Service = vRP.NumPermission("Police")
+						for Passports,Sources in pairs(Service) do
+							async(function()
+								TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Roubo de Veículo", x = Coords["x"], y = Coords["y"], z = Coords["z"], vehicle = VehicleName(vehName).." - "..Plate, time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
+							end)
+						end
+					end
 				end
 
-				if vRPC.InsideVehicle(source) then
-					vRPC.AnimActive(source)
-					vGARAGE.StartHotwired(source)
-					Active[Passport] = os.time() + 100
-					Player(source)["state"]["Buttons"] = true
-					TriggerClientEvent("inventory:Close",source)
+				if math.random(1000) >= Brokenpick then
+					if vRP.TakeItem(Passport,Full,1,false) then
+						vRP.GiveItem(Passport,"lockpick-0",1,false)
+						TriggerClientEvent("itensNotify",source,{ "quebrou","lockpick",1,"Lockpick de Alumínio" })
+					end
+				end
 
-					if vTASKBAR.Task(source,3,20000) then
-						if math.random(100) >= 20 then
-							Brokenpick = 900
-							TriggerEvent("plateEveryone",Plate)
-							TriggerEvent("platePlayers",Plate,Passport)
-							TriggerClientEvent("inventory:vehicleAlarm",source,Network,Plate)
+				Player(source)["state"]["Buttons"] = false
+				vGARAGE.StopHotwired(source,vehicle)
+				Active[Passport] = nil
+			else
+				vRPC.AnimActive(source)
+				Active[Passport] = os.time() + 100
+				Player(source)["state"]["Buttons"] = true
+				TriggerClientEvent("inventory:Close",source)
+				vRPC.playAnim(source,false,{"missfbi_s4mop","clean_mop_back_player"},true)
 
-							local Network = NetworkGetEntityFromNetworkId(Network)
-							if GetVehicleDoorLockStatus(Network) == 2 then
-								SetVehicleDoorsLocked(Network,1)
-							end
-						end
+				if string.sub(Plate,1,4) == "DISM" then
+					if vTASKBAR.UpgradeVehicle(source) then
+						Brokenpick = 900
+						Active[Passport] = os.time() + 30
+						TriggerClientEvent("Progress",source,"Usando",30000)
 
-						if math.random(100) >= 75 then
+						if math.random(100) >= 25 then
 							local Coords = vRP.GetEntityCoords(source)
 							local Service = vRP.NumPermission("Police")
 							for Passports,Sources in pairs(Service) do
@@ -2339,26 +2373,26 @@ Use = {
 								end)
 							end
 						end
-					end
 
-					if math.random(1000) >= Brokenpick then
-						if vRP.TakeItem(Passport,Full,1,false) then
-							vRP.GiveItem(Passport,"lockpick-0",1,false)
-							TriggerClientEvent("itensNotify",source,{ "-","lockpick",1,"Lockpick de Alumínio" })
-						end
-					end
+						repeat
+							if os.time() >= parseInt(Active[Passport]) then
+								Active[Passport] = nil
 
-					Player(source)["state"]["Buttons"] = false
-					vGARAGE.StopHotwired(source,vehicle)
-					Active[Passport] = nil
+								TriggerEvent("plateEveryone",Plate)
+								TriggerClientEvent("target:Dismantles",source)
+								TriggerClientEvent("inventory:vehicleAlarm",source,Network,Plate)
+
+								local Network = NetworkGetEntityFromNetworkId(Network)
+								if GetVehicleDoorLockStatus(Network) == 2 then
+									SetVehicleDoorsLocked(Network,1)
+								end
+							end
+
+							Wait(100)
+						until not Active[Passport]
+					end
 				else
-					vRPC.AnimActive(source)
-					Active[Passport] = os.time() + 100
-					Player(source)["state"]["Buttons"] = true
-					TriggerClientEvent("inventory:Close",source)
-					vRPC.playAnim(source,false,{"missfbi_s4mop","clean_mop_back_player"},true)
-
-					if not string.sub(Plate,1,4) == "DISM" then
+					if vTASKBAR.Task(source,3,20000) then
 						Brokenpick = 900
 
 						if math.random(100) >= 75 then
@@ -2381,18 +2415,18 @@ Use = {
 							end
 						end
 					end
-
-					if math.random(1000) >= Brokenpick then
-						if vRP.TakeItem(Passport,Full,1,false) then
-							vRP.GiveItem(Passport,"lockpick-0",1,false)
-							TriggerClientEvent("itensNotify",source,{ "-","lockpick",1,"Lockpick de Alumínio" })
-						end
-					end
-
-					Player(source)["state"]["Buttons"] = false
-					vRPC.Destroy(source)
-					Active[Passport] = nil
 				end
+
+				if math.random(1000) >= Brokenpick then
+					if vRP.TakeItem(Passport,Full,1,false) then
+						vRP.GiveItem(Passport,"lockpick-0",1,false)
+						TriggerClientEvent("itensNotify",source,{ "quebrou","lockpick",1,"Lockpick de Alumínio" })
+					end
+				end
+
+				Player(source)["state"]["Buttons"] = false
+				vRPC.Destroy(source)
+				Active[Passport] = nil
 			end
 		end
 	end,
@@ -2835,10 +2869,10 @@ Use = {
 	end,
 
 	["GADGET_PARACHUTE"] = function(source,Passport,Amount,Slot,Full,Item,Split)
-		Active[Passport] = os.time() + 3
+		Active[Passport] = os.time() + 10
 		Player(source)["state"]["Buttons"] = true
 		TriggerClientEvent("inventory:Close",source)
-		TriggerClientEvent("Progress",source,"Usando",3000)
+		TriggerClientEvent("Progress",source,"Usando",10000)
 		vRPC.playAnim(source,true,{"clothingtie","try_tie_negative_a"},true)
 
 		repeat
@@ -2848,7 +2882,7 @@ Use = {
 				vRPC.stopAnim(source,false)
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					vCLIENT.Parachute(source)
+					vCLIENT.parachuteColors(source)
 				end
 			end
 

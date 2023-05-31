@@ -412,7 +412,9 @@ end)
 -- PARACHUTE
 -----------------------------------------------------------------------------------------------------------------------------------------
 function Bahamas.parachuteColors()
-	GiveWeaponToPed(PlayerPedId(),"GADGET_PARACHUTE",1,false,true)
+	local Ped = PlayerPedId()
+	GiveWeaponToPed(Ped,"GADGET_PARACHUTE",1,false,true)
+	SetPedParachuteTintIndex(Ped,math.random(7))
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FISHINGCOORDS
@@ -594,6 +596,13 @@ function Bahamas.putWeaponHands(Name,Ammo,Components,Type)
 		LocalPlayer["state"]:set("Cancel",true,true)
 
 		local Ped = PlayerPedId()
+		if HasPedGotWeapon(Ped,GetHashKey("GADGET_PARACHUTE"),false) then
+			RemoveAllPedWeapons(Ped,true)
+			Bahamas.parachuteColors()
+		else
+			RemoveAllPedWeapons(Ped,true)
+		end
+
 		if not IsPedInAnyVehicle(Ped) then
 			if LoadAnim("rcmjosh4") then
 				TaskPlayAnim(Ped,"rcmjosh4","josh_leadout_cop2",8.0,8.0,-1,48,0,0,0,0)

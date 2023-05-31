@@ -62,11 +62,6 @@ RegisterNUICallback("menuActive",function(data)
 			TriggerServerEvent("player:Doors","5")
 		elseif data["active"] == "hood" then
 			TriggerServerEvent("player:Doors","6")
-			
-			SendNUIMessage({ show = false })
-			SetCursorLocation(0.5,0.5)
-			SetNuiFocus(false,false)
-			OpenMenu = false
 		elseif data["active"] == "vtuning" then
 			TriggerEvent("engine:Vehrify")
 

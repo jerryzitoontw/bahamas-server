@@ -10,6 +10,7 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 Bahamas = {}
 Tunnel.bindInterface("dynamic",Bahamas)
+vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WORKS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -61,6 +62,23 @@ function Bahamas.Exclusivas()
 		return Clothes
 	end
 end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DYNAMIC:EMERGENCYANNOUNCE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("dynamic:EmergencyAnnounce")
+AddEventHandler("dynamic:EmergencyAnnounce",function()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.HasGroup(Passport,"Police",1) or vRP.HasGroup(Passport,"Paramedic",1) then
+			TriggerClientEvent("dynamic:closeSystem",source)
+			local Keyboard = vKEYBOARD.keyTertiary(source,"Mensagem:","Cor:","Tempo (em MS):")
+			if Keyboard then
+				TriggerClientEvent("Notify",-1,Keyboard[2],Keyboard[1],Keyboard[3])
+			end
+		end
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TENCODES
 -----------------------------------------------------------------------------------------------------------------------------------------
