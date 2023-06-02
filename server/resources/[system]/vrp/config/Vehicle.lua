@@ -6576,6 +6576,31 @@ local List = {
 			["Gemstone"] = 150,
 			["Class"] = "Importados"
 	    },
+		-- Armored
+		["armoredgle"] = {
+			["Name"] = "Mercedes GLE Blindada",
+			["Weight"] = 70,
+			["Price"] = 20000,
+			["Mode"] = "Rental",
+			["Gemstone"] = 300,
+			["Class"] = "Importados"
+		},
+		["armoredvelar"] = {
+			["Name"] = "Range Rover Velar Blindada",
+			["Weight"] = 70,
+			["Price"] = 20000,
+			["Mode"] = "Rental",
+			["Gemstone"] = 300,
+			["Class"] = "Importados"
+		},
+		["armoredx6"] = {
+			["Name"] = "BMW X6 Blindada",
+			["Weight"] = 70,
+			["Price"] = 20000,
+			["Mode"] = "Rental",
+			["Gemstone"] = 300,
+			["Class"] = "Importados"
+		},
 		-- Paramedico
 		["ambulance2"] = {
 			["Name"] = "Ambulância",
@@ -6586,102 +6611,70 @@ local List = {
 			["Class"] = "Emergência"
 		},
 		-- Policia
-		["audia3"] = {
-			["Name"] = "Audi A3",
+		["bmwm3"] = {
+			["Name"] = "BMW M3",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["audiq8"] = {
-			["Name"] = "Audi Q8",
+		["m4cs"] = {
+			["Name"] = "BMW M4",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["audirs5"] = {
-			["Name"] = "Audi RS5",
+		["bmwm5"] = {
+			["Name"] = "BMW M5",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["audirs62"] = {
-			["Name"] = "Audi RS6",
+		["e63"] = {
+			["Name"] = "Mercedes Benz E 63",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["audirs6avant"] = {
-			["Name"] = "Audi Avant",
+		["fpace"] = {
+			["Name"] = "Jaguar F-PACE",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["B412"] = {
-			["Name"] = "B412",
+		["jettagli"] = {
+			["Name"] = "Volkswagen Jetta GLI",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["ducati1200"] = {
-			["Name"] = "Ducati 1200",
+		["tiger900"] = {
+			["Name"] = "Triumph Tiger 900",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["fordraptor"] = {
-			["Name"] = "Ford Raptor",
+		["tundra"] = {
+			["Name"] = "Toyota Tundra",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
 		},
-		["nspeedo"] = {
-			["Name"] = "Van Prisional",
-			["Weight"] = 0,
-			["Price"] = 1000,
-			["Mode"] = "Work",
-			["Gemstone"] = 0,
-			["Class"] = "Emergência"
-		},
-		["polmesa"] = {
-			["Name"] = "Mesa Policial",
-			["Weight"] = 0,
-			["Price"] = 1000,
-			["Mode"] = "Work",
-			["Gemstone"] = 0,
-			["Class"] = "Emergência"
-		},
-		["sanchez3"] = {
-			["Name"] = "Sanchez Policial",
-			["Weight"] = 0,
-			["Price"] = 1000,
-			["Mode"] = "Work",
-			["Gemstone"] = 0,
-			["Class"] = "Emergência"
-		},
-		["tahoe"] = {
-			["Name"] = "Chevrolet Tahoe",
-			["Weight"] = 0,
-			["Price"] = 1000,
-			["Mode"] = "Work",
-			["Gemstone"] = 0,
-			["Class"] = "Emergência"
-		}
 	}
 	-----------------------------------------------------------------------------------------------------------------------------------------
 	-- VEHICLEGLOBAL
