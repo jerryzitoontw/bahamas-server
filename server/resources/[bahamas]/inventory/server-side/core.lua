@@ -27,6 +27,7 @@ Ammos = {}
 Active = {}
 Trashs = {}
 Armors = {}
+Heroin = {}
 Plates = {}
 Trunks = {}
 Healths = {}
@@ -1807,14 +1808,14 @@ function Bahamas.PaymentDrugs()
 
 			Percentage = Percentage - Points
 
-			if Percentage <= 25 then
-				Percentage = 25
+			if Percentage <= 10 then
+				Percentage = 10
 			end
 
 			if math.random(100) >= Percentage then
 				local Ped = GetPlayerPed(source)
 				local Coords = GetEntityCoords(Ped)
-				local Service = vRP.NumPermission("Policia")
+				local Service = vRP.NumPermission("Police")
 				for Passports,Sources in pairs(Service) do
 					async(function()
 						vRPC.PlaySound(Sources,"ATM_WINDOW","HUD_FRONTEND_DEFAULT_SOUNDSET")
@@ -1915,10 +1916,13 @@ function InitRegisters(Number,source)
 	local Ped = GetPlayerPed(source)
 	local Coords = GetEntityCoords(Ped)
 
-	for Passports,Sources in pairs(Service) do
-		async(function()
-			TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Caixa Registradora", x = Coords["x"], y = Coords["y"], z = Coords["z"], criminal = "Alarme de segurança", time = "Recebido às "..os.date("%H:%M"), blipColor = 16 })
-		end)
+	if math.random(100) <= 60 then
+		local Service = vRP.NumPermission("Police")
+		for Passports,Sources in pairs(Service) do
+			async(function()
+				TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Caixa Registradora", x = Coords["x"], y = Coords["y"], z = Coords["z"], criminal = "Alarme de segurança", time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
+			end)
+		end
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -2006,6 +2010,10 @@ AddEventHandler("Disconnect",function(Passport)
 
 	if Armors[Passport] then
 		Armors[Passport] = nil
+	end
+
+	if Heroin[Passport] then
+		Heroin[Passport] = nil
 	end
 
 	if Scanners[Passport] then

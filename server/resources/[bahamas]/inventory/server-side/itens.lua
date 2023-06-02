@@ -70,10 +70,10 @@ Use = {
 	["weaponbox"] = function(source,Passport,Amount,Slot,Full,Item,Split)
 		if (vRP.InventoryWeight(Passport) + itemWeight(Full)) <= vRP.GetWeight(Passport) then
 			if vRP.TakeItem(Passport,Full,1,true,Slot) then
-				vRP.GenerateItem(Passport,"copper_pure",1)
-				vRP.GenerateItem(Passport,"iron_pure",1)
-				vRP.GenerateItem(Passport,"pistolbody",1)
-				vRP.GenerateItem(Passport,"smgbody",1)
+				vRP.GenerateItem(Passport,"copper_pure",math.random(2,3))
+				vRP.GenerateItem(Passport,"iron_pure",math.random(2,3))
+				vRP.GenerateItem(Passport,"pistolbody",math.random(2,3))
+				vRP.GenerateItem(Passport,"smgbody",math.random(2,3))
 				TriggerClientEvent("inventory:Update",source,"Backpack")
 			end
 		else
@@ -1040,6 +1040,10 @@ Use = {
 				TriggerClientEvent("Notify",source,"Parabéns","Você ativou <b>Rolepass</b>.","verde",5000)
 			end
 		end
+	end,
+
+	["creators"] = function(source,Passport,Amount,Slot,Full,Item,Split)
+		TriggerClientEvent("Notify",source,"amarelo","<b>Bahamas Creators</b> Disponível em <b>03/06</b>.",5000)
 	end,
 
 	["premium"] = function(source,Passport,Amount,Slot,Full,Item,Split)
@@ -2990,6 +2994,8 @@ Use = {
 							Healths[Passport] = os.time() + 15
 							vRP.UpgradeStress(Passport,1)
 							vRPC.UpgradeHealth(source,8)
+
+							TriggerClientEvent("Oxycontin",source)
 						end
 					end
 

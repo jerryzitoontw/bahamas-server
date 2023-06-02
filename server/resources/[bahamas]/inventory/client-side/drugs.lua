@@ -181,16 +181,53 @@ function ClosestPed(Radius)
 	return Selected
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- LEAN
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("Lean")
+AddEventHandler("Lean",function()
+	if AnimpostfxIsRunning("Dont_tazeme_bro") then
+		AnimpostfxStop("Dont_tazeme_bro")
+	end
+
+	if AnimpostfxIsRunning("MinigameTransitionIn") then
+		AnimpostfxStop("MinigameTransitionIn")
+	end
+
+	if AnimpostfxIsRunning("Dont_tazeme_bro") then
+		AnimpostfxStop("Dont_tazeme_bro")
+	end
+
+	if AnimpostfxIsRunning("DrugsDrivingOut") then
+		AnimpostfxStop("DrugsDrivingOut")
+	end
+
+	if AnimpostfxIsRunning("DeathFailMPDark") then
+		AnimpostfxStop("DeathFailMPDark")
+	end
+
+	if AnimpostfxIsRunning("DrugsMichaelAliensFight") then
+		AnimpostfxStop("DrugsMichaelAliensFight")
+	end
+
+	if AnimpostfxIsRunning("HeistCelebPassBW") then
+		AnimpostfxStop("HeistCelebPassBW")
+	end
+
+	if AnimpostfxIsRunning("DeathFailMPIn") then
+		AnimpostfxStop("DeathFailMPIn")
+	end
+
+	if AnimpostfxIsRunning("DrugsMichaelAliensFight") then
+		AnimpostfxStop("DrugsMichaelAliensFight")
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- ENERGETIC
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("Energetic")
 AddEventHandler("Energetic",function(Timer,Number)
 	Energetic = Energetic + Timer
 	SetRunSprintMultiplierForPlayer(PlayerId(),Number)
-
-	if not AnimpostfxIsRunning("HeistTripSkipFade") then
-		AnimpostfxPlay("HeistTripSkipFade",0,true)
-	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- COCAINE
@@ -529,7 +566,7 @@ AddEventHandler("CEventGunShot",function(_,OtherPeds)
 			Recoil = Recoil / 2
 		end
 
-		SetGameplayCamRelativePitch(Camera + Recoil,0.2)
+		SetGameplayCamRelativePitch(Camera + Recoil,0.1)
 
 		ShakeGameplayCam("JOLT_SHAKE",0.075)
 	end

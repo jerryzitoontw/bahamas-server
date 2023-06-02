@@ -241,8 +241,8 @@ CreateThread(function()
 		DisableControlAction(1,165,true)
 
 		SetVehicleDensityMultiplierThisFrame(1.0)
-		SetRandomVehicleDensityMultiplierThisFrame(0.90)
-		SetParkedVehicleDensityMultiplierThisFrame(0.90)
+		SetRandomVehicleDensityMultiplierThisFrame(0.70)
+		SetParkedVehicleDensityMultiplierThisFrame(0.70)
 		SetScenarioPedDensityMultiplierThisFrame(1.0,1.0)
 		SetPedDensityMultiplierThisFrame(1.0)
 

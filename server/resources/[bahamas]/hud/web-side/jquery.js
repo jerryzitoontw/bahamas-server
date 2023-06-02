@@ -133,6 +133,18 @@ window.addEventListener("message",function(event){
 			}
 		break;
 
+		case "Hood":
+			if (event["data"]["Number"] > 0){
+				if ($("#hoodDisplay").css("display") === "none"){
+					$("#hoodDisplay").fadeIn(500);
+				}
+			} else {
+				if ($("#hoodDisplay").css("display") === "block"){
+					$("#hoodDisplay").fadeOut(500);
+				}
+			}
+		break;
+
 		case "Reposed":
 			if (event["data"]["Number"] > 0){
 				if ($(".Reposed").css("display") === "none"){

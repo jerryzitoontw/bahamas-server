@@ -217,27 +217,27 @@ AddEventHandler("engine:Vehrify",function(Entity)
 	
 	local Engine = GetVehicleMod(Vehicle,11)
 	if Engine ~= -1 then
-		exports["dynamic"]:AddButton("Motor","Modelo instalado: <yellow>"..Install[Engine].."</yellow>","","",false,false)
+		exports["dynamic"]:AddButton("Motor","Modelo instalado: <yellow>"..Engine.."</yellow>","","",false,false)
 	end
 
 	local Brake = GetVehicleMod(Vehicle,12)
 	if Brake ~= -1 then
-		exports["dynamic"]:AddButton("Freio","Modelo instalado: <yellow>"..Install[Brake].."</yellow>","","",false,false)
+		exports["dynamic"]:AddButton("Freio","Modelo instalado: <yellow>"..Brake.."</yellow>","","",false,false)
 	end
 
 	local Transmission = GetVehicleMod(Vehicle,13)
 	if Transmission ~= -1 then
-		exports["dynamic"]:AddButton("Transmissão","Modelo instalado: <yellow>"..Install[Transmission].."</yellow>","","",false,false)
+		exports["dynamic"]:AddButton("Transmissão","Modelo instalado: <yellow>"..Transmission.."</yellow>","","",false,false)
 	end
 
 	local Suspension = GetVehicleMod(Vehicle,15)
 	if Suspension ~= -1 then
-		exports["dynamic"]:AddButton("Suspensão","Modelo instalado: <yellow>"..Install[Suspension].."</yellow>","","",false,false)
+		exports["dynamic"]:AddButton("Suspensão","Modelo instalado: <yellow>"..Suspension.."</yellow>","","",false,false)
 	end
 
 	local Shielding = GetVehicleMod(Vehicle,16)
 	if Shielding ~= -1 then
-		exports["dynamic"]:AddButton("Blindagem","Modelo instalado: <yellow>"..Install[Shielding].."</yellow>","","",false,false)
+		exports["dynamic"]:AddButton("Blindagem","Modelo instalado: <yellow>"..Shielding.."</yellow>","","",false,false)
 	end
 
 	local Force = GetVehicleEngineHealth(Vehicle) / 10

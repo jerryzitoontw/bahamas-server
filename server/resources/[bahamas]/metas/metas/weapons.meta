@@ -1234,17 +1234,17 @@
 					<Model>w_am_baseball</Model>
 					<Audio />
 					<Slot />
-					<AmmoMax value="1" />
-					<AmmoMax50 value="1" />
-					<AmmoMax100 value="1" />
-					<AmmoMaxMP value="1" />
-					<AmmoMax50MP value="1" />
-					<AmmoMax100MP value="1" />
-					<AmmoFlags />
-					<Damage value="0.000000" />
-					<LifeTime value="-1.000000" />
+					<AmmoMax value="10" />
+					<AmmoMax50 value="10" />
+					<AmmoMax100 value="10" />
+					<AmmoMaxMP value="10" />
+					<AmmoMax50MP value="10" />
+					<AmmoMax100MP value="10" />
+					<AmmoFlags>FixedAfterExplosion</AmmoFlags>
+					<Damage value="1.000000" />
+					<LifeTime value="10.000000" />
 					<FromVehicleLifeTime value="2.500000" />
-					<LifeTimeAfterImpact value="0.000000" />
+					<LifeTimeAfterImpact value="0.001000" />
 					<LifeTimeAfterExplosion value="0.000000" />
 					<ExplosionTime value="0.000000" />
 					<LaunchSpeed value="25.000000" />
@@ -1252,9 +1252,9 @@
 					<TimeToReachTarget value="0.000000" />
 					<Damping value="0.050000" />
 					<GravityFactor value="1.000000" />
-					<RicochetTolerance value="1.000000" />
-					<PedRicochetTolerance value="1.000000" />
-					<VehicleRicochetTolerance value="1.000000" />
+					<RicochetTolerance value="0.000000" />
+					<PedRicochetTolerance value="0.000000" />
+					<VehicleRicochetTolerance value="0.000000" />
 					<Explosion>
 						<Default>DONTCARE</Default>
 						<HitCar>DONTCARE</HitCar>
@@ -1263,8 +1263,9 @@
 						<HitBoat>DONTCARE</HitBoat>
 						<HitPlane>DONTCARE</HitPlane>
 					</Explosion>
-					<FuseFx />
-					<TrailFx />
+					<FuseFx>proj_snowball_fuse</FuseFx>
+					<FuseFxFP />
+					<TrailFx>proj_snowball_trail</TrailFx>
 					<TrailFxUnderWater />
 					<TrailFxFadeInTime value="0.000000" />
 					<TrailFxFadeOutTime value="0.000000" />
@@ -1288,7 +1289,7 @@
 					<CoronaSize value="0.000000" />
 					<CoronaIntensity value="0.000000" />
 					<CoronaZBias value="0.000000" />
-					<ProjectileFlags>ProcessImpacts NoPullPin CanBounce DoubleDamping</ProjectileFlags>
+					<ProjectileFlags>ProcessImpacts NoPullPin DoubleDamping ApplyDamageOnImpact DontFireAnyEvents</ProjectileFlags>
 					<ThrownForce value="0.000000" />
 					<ThrownForceFromVehicle value="5.000000" />
 				</Item>
@@ -1445,7 +1446,7 @@
 					<PedRicochetTolerance value="1.000000" />
 					<VehicleRicochetTolerance value="1.000000" />
 					<Explosion>
-						<Default>BZGAS</Default>
+						<Default>SMOKEGRENADELAUNCHER</Default>
 						<HitCar>DONTCARE</HitCar>
 						<HitTruck>DONTCARE</HitTruck>
 						<HitBike>DONTCARE</HitBike>
@@ -3947,11 +3948,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="50.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="26.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="325.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="25.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -4075,7 +4076,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="2.000000" />
 					<LockOnRange value="55.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="90.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -4368,7 +4369,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="2.000000" />
 					<LockOnRange value="55.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="90.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -4822,11 +4823,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="50.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="40.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="325.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="25.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -4950,7 +4951,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="1.000000" />
 					<LockOnRange value="55.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="90.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -5115,11 +5116,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="75.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="21.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="275.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="20.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -5243,7 +5244,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="2.500000" />
 					<LockOnRange value="55.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="80.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -5418,11 +5419,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="75.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="22.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="400.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="30.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -5717,11 +5718,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="75.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="23.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="400.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="30.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -6016,11 +6017,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="100.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
 					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="30.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="40.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -6144,7 +6145,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="1.700000" />
 					<LockOnRange value="65.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="150.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -6324,11 +6325,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="100.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
 					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="32.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="40.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -6452,7 +6453,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="1.700000" />
 					<LockOnRange value="65.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="150.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -6636,11 +6637,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="100.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
 					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="34.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="40.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -6764,7 +6765,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="1.700000" />
 					<LockOnRange value="65.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="150.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -7216,11 +7217,11 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="100.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="32.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="325.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="25.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
@@ -13690,7 +13691,7 @@
 					<HudAccuracy value="0" />
 					<HudRange value="0" />
 				</Item>
-				<Item type="CWeaponInfo">
+<Item type="CWeaponInfo">
 					<Name>WEAPON_BALL</Name>
 					<Model>w_am_baseball</Model>
 					<Audio />
@@ -13717,26 +13718,38 @@
 					<RecoilAccuracyMax value="1.000000" />
 					<RecoilErrorTime value="0.000000" />
 					<RecoilRecoveryRate value="1.000000" />
-					<RecoilAccuracyToAllowHeadShotAI value="1000.000000" />
-					<MinHeadShotDistanceAI value="1000.000000" />
-					<MaxHeadShotDistanceAI value="1000.000000" />
-					<HeadShotDamageModifierAI value="1000.000000" />
+					<RecoilAccuracyToAllowHeadShotAI value="0.175000" />
+					<MinHeadShotDistanceAI value="0.000000" />
+					<MaxHeadShotDistanceAI value="5.000000" />
+					<HeadShotDamageModifierAI value="1.000000" />
 					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="5.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="18.000000" />
+					<MinHeadShotDistancePlayer value="0.000000" />
+					<MaxHeadShotDistancePlayer value="5.000000" />
+					<HeadShotDamageModifierPlayer value="1.000000" />
 					<Damage value="0.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
-					<HitLimbsDamageModifier value="0.500000" />
-					<NetworkHitLimbsDamageModifier value="0.800000" />
-					<LightlyArmouredDamageModifier value="0.750000" />
+					<HitLimbsDamageModifier value="1.000000" />
+					<NetworkHitLimbsDamageModifier value="1.000000" />
+					<LightlyArmouredDamageModifier value="1.000000" />
+					<VehicleDamageModifier value="0.001000" />
 					<Force value="0.000000" />
-					<ForceHitPed value="0.000000" />
+					<ForceHitPed value="65.000000" />
 					<ForceHitVehicle value="0.000000" />
 					<ForceHitFlyingHeli value="0.000000" />
-					<OverrideForces />
+					<OverrideForces>
+						<Item>
+							<BoneTag>BONETAG_HEAD</BoneTag>
+							<ForceFront value="80.000000" />
+							<ForceBack value="80.000000" />
+						</Item>
+						<Item>
+							<BoneTag>BONETAG_NECK</BoneTag>
+							<ForceFront value="80.000000" />
+							<ForceBack value="80.000000" />
+						</Item>
+					</OverrideForces>
 					<ForceMaxStrengthMult value="1.000000" />
 					<ForceFalloffRangeStart value="0.000000" />
 					<ForceFalloffRangeEnd value="50.000000" />
@@ -13745,7 +13758,7 @@
 					<FragImpulse value="1000.000000" />
 					<Penetration value="0.000000" />
 					<VerticalLaunchAdjustment value="0.300000" />
-					<DropForwardVelocity value="0.000000" />
+					<DropForwardVelocity value="4.000000" />
 					<Speed value="2000.000000" />
 					<BulletsInBatch value="1" />
 					<BatchSpread value="0.000000" />
@@ -13764,7 +13777,7 @@
 					<BulletBendingFarRadius value="0.000000" />
 					<BulletBendingZoomedRadius value="0.000000" />
 					<Fx>
-						<EffectGroup>WEAPON_EFFECT_GROUP_GRENADE</EffectGroup>
+						<EffectGroup>WEAPON_EFFECT_GROUP_PUNCH_KICK</EffectGroup>
 						<FlashFx />
 						<FlashFxAlt />
 						<MuzzleSmokeFx />
@@ -13813,7 +13826,7 @@
 					<AiPotentialBlastEventRange value="-1.000000" />
 					<DamageFallOffRangeMin value="0.000000" />
 					<DamageFallOffRangeMax value="0.000000" />
-					<DamageFallOffModifier value="0.000000" />
+					<DamageFallOffModifier value="1.000000" />
 					<VehicleWeaponHash />
 					<DefaultCameraHash>THROWN_AIM_CAMERA</DefaultCameraHash>
 					<CoverCameraHash>THROWN_AIM_IN_COVER_CAMERA</CoverCameraHash>
@@ -13875,10 +13888,10 @@
 					<AttachPoints />
 					<GunFeedBone />
 					<TargetSequenceGroup />
-					<WeaponFlags>CarriedInHand Silenced CanFreeAim AnimReload AnimCrouchFire Thrown UsableOnFoot UsableInCover DontSwapWeaponIfNoAmmo NonViolent SuppressGunshotEvent NoWheelStats DisableLeftHandIkWhenOnFoot UseFPSAimIK UseFPSSecondaryMotion AttachFPSLeftHandIKToRight DisableFPSScope</WeaponFlags>
+					<WeaponFlags>CarriedInHand Silenced CanLockonOnFoot CanFreeAim AnimReload AnimCrouchFire Thrown UsableOnFoot UsableInCover NonViolent SuppressGunshotEvent ThrowOnly NoWheelStats DisableLeftHandIkWhenOnFoot SwapToUnarmedWhenOutOfThrownAmmo UseFPSAimIK UseFPSSecondaryMotion AttachFPSLeftHandIKToRight DisableFPSScope DamageCausesDisputes</WeaponFlags>
 					<TintSpecValues ref="TINT_DEFAULT" />
 					<FiringPatternAliases ref="NULL" />
-					<ReloadUpperBodyFixupExpressionData ref="default" />
+					<ReloadUpperBodyFixupExpressionData ref="DEFAULT" />
 					<AmmoDiminishingRate value="3" />
 					<AimingBreathingAdditiveWeight value="1.000000" />
 					<FiringBreathingAdditiveWeight value="1.000000" />

@@ -40,7 +40,7 @@
 				<Item type="CWeaponInfo">
 					<Name>WEAPON_VINTAGEPISTOL</Name>
 					<Model>w_pi_vintage_pistol</Model>
-					<Audio>AUDIO_ITEM_VINTAGE_PISTOL</Audio>
+					<Audio>AUDIO_ITEM_RAYPISTOL</Audio>
 					<Slot>SLOT_VINTAGEPISTOL</Slot>
 					<DamageType>BULLET</DamageType>
 					<Explosion>
@@ -56,11 +56,11 @@
 					<Group>GROUP_PISTOL</Group>
 					<AmmoInfo ref="AMMO_PISTOL" />
 					<AimingInfo ref="PISTOL_2H_BASE_STRAFE" />
-					<ClipSize value="7" />
+					<ClipSize value="20" />
 					<AccuracySpread value="1.500000" />
 					<AccurateModeAccuracyModifier value="0.500000" />
 					<RunAndGunAccuracyModifier value="2.000000" />
-					<RunAndGunAccuracyMaxModifier value="1.000000" />
+					<RunAndGunAccuracyMinOverride value="-1.000000" />
 					<RecoilAccuracyMax value="1.000000" />
 					<RecoilErrorTime value="3.300000" />
 					<RecoilRecoveryRate value="1.000000" />
@@ -68,17 +68,18 @@
 					<MinHeadShotDistanceAI value="0.000000" />
 					<MaxHeadShotDistanceAI value="50.000000" />
 					<HeadShotDamageModifierAI value="10.000000" />
-					<RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
-					<MinHeadShotDistancePlayer value="0.000000" />
-					<MaxHeadShotDistancePlayer value="500.000000" />
-					<HeadShotDamageModifierPlayer value="10.000000" />
-					<Damage value="34.000000" />
+					<RecoilAccuracyToAllowHeadShotPlayer value="0.575" />
+					<MinHeadShotDistancePlayer value="1.000000" />
+					<MaxHeadShotDistancePlayer value="325.000000" />
+					<HeadShotDamageModifierPlayer value="500.000000" />
+					<Damage value="25.000000" />
 					<DamageTime value="0.000000" />
 					<DamageTimeInVehicle value="0.000000" />
 					<DamageTimeInVehicleHeadShot value="0.000000" />
 					<HitLimbsDamageModifier value="0.500000" />
 					<NetworkHitLimbsDamageModifier value="0.800000" />
 					<LightlyArmouredDamageModifier value="0.750000" />
+					<VehicleDamageModifier value="1.000000" />
 					<Force value="50.000000" />
 					<ForceHitPed value="125.000000" />
 					<ForceHitVehicle value="750.000000" />
@@ -132,7 +133,7 @@
 					<VehicleReloadTime value="1.000000" />
 					<AnimReloadRate value="1.000000" />
 					<BulletsPerAnimLoop value="1" />
-					<TimeBetweenShots value="0.400000" />
+					<TimeBetweenShots value="0.370000" />
 					<TimeLeftBetweenShotsWhereShouldFireIsCached value="0.250000" />
 					<SpinUpTime value="0.000000" />
 					<SpinTime value="0.000000" />
@@ -142,8 +143,8 @@
 					<BulletBendingFarRadius value="0.750000" />
 					<BulletBendingZoomedRadius value="0.375000" />
 					<FirstPersonBulletBendingNearRadius value="0.000000" />
-					<FirstPersonBulletBendingFarRadius value="0.000000" />
-					<FirstPersonBulletBendingZoomedRadius value="0.000000" />
+					<FirstPersonBulletBendingFarRadius value="0.750000" />
+					<FirstPersonBulletBendingZoomedRadius value="0.375000" />
 					<Fx>
 						<EffectGroup>WEAPON_EFFECT_GROUP_PISTOL_SMALL</EffectGroup>
 						<FlashFx>muz_pistol</FlashFx>
@@ -196,7 +197,7 @@
 					<NetworkPedDamageModifier value="1.000000" />
 					<NetworkHeadShotPlayerDamageModifier value="2.000000" />
 					<LockOnRange value="55.000000" />
-					<WeaponRange value="120.000000" />
+					<WeaponRange value="90.000000" />
 					<BulletDirectionOffsetInDegrees value="0.000000" />
 					<AiSoundRange value="-1.000000" />
 					<AiPotentialBlastEventRange value="-1.000000" />
@@ -285,30 +286,7 @@
 					<KnockdownCount value="3" />
 					<KillshotImpulseScale value="1.000000" />
 					<NmShotTuningSet>normal</NmShotTuningSet>
-					<AttachPoints>
-						<Item>
-							<AttachBone>WAPClip</AttachBone>
-							<Components>
-								<Item>
-									<Name>COMPONENT_VINTAGEPISTOL_CLIP_01</Name>
-									<Default value="true" />
-								</Item>
-								<Item>
-									<Name>COMPONENT_VINTAGEPISTOL_CLIP_02</Name>
-									<Default value="false" />
-								</Item>
-							</Components>
-						</Item>
-						<Item>
-							<AttachBone>WAPSupp_2</AttachBone>
-							<Components>
-								<Item>
-									<Name>COMPONENT_AT_PI_SUPP</Name>
-									<Default value="false" />
-								</Item>
-							</Components>
-						</Item>
-					</AttachPoints>
+					<AttachPoints />
 					<GunFeedBone />
 					<TargetSequenceGroup>Pistol</TargetSequenceGroup>
 					<WeaponFlags>CarriedInHand Gun CanLockonOnFoot CanLockonInVehicle CanFreeAim AnimReload AnimCrouchFire UsableOnFoot UsableClimbing UsableInCover AllowCloseQuarterKills HasLowCoverReloads HasLowCoverSwaps QuitTransitionToIdleIntroOnWeaponChange DisableLeftHandIkWhenOnFoot TorsoIKForWeaponBlock UseFPSAimIK UseFPSSecondaryMotion</WeaponFlags>

@@ -160,6 +160,32 @@ CreateThread(function()
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- HUD:TOGGLEHOOD
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("hud:toggleHood")
+AddEventHandler("hud:toggleHood",function()
+	showHood = not showHood
+
+	if showHood then
+		SetPedComponentVariation(PlayerPedId(),1,69,0,1)
+	else
+		SetPedComponentVariation(PlayerPedId(),1,0,0,1)
+	end
+
+	SendNUIMessage({ Action = "Hood" })
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- HUD:REMOVEHOOD
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("hud:RemoveHood")
+AddEventHandler("hud:RemoveHood",function()
+	if showHood then
+		showHood = false
+		SendNUIMessage({ Action = "Hood" })
+		SetPedComponentVariation(PlayerPedId(),1,0,0,1)
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- HUD:PASSPORT
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("hud:Passport")

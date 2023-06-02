@@ -887,7 +887,7 @@ local List = {
 		["Index"] = "sulfuric",
 		["Name"] = "Ácido Sulfúrico",
 		["Type"] = "Usável",
-		["Weight"] = 0.55,
+		["Weight"] = 0.10,
 		["Economy"] = 30
 	},
 	["saline"] = {
@@ -1018,7 +1018,7 @@ local List = {
 	["card01"] = {
 		["Index"] = "card01",
 		["Name"] = "Cartão Comum",
-		["Description"] = "Roubar Lojas de Departamento.",
+		["Description"] = "Roubar Lojas de Departamento, Grapesseed & Mergulhador.",
 		["Repair"] = "repairkit01",
 		["Type"] = "Comum",
 		["Durability"] = 7,
@@ -1156,7 +1156,7 @@ local List = {
 		["Index"] = "weedbud",
 		["Name"] = "Broto de Cannabis",
 		["Type"] = "Comum",
-		["Weight"] = 0.30,
+		["Weight"] = 0.10,
 		["Economy"] = 5
 	},
 	["joint"] = {
@@ -1177,7 +1177,7 @@ local List = {
 		["Index"] = "cokebud",
 		["Name"] = "Broto de Cocaína",
 		["Type"] = "Comum",
-		["Weight"] = 0.15,
+		["Weight"] = 0.10,
 		["Economy"] = 5
 	},
 	["cocaine"] = {
@@ -1233,7 +1233,7 @@ local List = {
 		["Index"] = "methliquid",
 		["Name"] = "Metanfetamina Liquida",
 		["Type"] = "Comum",
-		["Weight"] = 0.50,
+		["Weight"] = 0.10,
 		["Economy"] = 30
 	},
 	["acetone"] = {
@@ -1256,6 +1256,13 @@ local List = {
 		["Type"] = "Usável",
 		["Weight"] = 0.15,
 		["Economy"] = 200000
+	},
+	["creators"] = {
+		["Index"] = "creators",
+		["Name"] = "Bahamas Creators",
+		["Description"] = "Recebe <b>2x notebooks</b>, <b>30x gemas</b>, <b>4x mochilas</b>, <b>Salário de <b>$1.500</b>",
+		["Type"] = "Usável",
+		["Weight"] = 0.15
 	},
 	["premium"] = {
 		["Index"] = "premium",

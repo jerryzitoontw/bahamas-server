@@ -148,6 +148,24 @@ RegisterCommand("globalFunctions",function()
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- TENCODEFUNCTIONS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("tencodeFunctions",function()
+	if (LocalPlayer["state"]["Police"]) and not IsPauseMenuActive() then
+		if not LocalPlayer["state"]["Commands"] and not LocalPlayer["state"]["Handcuff"] and not menuOpen and LocalPlayer["state"]["Route"] < 900000 then
+
+			if LocalPlayer["state"]["Police"] then
+				exports["dynamic"]:AddButton("QTI","Deslocamento.","dynamic:Tencode","1",false,true)
+				exports["dynamic"]:AddButton("QTH","Localização.","dynamic:Tencode","2",false,true)
+				exports["dynamic"]:AddButton("QRR","Apoio com prioridade.","dynamic:Tencode","3",false,true)
+				exports["dynamic"]:AddButton("QRT","Oficial desmaiado/ferido.","dynamic:Tencode","4",false,true)
+			end
+
+			exports["dynamic"]:openMenu()
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- EMERGENCYFUNCTIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("emergencyFunctions",function()
@@ -174,14 +192,6 @@ RegisterCommand("emergencyFunctions",function()
 				end
 			end
 
-			if LocalPlayer["state"]["Police"] then
-				exports["dynamic"]:AddButton("QTI","Deslocamento.","dynamic:Tencode","1","tencode",true)
-				exports["dynamic"]:AddButton("QTH","Localização.","dynamic:Tencode","2","tencode",true)
-				exports["dynamic"]:AddButton("QRR","Apoio com prioridade.","dynamic:Tencode","3","tencode",true)
-				exports["dynamic"]:AddButton("QRT","Oficial desmaiado/ferido.","dynamic:Tencode","4","tencode",true)
-				exports["dynamic"]:SubMenu("Emergência","Avisos emergenciais.","tencode")
-			end
-
 			exports["dynamic"]:openMenu()
 		end
 	end
@@ -190,4 +200,5 @@ end)
 -- KEYMAPPING
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterKeyMapping("globalFunctions","Abrir menu principal.","keyboard","F9")
+RegisterKeyMapping("tencodeFunctions","Abrir menu de chamados policiais.","keyboard","F3")
 RegisterKeyMapping("emergencyFunctions","Abrir menu de emergencial.","keyboard","F10")
