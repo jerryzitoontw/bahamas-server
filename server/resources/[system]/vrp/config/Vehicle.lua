@@ -6611,6 +6611,14 @@ local List = {
 			["Class"] = "Emergência"
 		},
 		-- Policia
+		["B412"] = {
+			["Name"] = "B412",
+			["Weight"] = 0,
+			["Price"] = 1000,
+			["Mode"] = "Work",
+			["Gemstone"] = 0,
+			["Class"] = "Emergência"
+		},
 		["bmwm3"] = {
 			["Name"] = "BMW M3",
 			["Weight"] = 0,
@@ -6674,7 +6682,7 @@ local List = {
 			["Mode"] = "Work",
 			["Gemstone"] = 0,
 			["Class"] = "Emergência"
-		},
+		}
 	}
 	-----------------------------------------------------------------------------------------------------------------------------------------
 	-- VEHICLEGLOBAL

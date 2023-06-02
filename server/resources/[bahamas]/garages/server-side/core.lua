@@ -236,17 +236,14 @@ local Works = {
 		"pbus"
 	},
 	["Police"] = {
-		"audia3",
-		"audiq8",
-		"audirs5",
-		"audirs62",
-		"audirs6avant",
-		"ducati1200",
-		"fordraptor",
-		"nspeedo",
-		"polmesa",
-		"sanchez3",
-		"tahoe"
+		"bmwm3",
+		"m4cs",
+		"bmwm5",
+		"e63",
+		"fpace",
+		"jettagli",
+		"tiger900",
+		"tundra"
 	},
 	["HeliPolice"] = {
 		"B412"
