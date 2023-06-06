@@ -228,7 +228,7 @@ local Works = {
 		"ambulance2"
 	},
 	["HeliParamedic"] = {
-		"polmav"
+		"maverick2"
 	},
 
 	-- Police (Public)
@@ -246,7 +246,8 @@ local Works = {
 		"tundra"
 	},
 	["HeliPolice"] = {
-		"B412"
+		"B412",
+		"maverick2"
 	},
 
 	-- Mechanic (Public)

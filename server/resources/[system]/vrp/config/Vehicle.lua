@@ -6576,6 +6576,14 @@ local List = {
 			["Gemstone"] = 150,
 			["Class"] = "Importados"
 	    },
+		["nissangtr50"] = {
+			["Name"] = "Nissan GT-R 50th",
+			["Weight"] = 50,
+			["Price"] = 20000,
+			["Mode"] = "Rental",
+			["Gemstone"] = 120,
+			["Class"] = "Importados"
+		},
 		-- Armored
 		["armoredgle"] = {
 			["Name"] = "Mercedes GLE Blindada",
@@ -6613,6 +6621,14 @@ local List = {
 		-- Policia
 		["B412"] = {
 			["Name"] = "B412",
+			["Weight"] = 0,
+			["Price"] = 1000,
+			["Mode"] = "Work",
+			["Gemstone"] = 0,
+			["Class"] = "Emergência"
+		},
+		["maverick2"] = {
+			["Name"] = "Heli Service",
 			["Weight"] = 0,
 			["Price"] = 1000,
 			["Mode"] = "Work",

@@ -13,6 +13,21 @@ Tunnel.bindInterface("admin",Bahamas)
 vCLIENT = Tunnel.getInterface("admin")
 vKEYBOARD = Tunnel.getInterface("keyboard")
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- ANNOUNCE
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterCommand("announce",function(source)
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.HasGroup(Passport,"Admin") then
+			local Keyboard = vKEYBOARD.keyTertiary(source,"Mensagem:","Cor:","Tempo (em MS):")
+			if Keyboard then
+				TriggerClientEvent("Notify",-1,Keyboard[2],Keyboard[1],Keyboard[3])
+			end
+		end
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- DEBUG
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("debug",function(source)
@@ -449,17 +464,6 @@ function Bahamas.buttonTxt()
 		end
 	end
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- ANNOUNCE
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("announce",function(source,Message,History)
-	local Passport = vRP.Passport(source)
-	if Passport then
-		if vRP.HasGroup(Passport,"Admin") and Message[1] then
-			TriggerClientEvent("chat:ClientMessage",-1,"Governador",History:sub(9))
-		end
-	end
-end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONSOLE
 -----------------------------------------------------------------------------------------------------------------------------------------

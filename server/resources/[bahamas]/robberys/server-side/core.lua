@@ -858,7 +858,7 @@ local Robberys = {
 		["avaiable"] = false,
 		["timavaiable"] = 0,
 		["need"] = {
-			["item"] = "card05",
+			["item"] = "card01",
 			["amount"] = 1
 		},
 		["payment"] = {
