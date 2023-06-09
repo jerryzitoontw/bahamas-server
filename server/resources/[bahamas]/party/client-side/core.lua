@@ -16,10 +16,12 @@ local Open = false
 -- PARTY
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("Groups",function()
-	if not Open then
-		Open = true
-		SetNuiFocus(true,true)
-		SendNUIMessage({ name = "Open", payload = vSERVER.GetRooms() })
+	if vSERVER.Verify() then
+		if not Open then
+			Open = true
+			SetNuiFocus(true,true)
+			SendNUIMessage({ name = "Open", payload = vSERVER.GetRooms() })
+		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

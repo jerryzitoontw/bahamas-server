@@ -1,72 +1,55 @@
------------------------------------------------------------------------------------------------------------------------------------------
--- VRP
------------------------------------------------------------------------------------------------------------------------------------------
-local Tunnel = module("vrp","lib/Tunnel")
------------------------------------------------------------------------------------------------------------------------------------------
--- CONNECTION
------------------------------------------------------------------------------------------------------------------------------------------
-Bahamas = {}
-Tunnel.bindInterface("memory",Bahamas)
------------------------------------------------------------------------------------------------------------------------------------------
--- VARIABLES
------------------------------------------------------------------------------------------------------------------------------------------
-local Results = false
-local Progress = false
-local Timer = GetGameTimer()
------------------------------------------------------------------------------------------------------------------------------------------
--- MEMORY
------------------------------------------------------------------------------------------------------------------------------------------
-function Memory()
-	if Progress then
-		return false
+local MinigameActive = false
+local SuccessTrigger = nil
+local FailTrigger = nil
+
+function StartMinigame(data)
+	if MinigameActive then
+		return
 	end
 
-	Progress = true
-	SetNuiFocus(true,true)
-	Timer = GetGameTimer() + 30000
-	SendNUIMessage({ action = "Open" })
+	if data ~= nil then
+		SuccessTrigger = data["success"]
+		FailTrigger = data["fail"]
 
-	while Progress do
-		if GetGameTimer() >= Timer then
-			SendNUIMessage({ action = "Close" })
-		end
-
-		Wait(0)
+		SendNUIMessage({ action = "start" })
+		SetNuiFocus(true,true)
+		MinigameActive = true
 	end
-
-	if Results and Timer > GetGameTimer() then
-		return true
-	end
-
-	return false
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- SUCESS
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNUICallback("Success",function(Data,Callback)
-	Results = true
-	Progress = false
-	SetNuiFocus(false,false)
 
-	Callback("Ok")
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- CLOSE
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterNUICallback("Close",function(Data,Callback)
-	Results = false
-	Progress = false
+function FailMinigame()
+	SendNUIMessage({ action = "fail" })
 	SetNuiFocus(false,false)
-
-	Callback("Ok")
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- MEMORY
------------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.Memory()
-	return Memory()
+	MinigameActive = false
+	SuccessTrigger = nil
+	FailTrigger = nil
 end
------------------------------------------------------------------------------------------------------------------------------------------
--- EXPORTS
------------------------------------------------------------------------------------------------------------------------------------------
-exports("Memory",Memory)
+
+exports("StartMinigame",StartMinigame)
+exports("FailMinigame",FailMinigame)
+
+RegisterNUICallback("success",function(data,cb)
+	if SuccessTrigger ~= nil then
+		TriggerEvent(SuccessTrigger)
+	end
+
+	SetNuiFocus(false,false)
+	MinigameActive = false
+	SuccessTrigger = nil
+	FailTrigger = nil
+
+	cb("ok")
+end)
+
+RegisterNUICallback("fail",function(data,cb)
+	if FailTrigger ~= nil then
+		TriggerEvent(FailTrigger)
+	end
+
+	SetNuiFocus(false,false)
+	MinigameActive = false
+	SuccessTrigger = nil
+	FailTrigger = nil
+
+	cb("ok")
+end)

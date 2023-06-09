@@ -15,15 +15,18 @@ Tunnel.bindInterface("bank",Bahamas)
 local Active = {}
 local yield = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
--- CHECKOPEN
+-- VERIFY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.Wanted()
+function Bahamas.Verify()
 	local source = source
 	local Passport = vRP.Passport(source)
-	if Passport and vRP.GetHealth(source) > 100 and not exports["hud"]:Reposed(Passport) and not exports["hud"]:Wanted(Passport,source) then
-		return true
+	if Passport then
+		if exports["hud"]:Wanted(Passport,source) then
+			return false
+		end
 	end
-	return false
+
+	return true
 end
 
 CreateThread(function()
@@ -154,83 +157,6 @@ function Transactions(Passport, Limit)
 		end
 	end
 	return transactions
-end
-----------------------------------------------------------------------------------------------------------------------------------------
--- FINES
------------------------------------------------------------------------------------------------------------------------------------------
-function Fines(Passport)
-	local Passport = Passport
-	local fines = {}
-	local result = vRP.Query('fines/List',{ Passport = Passport })
-	if result[1] then
-		for i, row in pairs(result) do
-
-			fines[i] = {
-				id = row.id,
-				name = row.Name,
-				value = row.Value,
-				date = row.Date,
-				hour = row.Hour,
-				message = row.Message
-			}
-		end
-	end
-	return fines
-end
-
-function Bahamas.FineList()
-	local source = source
-	local Passport = vRP.Passport(source)
-	if Passport then
-	  return Fines(Passport)
-	end
-end
-
------------------------------------------------------------------------------------------------------------------------------------------
--- TRANSFERENCE
------------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.FinePayment(id)
-	local source = source
-	local Passport = vRP.Passport(source)
-	local id = id
-	if Passport and Active[Passport] == nil then
-		Active[Passport] = true
-		local result = vRP.Query('fines/Check',{ Passport = Passport, id = id })
-		if result[1] then
-			if vRP.PaymentBank(Passport, result[1].Value) then
-				vRP.RemoveFine(Passport,result[1].Value)
-				vRP.Query("fines/Remove",{ Passport = Passport })
-				Active[Passport] = nil
-				return true
-			end
-		end
-		Active[Passport] = nil
-	end
-	return false
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- TRANSFERENCE
------------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.FinePaymentAll()
-	local source = source
-	local Passport = vRP.Passport(source)
-	if Passport and Active[Passport] == nil then
-		Active[Passport] = true
-		local result = vRP.Query('fines/List',{ Passport = Passport})
-
-		if result[1] then
-			for i, row in pairs(result) do
-				local id = row.id
-				if vRP.PaymentBank(Passport, result[1].Value) then
-					vRP.Query("fines/Remove",{ Passport = Passport, id = id })
-					Active[Passport] = nil
-					return true
-				end
-			end
-		end
-		Active[Passport] = nil
-	end
-	return Fines(Passport)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TRANSFERENCE
@@ -457,20 +383,6 @@ exports("AddTaxs", function(Passport, Name, Value, Message)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- ADDTAXS
------------------------------------------------------------------------------------------------------------------------------------------
-exports("AddFines", function(Passport, OtherPassport, Value, Message)
-	if vRP.Identity(Passport) then
-		local Passport = Passport
-		local Name = vRP.Identity(OtherPassport).name .. " " .. vRP.Identity(OtherPassport).name2
-		local Date = os.date("%d/%m/%Y")
-		local Hour = os.date("%H:%M")
-		local Value = Value
-		local Message = Message
-	  vRP.Query("fines/Add", {Passport = Passport,Name = Name,Date = Date,Hour = Hour,Value = Value,Message = Message}) 
-	end
-end)
------------------------------------------------------------------------------------------------------------------------------------------
 -- DISCONNECT
 -----------------------------------------------------------------------------------------------------------------------------------------
 AddEventHandler("Disconnect", function(Passport)
@@ -479,6 +391,5 @@ AddEventHandler("Disconnect", function(Passport)
 	end
 end)
 exports("Taxs", Taxs)
-exports("Fines", Fines)
 exports("Invoices", Invoices)
 exports("Transactions", Transactions)

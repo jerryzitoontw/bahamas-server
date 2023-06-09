@@ -158,7 +158,7 @@ local List = {
 -- SHOPS:OPEN
 -----------------------------------------------------------------------------------------------------------------------------------------
 AddEventHandler("shops:Open",function(shopId)
-	if LocalPlayer["state"]["Route"] < 900000 then
+	if vSERVER.Verify() then
 		if vSERVER.requestPerm(List[shopId][4]) then
 			SetNuiFocus(true,true)
 			SendNUIMessage({ action = "showNUI", name = List[shopId][4], type = vSERVER.getShopType(List[shopId][4]) })

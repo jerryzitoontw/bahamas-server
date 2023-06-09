@@ -14,11 +14,13 @@ vSERVER = Tunnel.getInterface("painel")
 -- OPEN
 -----------------------------------------------------------------------------------------------------------------------------------------
 function Bahamas.Open(Data,Premium,Price)
-	SetNuiFocus(true,true)
-	SetCursorLocation(0.5,0.5)
-	SendNUIMessage({ name = "open", payload = { Data, Legends, Premium, Price } })
+	if vSERVER.Verify() then
+		SetNuiFocus(true,true)
+		SetCursorLocation(0.5,0.5)
+		SendNUIMessage({ name = "open", payload = { Data, Legends, Premium, Price } })
 
-	vRP.CreateObjects("amb@code_human_in_bus_passenger_idles@female@tablet@idle_a","idle_a","prop_cs_tablet",49,28422,-0.05,0.0,0.0,0.0,0.0, 0.0)
+		vRP.CreateObjects("amb@code_human_in_bus_passenger_idles@female@tablet@idle_a","idle_a","prop_cs_tablet",49,28422,-0.05,0.0,0.0,0.0,0.0, 0.0)
+	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLOSE

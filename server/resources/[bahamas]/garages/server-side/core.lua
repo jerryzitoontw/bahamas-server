@@ -20,6 +20,25 @@ local Signal = {}
 local Searched = {}
 local Propertys = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- VERIFY
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Bahamas.Verify()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.GetFine(Passport) > 0 then
+			TriggerClientEvent("Notify",source,"amarelo","Você possui multas pendentes.",10000)
+			return false
+		end
+
+		if exports["hud"]:Wanted(Passport,source) and exports["hud"]:Reposed(Passport) then
+			return false
+		end
+	end
+
+	return true
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- GLOBALSTATE
 -----------------------------------------------------------------------------------------------------------------------------------------
 GlobalState["Plates"] = {}
@@ -111,59 +130,74 @@ local Garages = {
 	["26"] = { name = "Garage", payment = true },
 	["27"] = { name = "Garage", payment = true },
 	["28"] = { name = "Garage", payment = true },
-	["29"] = { name = "Garage", payment = true },
-	["30"] = { name = "Garage", payment = false },
+	["29"] = { name = "Garage", payment = false },
+	["30"] = { name = "Garage", payment = true },
 	["31"] = { name = "Garage", payment = true },
 	["32"] = { name = "Garage", payment = true },
 	["33"] = { name = "Garage", payment = true },
 	["34"] = { name = "Garage", payment = true },
 	["35"] = { name = "Garage", payment = true },
-	["36"] = { name = "Garage", payment = true },
-	["37"] = { name = "Garage", payment = true },
-	["38"] = { name = "Garage", payment = true },
-	["39"] = { name = "Garage", payment = true },
-	["40"] = { name = "Garage", payment = true },
-	["41"] = { name = "Garage", payment = true },
-	["42"] = { name = "Garage", payment = false },
-	["43"] = { name = "Garage", payment = true },
+	["36"] = { name = "Garage", payment = false },
 
 	-- Paramedic (Public)
-	["44"] = { name = "Paramedic", payment = false, perm = "Paramedic" },
-	["45"] = { name = "HwliParamedic", payment = false, perm = "Paramedic" },
-	["46"] = { name = "Paramedic", payment = false, perm = "Paramedic" },
-	["47"] = { name = "HwliParamedic", payment = false, perm = "Paramedic" },
-	["48"] = { name = "Paramedic", payment = false, perm = "Paramedic" },
-	["49"] = { name = "HwliParamedic", payment = false, perm = "Paramedic" },
+	["37"] = { name = "Paramedic", payment = false, perm = "Paramedic" },
+	["38"] = { name = "HwliParamedic", payment = false, perm = "Paramedic" },
+	["39"] = { name = "Paramedic", payment = false, perm = "Paramedic" },
+	["40"] = { name = "HwliParamedic", payment = false, perm = "Paramedic" },
+	["41"] = { name = "Paramedic", payment = false, perm = "Paramedic" },
+	["42"] = { name = "HwliParamedic", payment = false, perm = "Paramedic" },
 
 	-- Police (Public)
-	["50"] = { name = "Police", payment = false, perm = "Police" },
-	["51"] = { name = "HeliPolice", payment = false, perm = "Police" },
-	["52"] = { name = "Police", payment = false, perm = "Police" },
-	["53"] = { name = "HeliPolice", payment = false, perm = "Police" },
-	["54"] = { name = "Police", payment = false, perm = "Police" },
-	["55"] = { name = "BusPolice", payment = false, perm = "Police" },
-	["56"] = { name = "Police", payment = false, perm = "Police" },
-	["57"] = { name = "HeliPolice", payment = false, perm = "Police" },
-	["58"] = { name = "Police", payment = false, perm = "Police" },
-	["59"] = { name = "HeliPolice", payment = false, perm = "Police" },
+	["43"] = { name = "Police", payment = false, perm = "Police" },
+	["44"] = { name = "HeliPolice", payment = false, perm = "Police" },
+	["45"] = { name = "Police", payment = false, perm = "Police" },
+	["46"] = { name = "HeliPolice", payment = false, perm = "Police" },
+	["47"] = { name = "Police", payment = false, perm = "Police" },
+	["48"] = { name = "BusPolice", payment = false, perm = "Police" },
+	["49"] = { name = "Police", payment = false, perm = "Police" },
+	["50"] = { name = "HeliPolice", payment = false, perm = "Police" },
+	["51"] = { name = "Police", payment = false, perm = "Police" },
+	["52"] = { name = "HeliPolice", payment = false, perm = "Police" },
 
 	-- Mechanic (Public)
-	["60"] = { name = "Mechanic", payment = false, perm = "Harmony" },
-	["61"] = { name = "Mechanic", payment = false, perm = "Ottos" },
-	["62"] = { name = "Mechanic", payment = false, perm = "Tuners" },
+	["53"] = { name = "Mechanic", payment = false, perm = "Harmony" },
+	["54"] = { name = "Mechanic", payment = false, perm = "Ottos" },
+	["55"] = { name = "Mechanic", payment = false, perm = "Tuners" },
 
 	-- (Restaurants)
-	["63"] = { name = "Pearls", payment = false, perm = "Pearls" },
+	["56"] = { name = "Pearls", payment = false, perm = "Pearls" },
 
 	-- (Works)
-	["64"] = { name = "Bus", payment = false },
-	["65"] = { name = "Impound", payment = false },
-	["66"] = { name = "Lumberman", payment = false },
-	["67"] = { name = "Transporter", payment = false },
-	["68"] = { name = "Trash", payment = false },
-	["69"] = { name = "Trash", payment = false },
-	["70"] = { name = "Trash", payment = false },
-	["71"] = { name = "Trucker", payment = false }
+	["57"] = { name = "Bus", payment = false },
+	["58"] = { name = "Impound", payment = false },
+	["59"] = { name = "Lumberman", payment = false },
+	["60"] = { name = "Transporter", payment = false },
+	["61"] = { name = "Trash", payment = false },
+	["62"] = { name = "Trash", payment = false },
+	["63"] = { name = "Trash", payment = false },
+	["64"] = { name = "Trucker", payment = false },
+
+	-- Contraband (Ilegal)
+	["65"] = { name = "Chiliad", payment = true, perm = "Chiliad" },
+	["66"] = { name = "Families", payment = true, perm = "Families" },
+	["67"] = { name = "Highways", payment = true, perm = "Highways" },
+	["68"] = { name = "Vagos", payment = true, perm = "Vagos" },
+
+	-- Favelas (Ilegal)
+	["69"] = { name = "Barragem", payment = true, perm = "Barragem" },
+	["70"] = { name = "Farol", payment = true, perm = "Farol" },
+	["71"] = { name = "Parque", payment = true, perm = "Parque" },
+	["72"] = { name = "Sandy", payment = true, perm = "Sandy" },
+	["73"] = { name = "Petróleo", payment = true, perm = "Petróleo" },
+	["74"] = { name = "Praia-1", payment = true, perm = "Praia-1" },
+	["75"] = { name = "Praia-2", payment = true, perm = "Praia-2" },
+	["76"] = { name = "Zancudo", payment = true, perm = "Zancudo" },
+
+	-- Mafias (Ilegal)
+	["77"] = { name = "Madrazzo", payment = true, perm = "Madrazzo" },
+	["78"] = { name = "Playboy", payment = true, perm = "Playboy" },
+	["79"] = { name = "TheSouth", payment = true, perm = "TheSouth" },
+	["80"] = { name = "Vineyard", payment = true, perm = "Vineyard" }
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SIGNALREMOVE

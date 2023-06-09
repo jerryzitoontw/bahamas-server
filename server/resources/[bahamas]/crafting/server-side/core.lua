@@ -7,12 +7,31 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-South = {}
-Tunnel.bindInterface("crafting", South)
+Bahamas = {}
+Tunnel.bindInterface("crafting", Bahamas)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- VERIFY
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Bahamas.Verify()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.GetFine(Passport) > 0 then
+			TriggerClientEvent("Notify",source,"amarelo","Você possui multas pendentes.",10000)
+			return false
+		end
+
+		if exports["hud"]:Wanted(Passport,source) and exports["hud"]:Reposed(Passport) then
+			return false
+		end
+	end
+
+	return true
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.Permission(Type)
+function Bahamas.Permission(Type)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport then
@@ -32,7 +51,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUESTCRAFTING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.Request(Type)
+function Bahamas.Request(Type)
     local source = source
     local Passport = vRP.Passport(source)
     if Passport then
@@ -92,7 +111,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTIONCRAFTING
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.Crafting(Type, Item, Amount)
+function Bahamas.Crafting(Type, Item, Amount)
     local source = source
     local Amount = parseInt(Amount)
     local Passport = vRP.Passport(source)
@@ -136,7 +155,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OWNED
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.Owned(Liste, Item)
+function Bahamas.Owned(Liste, Item)
     local Owned = {}
     local source = source
     local Passport = vRP.Passport(source)
@@ -157,7 +176,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNCTIONDESTROY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.functionDestroy(Item, Type, Amount, Slot)
+function Bahamas.functionDestroy(Item, Type, Amount, Slot)
     local source = source
     local Amount = parseInt(Amount)
     local Passport = vRP.Passport(source)

@@ -74,7 +74,7 @@ end)
 AddEventHandler("crafting:Open", function(Number)
 	local v = Crafting[Number]
 	if v then
-		if vSERVER.Permission(v[2]) then
+		if vSERVER.Permission(v[2]) and vSERVER.Verify() then
 			if v[2] ~= Select and GetGameTimer() < Timer then
 				TriggerEvent("Notify", "amarelo", "Produção em andamento.", 5000)
 			else

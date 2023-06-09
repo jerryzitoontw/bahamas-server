@@ -68,8 +68,7 @@
         { "name": "Policia", "number": "190", "permission": "Police", "dev": true },
         { "name": "Paramédico", "number": "192", "permission": "Paramedic", "dev": true },
         { "name": "Harmony", "number": "0800 041", "permission": "Harmony", "dev": true },
-        { "name": "Ottos", "number": "0800 042", "permission": "Ottos", "dev": true },
-        { "name": "Tuners", "number": "0800 043", "permission": "Tuners", "dev": true }
+        { "name": "Ottos", "number": "0800 042", "permission": "Ottos", "dev": true }
     ],
     "base": "bahamas_network"
 }

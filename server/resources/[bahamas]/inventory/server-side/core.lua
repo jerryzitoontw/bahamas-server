@@ -1664,10 +1664,10 @@ end)
 RegisterServerEvent("inventory:checkStockade")
 AddEventHandler("inventory:checkStockade",function(Entity)
 	local Service = vRP.NumPermission("Police")
-	if parseInt(#Service) <= 6 then
-		TriggerClientEvent("Notify",source,"amarelo","Sistema indisponível no momento.",5000)
-		return false
-	else
+	-- if parseInt(#Service) <= 0 then
+	-- 	TriggerClientEvent("Notify",source,"amarelo","Sistema indisponível no momento.",5000)
+	-- 	return false
+	-- else
 		local source = source
 		local Plate = Entity[1]
 		local Passport = vRP.Passport(source)
@@ -1681,7 +1681,7 @@ AddEventHandler("inventory:checkStockade",function(Entity)
 				Stockade[Plate] = 0
 			end
 
-			if Stockade[Plate] >= 15 then
+			if Stockade[Plate] >= 1 then
 				TriggerClientEvent("Notify",source,"amarelo","Vazio.",5000)
 				return
 			end
@@ -1691,42 +1691,42 @@ AddEventHandler("inventory:checkStockade",function(Entity)
 				return
 			end
 
-			if vRP.ConsultItem(Passport,"lockpick",1) then
-				TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>1x "..itemName("lockpick").."</b>.",5000)
+			if not vRP.ConsultItem(Passport,"c4",1) then
+				TriggerClientEvent("Notify",source,"amarelo","Precisa de <b>1x "..itemName("c4").."</b>.",5000)
 				return
 			end
 
 			Stockade[Plate] = Stockade[Plate] + 1
-
-			if vTASKBAR.Task(source,6,10000) then
-				vRP.upgradeStress(Passport,10)
+			if vRP.TakeItem(Passport,"c4",1,true,Slot) then
+				vRP.UpgradeStress(Passport,10)
 				Active[Passport] = os.time() + 15
-				TriggerClientEvent("Progress",source,15000)
-				TriggerClientEvent("inventory:Buttons",source,true)
-				vRPC.playAnim(source,false,{"anim@amb@clubhouse@tutorial@bkr_tut_ig3@","machinic_loop_mechandplayer"},true)
+				Player(source)["state"]["Buttons"] = true
+				TriggerClientEvent("inventory:Close",source)
+				TriggerClientEvent("Progress",source,"Plantando",15000)
+				vRPC.playAnim(source,false,{"anim@heists@ornate_bank@thermal_charge_heels","thermal_charge"},true)
+				Wait(7000)
+				vRPC.stopAnim(source,false)
+
+				local Coords = vRP.GetEntityCoords(source)
+				for Passports,Sources in pairs(Service) do
+					async(function()
+						TriggerClientEvent("NotifyPush",Sources,{ code = "ROUBO", title = "Roubo de Carro Forte", x = Coords["x"], y = Coords["y"], z = Coords["z"], criminal = "Alarme de segurança", time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
+					end)
+				end
 
 				repeat
 					if os.time() >= parseInt(Active[Passport]) then
 						Active[Passport] = nil
-						vRPC.stopAnim(source,false)
-						TriggerClientEvent("inventory:Buttons",source,false)
+						Player(source)["state"]["Buttons"] = false
+						TriggerEvent("Wanted",source,Passport,100)
 						vRP.GenerateItem(Passport,"dollarsroll",math.random(225,275),true)
 					end
 
 					Wait(100)
 				until Active[Passport] == nil
-			else
-				local Coords = vRP.GetEntityCoords(source)
-				Stockade[Plate] = Stockade[Plate] - 1
-
-				for Passports,Sources in pairs(Service) do
-					async(function()
-						TriggerClientEvent("NotifyPush",Sources,{ code = 31, title = "Roubo de Carro Forte", x = Coords["x"], y = Coords["y"], z = Coords["z"], criminal = "Alarme de segurança", time = "Recebido às "..os.date("%H:%M"), blipColor = 44 })
-					end)
-				end
 			end
 		end
-	end
+	--end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STEALPEDS
@@ -1946,7 +1946,7 @@ function Bahamas.RegistersPay()
 
 				vRP.UpgradeStress(Passport,math.random(1,2))
 				TriggerEvent("Wanted",source,Passport,30)
-				vRP.GenerateItem(Passport,"dollarsroll",math.random(200,350),true)
+				vRP.GenerateItem(Passport,"dollarsroll",math.random(600,750),true)
 				TriggerClientEvent("player:Residuals",source,"Resíduo de Arrombamento.")
 			end
 

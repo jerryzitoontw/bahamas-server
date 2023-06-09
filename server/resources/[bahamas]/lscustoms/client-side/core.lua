@@ -44,21 +44,21 @@ local bennysLocations = {
 		heading = 337.33,
 		permission = "Admin"
 	},
-	["Ottos01"] = {
-		pos = vec3(830.59,-819.99,25.71),
-		heading = 87.88,
-		permission = "Ottos"
-	},
-	["Ottos02"] = {
-		pos = vec3(830.58,-812.82,25.71),
-		heading = 87.88,
-		permission = "Ottos"
-	},
-	["Ottos03"] = {
-		pos = vec3(830.58,-805.54,25.7),
-		heading = 87.88,
-		permission = "Ottos"
-	},
+	-- ["Ottos01"] = {
+	-- 	pos = vec3(830.59,-819.99,25.71),
+	-- 	heading = 87.88,
+	-- 	permission = "Ottos"
+	-- },
+	-- ["Ottos02"] = {
+	-- 	pos = vec3(830.58,-812.82,25.71),
+	-- 	heading = 87.88,
+	-- 	permission = "Ottos"
+	-- },
+	-- ["Ottos03"] = {
+	-- 	pos = vec3(830.58,-805.54,25.7),
+	-- 	heading = 87.88,
+	-- 	permission = "Ottos"
+	-- },
 	["Harmony01"] = {
 		pos = vec3(1174.69,2639.89,37.14),
 		heading = 0.0,
@@ -939,76 +939,74 @@ end)
 CreateThread(function()
 	while true do
 		local TimeDistance = 999
-		if LocalPlayer["state"]["Route"] < 900000 then
-			if not activeBennys then
-				local Ped = PlayerPedId()
-				if IsPedInAnyVehicle(Ped) then
-					local Coords = GetEntityCoords(Ped)
-					local vehicle = GetVehiclePedIsUsing(Ped)
-					if GetPedInVehicleSeat(vehicle,-1) == Ped then
-						for k,v in pairs(bennysLocations) do
-							local Distance = #(Coords - v["pos"])
+		if not activeBennys then
+			local Ped = PlayerPedId()
+			if IsPedInAnyVehicle(Ped) then
+				local Coords = GetEntityCoords(Ped)
+				local vehicle = GetVehiclePedIsUsing(Ped)
+				if GetPedInVehicleSeat(vehicle,-1) == Ped then
+					for k,v in pairs(bennysLocations) do
+						local Distance = #(Coords - v["pos"])
 
-							if Distance <= 2.5 then
-								TimeDistance = 1
+						if Distance <= 2.5 then
+							TimeDistance = 1
 
-								if IsControlJustPressed(1,38) and vSERVER.checkPermission(v["permission"]) then
-									local isMotorcycle = false
+							if IsControlJustPressed(1,38) and vSERVER.checkPermission(v["permission"]) then
+								local isMotorcycle = false
 
-									if v["bikes"] then
-										if GetVehicleClass(vehicle) == 8 then
-											isMotorcycle = true
-										else
-											goto skipBennys
-										end
+								if v["bikes"] then
+									if GetVehicleClass(vehicle) == 8 then
+										isMotorcycle = true
 									else
-										if GetVehicleClass(vehicle) == 8 then
-											isMotorcycle = true
-										else
-											isMotorcycle = false
-										end
+										goto skipBennys
 									end
-
-									SetVehicleModKit(vehicle,0)
-									SetEntityCoords(vehicle,v["pos"])
-									SetEntityHeading(vehicle,v["heading"])
-									FreezeEntityPosition(vehicle,true)
-									SetVehicleOnGroundProperly(vehicle)
-
-									originalCategory = nil
-									originalMod = nil
-									originalPrimaryColour = nil
-									originalSecondaryColour = nil
-									originalPearlescentColour = nil
-									originalWheelColour = nil
-									originalDashColour = nil
-									originalInterColour = nil
-									originalWindowTint = nil
-									originalWheelCategory = nil
-									originalWheel = nil
-									originalWheelType = nil
-									originalCustomWheels = nil
-									originalNeonLightState = nil
-									originalNeonLightSide = nil
-									originalNeonColourR = nil
-									originalNeonColourG = nil
-									originalNeonColourB = nil
-									originalXenonColour = nil
-									originalPoliceLivery = nil
-									originalPlateIndex = nil
-
-									InitiateMenus(isMotorcycle)
-
-									DisplayMenuContainer(true)
-									DisplayMenu(true,"mainMenu")
-									TriggerEvent("player:inBennys",true)
-									PlaySoundFrontend(-1,"OK","HUD_FRONTEND_DEFAULT_SOUNDSET",1)
-									TriggerServerEvent("lscustoms:inVehicle",VehToNet(vehicle),GetVehicleNumberPlateText(vehicle))
-
-									disableControls()
-
-									::skipBennys::
+								else
+									if GetVehicleClass(vehicle) == 8 then
+										isMotorcycle = true
+									else
+										isMotorcycle = false
+									end
 								end
+
+								SetVehicleModKit(vehicle,0)
+								SetEntityCoords(vehicle,v["pos"])
+								SetEntityHeading(vehicle,v["heading"])
+								FreezeEntityPosition(vehicle,true)
+								SetVehicleOnGroundProperly(vehicle)
+
+								originalCategory = nil
+								originalMod = nil
+								originalPrimaryColour = nil
+								originalSecondaryColour = nil
+								originalPearlescentColour = nil
+								originalWheelColour = nil
+								originalDashColour = nil
+								originalInterColour = nil
+								originalWindowTint = nil
+								originalWheelCategory = nil
+								originalWheel = nil
+								originalWheelType = nil
+								originalCustomWheels = nil
+								originalNeonLightState = nil
+								originalNeonLightSide = nil
+								originalNeonColourR = nil
+								originalNeonColourG = nil
+								originalNeonColourB = nil
+								originalXenonColour = nil
+								originalPoliceLivery = nil
+								originalPlateIndex = nil
+
+								InitiateMenus(isMotorcycle)
+
+								DisplayMenuContainer(true)
+								DisplayMenu(true,"mainMenu")
+								TriggerEvent("player:inBennys",true)
+								PlaySoundFrontend(-1,"OK","HUD_FRONTEND_DEFAULT_SOUNDSET",1)
+								TriggerServerEvent("lscustoms:inVehicle",VehToNet(vehicle),GetVehicleNumberPlateText(vehicle))
+
+								disableControls()
+
+								::skipBennys::
 							end
 						end
 					end

@@ -8,13 +8,32 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-South = {}
-Tunnel.bindInterface("barbershop",South)
+Bahamas = {}
+Tunnel.bindInterface("barbershop",Bahamas)
 local Debug = {}
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- VERIFY
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Bahamas.Verify()
+	local source = source
+	local Passport = vRP.Passport(source)
+	if Passport then
+		if vRP.GetFine(Passport) > 0 then
+			TriggerClientEvent("Notify",source,"amarelo","Você possui multas pendentes.",10000)
+			return false
+		end
+
+		if exports["hud"]:Wanted(Passport,source) and exports["hud"]:Reposed(Passport) then
+			return false
+		end
+	end
+
+	return true
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- BARBER
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.CheckWanted()
+function Bahamas.CheckWanted()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and not exports["hud"]:Wanted(Passport,source) then
@@ -26,7 +45,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATESKIN
 -----------------------------------------------------------------------------------------------------------------------------------------
-function South.Update(Barbers)
+function Bahamas.Update(Barbers)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
@@ -47,7 +66,7 @@ AddEventHandler("barbershop:Debug",function()
 	if Passport and not Debug[Passport] or os.time() > Debug[Passport] then
 		TriggerClientEvent("barbershop:Apply",source,vRP.UserData(Passport,"Barbershop"))
 		TriggerClientEvent("skinshop:Apply",source,vRP.UserData(Passport,"Clothings"))
-		TriggerClientEvent("tattoos:Apply",source,vRP.UserData(Passport,"Tatuagens"))
+		TriggerClientEvent("tattooshop:Apply",source,vRP.UserData(Passport,"Tatuagens"))
 		TriggerClientEvent("target:Debug",source)
 		TriggerEvent("DebugObjects",Passport)
 

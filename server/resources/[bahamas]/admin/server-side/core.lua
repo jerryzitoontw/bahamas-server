@@ -307,10 +307,10 @@ end)
 RegisterCommand("group",function(source,Message)
 	local Passport = vRP.Passport(source)
 	if Passport then
-		--if vRP.HasGroup(Passport,"Admin") and parseInt(Message[1]) > 0 and Message[2] then
+		if vRP.HasGroup(Passport,"Admin") and parseInt(Message[1]) > 0 and Message[2] then
 			TriggerClientEvent("Notify",source,"verde","Adicionado <b>"..Message[2].."</b> ao passaporte <b>"..Message[1].."</b>.",5000)
 			vRP.SetPermission(Message[1],Message[2],Message[3])
-		--end
+		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -469,7 +469,8 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand("console",function(source,Message,History)
 	if source == 0 then
-		TriggerClientEvent("chat:ClientMessage",-1,"Governador",History:sub(9))
+		TriggerClientEvent("Notify",-1,"amarelo",History:sub(9),10000)
+		print("Anuncio")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

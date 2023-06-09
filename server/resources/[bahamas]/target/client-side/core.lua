@@ -235,6 +235,20 @@ CreateThread(function()
 	RegisterCommand("-entityTarget",TargetDisable)
 	RegisterKeyMapping("+entityTarget","Interação auricular.","keyboard","LMENU")
 
+	AddCircleZone("systemHacker",vec3(-1079.34,-244.83,44.01),0.5,{
+		name = "systemHacker",
+		heading = 25.52
+	},{
+		Distance = 0.75,
+		options = {
+			{
+				event = "stockade:initHacker",
+				label = "Hackear Carro Forte",
+				tunnel = "client"
+			}
+		}
+	})
+
 	AddCircleZone("Informations01",vec3(-95.33,-2767.89,6.46),0.5,{
 		name = "Informations01",
 		heading = 3374176
@@ -980,7 +994,7 @@ function TargetEnable()
 												local Trunk = GetEntityBoneIndexByName(Entity,"boot")
 												local cTrunk = GetWorldPositionOfEntityBone(Entity,Trunk)
 												local Distance = #(Coords - cTrunk)
-												if Distance <= 1.25 then
+												if Distance <= 1.75 then
 													if GetVehicleDoorLockStatus(Entity) == 1 then
 														Menu[#Menu + 1] = { event = "player:enterTrunk", label = "Entrar no Porta-Malas", tunnel = "client" }
 													end
@@ -1060,6 +1074,7 @@ function TargetEnable()
 							end
 
 							if LocalPlayer["state"]["Police"] then
+								Menu[#Menu + 1] = { event = "paramedic:Revive", label = "Reanimar", tunnel = "paramedic" }
 								Menu[#Menu + 1] = { event = "police:runInspect", label = "Revistar", tunnel = "police" }
 								Menu[#Menu + 1] = { event = "police:prisonClothes", label = "Uniforme Presidiário", tunnel = "police" }
 							elseif LocalPlayer["state"]["Paramedic"] then
@@ -1069,9 +1084,7 @@ function TargetEnable()
 									Menu[#Menu + 1] = { event = "paramedic:Treatment", label = "Tratamento", tunnel = "paramedic" }
 									Menu[#Menu + 1] = { event = "paramedic:Reposed", label = "Colocar de Repouso", tunnel = "paramedic" }
 									Menu[#Menu + 1] = { event = "paramedic:Bandage", label = "Passar Ataduras", tunnel = "paramedic" }
-									Menu[#Menu + 1] = { event = "paramedic:presetBurn", label = "Roupa de Queimadura", tunnel = "paramedic" }
 									Menu[#Menu + 1] = { event = "paramedic:presetPlaster", label = "Colocar Gesso", tunnel = "paramedic" }
-									Menu[#Menu + 1] = { event = "paramedic:extractBlood", label = "Extrair Sangue", tunnel = "paramedic" }
 								end
 
 								Menu[#Menu + 1] = { event = "paramedic:Diagnostic", label = "Informações", tunnel = "paramedic" }

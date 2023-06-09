@@ -34,31 +34,19 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("pdm:Open")
 AddEventHandler("pdm:Open",function()
-	if DoesEntityExist(Mount) then
-		DeleteEntity(Mount)
-	end
+	if vSERVER.Verify() then
+		if DoesEntityExist(Mount) then
+			DeleteEntity(Mount)
+		end
 
-	local Ped = PlayerPedId()
-	if not LocalPlayer["state"]["Buttons"] and not LocalPlayer["state"]["Commands"] and GetEntityHealth(Ped) > 100 and not exports["hud"]:Wanted() then
-		CameraActive()
-		SetNuiFocus(true,true)
-		SetCursorLocation(0.5,0.5)
-		TriggerEvent("dynamic:closeSystem")
-		SendNUIMessage({ name = "Open", payload = VehicleGlobal() })
-	end
-end)
-RegisterCommand("pdmOpen",function()
-	if DoesEntityExist(Mount) then
-		DeleteEntity(Mount)
-	end
-
-	local Ped = PlayerPedId()
-	if not LocalPlayer["state"]["Buttons"] and not LocalPlayer["state"]["Commands"] and GetEntityHealth(Ped) > 100 --[[ and not exports["hud"]:Wanted() ]] then
-		CameraActive()
-		SetNuiFocus(true,true)
-		SetCursorLocation(0.5,0.5)
-		TriggerEvent("dynamic:closeSystem")
-		SendNUIMessage({ name = "Open", payload = VehicleGlobal() })
+		local Ped = PlayerPedId()
+		if not LocalPlayer["state"]["Buttons"] and not LocalPlayer["state"]["Commands"] and GetEntityHealth(Ped) > 100 and not exports["hud"]:Wanted() then
+			CameraActive()
+			SetNuiFocus(true,true)
+			SetCursorLocation(0.5,0.5)
+			TriggerEvent("dynamic:closeSystem")
+			SendNUIMessage({ name = "Open", payload = VehicleGlobal() })
+		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

@@ -35,25 +35,27 @@ end)
 -- OPENTATTOOSHOP
 -----------------------------------------------------------------------------------------------------------------------------------------
 function OpenTattooshop()
-	CameraActive()
-	SetNuiFocus(true,true)
+	if vSERVER.Verify() then
+		CameraActive()
+		SetNuiFocus(true,true)
 
-	local Ped = PlayerPedId()
-	if GetEntityModel(Ped) == GetHashKey("mp_m_freemode_01") then
-		Active = Dataset["Masculino"]
+		local Ped = PlayerPedId()
+		if GetEntityModel(Ped) == GetHashKey("mp_m_freemode_01") then
+			Active = Dataset["Masculino"]
 
-		Clothes(Ped, "Masculino")
-	elseif GetEntityModel(Ped) == GetHashKey("mp_f_freemode_01") then
-		Active = Dataset["Feminino"]
+			Clothes(Ped, "Masculino")
+		elseif GetEntityModel(Ped) == GetHashKey("mp_f_freemode_01") then
+			Active = Dataset["Feminino"]
 
-		Clothes(Ped, "Feminino")
+			Clothes(Ped, "Feminino")
+		end
+
+		ClearAllPedProps(Ped)
+
+		vRP.playAnim(true,{"mp_sleep","bind_pose_180"},true)
+
+		SendNUIMessage({ shop = Active, tattoo = Tattoos })
 	end
-
-	ClearAllPedProps(Ped)
-
-	vRP.playAnim(true,{"mp_sleep","bind_pose_180"},true)
-
-	SendNUIMessage({ shop = Active, tattoo = Tattoos })
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CAMERAACTIVE

@@ -85,9 +85,9 @@ CreateThread(function()
 
 				if GetPedInVehicleSeat(Vehicle,-1) == Ped then
 					local Roll = GetEntityRoll(Vehicle)
-					if Roll > 75.0 or Roll < -75.0 and (Classes ~= 15 and Classes ~= 16) then
-						DisableControlAction(0,59,true)
-						DisableControlAction(0,60,true)
+					if Roll > 75.0 or Roll < -75.0 then
+						DisableControlAction(1,59,true)
+						DisableControlAction(1,60,true)
 					end
 				end
 
@@ -193,4 +193,49 @@ CreateThread(function()
 
 		Wait(TimeDistance)
 	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- TYREEXPLOSION
+-----------------------------------------------------------------------------------------------------------------------------------------
+CreateThread(function()
+	while true do
+		local Ped = PlayerPedId()
+		if IsPedInAnyVehicle(Ped) then
+			local Vehicle = GetVehiclePedIsUsing(Ped)
+			if GetPedInVehicleSeat(Vehicle,-1) == Ped then
+				local Roll = GetEntityRoll(Vehicle)
+				if Roll > 75.0 or Roll < -75.0 then
+					if math.random(100) <= 50 and GetVehicleClass(Vehicle) ~= 8 and GetVehicleClass(Vehicle) ~= 13 and GetVehicleClass(Vehicle) ~= 14 and GetVehicleClass(Vehicle) ~= 15 and GetVehicleClass(Vehicle) ~= 16 then
+						local Tyre = math.random(4)
+
+						if Tyre == 1 then
+							if GetTyreHealth(Vehicle,0) == 1000.0 then
+								SetVehicleTyreBurst(Vehicle,0,true,1000.0)
+							end
+						elseif Tyre == 2 then
+							if GetTyreHealth(Vehicle,1) == 1000.0 then
+								SetVehicleTyreBurst(Vehicle,1,true,1000.0)
+							end
+						elseif Tyre == 3 then
+							if GetTyreHealth(Vehicle,4) == 1000.0 then
+								SetVehicleTyreBurst(Vehicle,4,true,1000.0)
+							end
+						elseif Tyre == 4 then
+							if GetTyreHealth(Vehicle,5) == 1000.0 then
+								SetVehicleTyreBurst(Vehicle,5,true,1000.0)
+							end
+						end
+					end
+				end
+			end
+		end
+
+		Wait(1000)
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- ONRESOURCESTOP
+-----------------------------------------------------------------------------------------------------------------------------------------
+AddEventHandler("onClientResourceStop",function(Resource)
+	TriggerServerEvent("AnyResourceStop",Resource)
 end)

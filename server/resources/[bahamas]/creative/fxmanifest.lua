@@ -3,7 +3,9 @@ game "gta5"
 lua54 "yes"
 
 client_scripts {
+	"@PolyZone/client.lua",
 	"@vrp/config/Native.lua",
+	"@vrp/lib/Utils.lua",
 	"client-side/*"
 }
 

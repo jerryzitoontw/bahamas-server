@@ -58,6 +58,7 @@ Groups = {
 			["Harmony"] = true
 		},
 		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Salary"] = { 3500,3250,3000 },
 		["Service"] = {},
 		["Type"] = "Work"
 	},
@@ -66,6 +67,7 @@ Groups = {
 			["Ottos"] = true
 		},
 		["Hierarchy"] = { "Chefe","Gerente","Membro" },
+		["Salary"] = { 3500,3250,3000 },
 		["Service"] = {},
 		["Type"] = "Work"
 	},

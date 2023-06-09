@@ -57,7 +57,7 @@ AddEventHandler("CharacterChosen", function(Passport, source)
 
         TriggerClientEvent("barbershop:Apply",source,vRP.UserData(Passport,"Barbershop"))
         TriggerClientEvent("skinshop:Apply",source,vRP.UserData(Passport,"Clothings"))
-        TriggerClientEvent("tattoos:Apply",source,vRP.UserData(Passport,"Tatuagens"))
+        TriggerClientEvent("tattooshop:Apply",source,vRP.UserData(Passport,"Tatuagens"))
 
         TriggerClientEvent("hud:Thirst",source,Datatable["Thirst"])
         TriggerClientEvent("hud:Hunger",source,Datatable["Hunger"])
@@ -442,29 +442,28 @@ end
 function tvRP.CreateObject(Model,x,y,z,Weapon)
     local Passport = vRP.Passport(source)
     if Passport then
-        local SpawnObjects = 0
-        local Hash = GetHashKey(Model)
-        local Object = CreateObject(Hash,x,y,z,true,true,false)
+        local spawnObjects = 0
+        local hash = GetHashKey(Model)
+        local object = CreateObject(hash,x,y,z,true,true,false)
 
-        while not DoesEntityExist(Object) and SpawnObjects <= 1000 do
-            SpawnObjects = SpawnObjects + 1
+        while not DoesEntityExist(object) and spawnObjects <= 1000 do
+            spawnObjects = spawnObjects + 1
             Wait(1)
         end
-    
-        local NetworkGetNetworkIdFromEntity = NetworkGetNetworkIdFromEntity(Object)
-        if DoesEntityExist(Object) then
+        local network = NetworkGetNetworkIdFromEntity(object)
+        if DoesEntityExist(object) then
             if Weapon then
                 if not Objects[Passport] then
                     Objects[Passport] = {}
                 end
-                Objects[Passport][Weapon] = NetworkGetNetworkIdFromEntity
+                Objects[Passport][Weapon] = network
             else
                 if not Objects[Passport] then
                     Objects[Passport] = {}
                 end
-                Objects[Passport][NetworkGetNetworkIdFromEntity] = true
+                Objects[Passport][network] = true
             end
-            return true, NetworkGetNetworkIdFromEntity
+            return true,network
         end
     end
     return false

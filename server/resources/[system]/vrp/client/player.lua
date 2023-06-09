@@ -108,8 +108,8 @@ CreateThread(function()
 			SetPlayerMaxArmour(Ped,100)
 		end
 
-		if GetPlayerMaxStamina(Pid) ~= 100.0 then
-			SetPlayerMaxStamina(Pid,100.0)
+		if GetPlayerMaxStamina(Pid) ~= 200.0 then
+			SetPlayerMaxStamina(Pid,200.0)
 		end
 
 		Wait(100)

@@ -44,15 +44,17 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("police:Open")
 AddEventHandler("police:Open",function()
-	local Ped = PlayerPedId()
-	if not IsPedSwimming(Ped) then
-		SendNUIMessage({ action = "openSystem" })
-		TriggerEvent("dynamic:closeSystem")
-		SetNuiFocus(true,true)
+	if vSERVER.Verify() then
+		local Ped = PlayerPedId()
+		if not IsPedSwimming(Ped) then
+			SendNUIMessage({ action = "openSystem" })
+			TriggerEvent("dynamic:closeSystem")
+			SetNuiFocus(true,true)
 
-		if not IsPedInAnyVehicle(Ped) then
-			vRP.Destroy()
-			vRP.CreateObjects("amb@code_human_in_bus_passenger_idles@female@tablet@base","base","prop_cs_tablet",50,28422)
+			if not IsPedInAnyVehicle(Ped) then
+				vRP.Destroy()
+				vRP.CreateObjects("amb@code_human_in_bus_passenger_idles@female@tablet@base","base","prop_cs_tablet",50,28422)
+			end
 		end
 	end
 end)

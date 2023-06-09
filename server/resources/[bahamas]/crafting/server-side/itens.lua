@@ -909,17 +909,6 @@ List = {
 					["pistolbody"] = 1
 				}
 			},
-			["WEAPON_PISTOL50"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 2,
-				["require"] = {
-					["copper_pure"] = 18,
-					["iron_pure"] = 18,
-					["pistolbody"] = 1
-				}
-			},
 			["WEAPON_SNSPISTOL"] = {
 				["amount"] = 1,
 				["destroy"] = false,
@@ -1169,17 +1158,6 @@ List = {
 				["require"] = {
 					["copper_pure"] = 20,
 					["iron_pure"] = 20,
-					["pistolbody"] = 1
-				}
-			},
-			["WEAPON_PISTOL50"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 2,
-				["require"] = {
-					["copper_pure"] = 18,
-					["iron_pure"] = 18,
 					["pistolbody"] = 1
 				}
 			},

@@ -8,50 +8,53 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("skinshop",Creative)
+Bahamas = {}
+Tunnel.bindInterface("stockade",Bahamas)
+vCLIENT = Tunnel.getInterface("stockade")
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- VARIABLES
+-----------------------------------------------------------------------------------------------------------------------------------------
+local stockadeNet = 0
+local stockadeTimer = 0
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VERIFY
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Bahamas.Verify()
+function Bahamas.Check()
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport then
-		if vRP.GetFine(Passport) > 0 then
-			TriggerClientEvent("Notify",source,"amarelo","Você possui multas pendentes.",10000)
-			return false
-		end
-
-		if exports["hud"]:Wanted(Passport,source) and exports["hud"]:Reposed(Passport) then
-			return false
-		end
-	end
-
-	return true
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- UPDATE
------------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Update(Clothes)
-	local source = source
-	local Passport = vRP.Passport(source)
-	if Passport then
-		vRP.Query("playerdata/SetData",{ Passport = Passport, dkey = "Clothings", dvalue = json.encode(Clothes) })
-	end
-end
------------------------------------------------------------------------------------------------------------------------------------------
--- SKINSHOP:REMOVE
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterServerEvent("skinshop:Remove")
-AddEventHandler("skinshop:Remove",function(Mode)
-	local source = source
-	local Passport = vRP.Passport(source)
-	if Passport then
-		local ClosestPed = vRPC.ClosestPed(source,2)
-		if ClosestPed then
-			if vRP.HasService(Passport,"Police") then
-				TriggerClientEvent("skinshop:set"..Mode,ClosestPed)
+		local Consult = vRP.InventoryItemAmount(Passport,"card05")
+		if Consult[1] >= 1 then
+			if not vRP.CheckDamaged(Consult[2]) then
+				if vRP.TakeItem(Passport,Consult[2],1) then
+			        return true
+				end
 			end
 		end
 	end
+
+	return false
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- STOCKADEINSERT
+-----------------------------------------------------------------------------------------------------------------------------------------
+function Bahamas.stockadeInsert(vehNet)
+	stockadeNet = parseInt(vehNet)
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- VARIABLES
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent("stockade:explodeVehicle")
+AddEventHandler("stockade:explodeVehicle",function()
+	stockadeNet = 0
 end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- STOCKADENET
+-----------------------------------------------------------------------------------------------------------------------------------------
+function stockadeNet()
+	return stockadeNet
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- EXPORTS
+-----------------------------------------------------------------------------------------------------------------------------------------
+exports("stockadeNet",stockadeNet)

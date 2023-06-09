@@ -754,7 +754,7 @@ local Robberys = {
 			["amount"] = 1
 		},
 		["payment"] = {
-			{ ["item"] = "dollarsroll", ["min"] = 150000, ["max"] = 180000 }
+			{ ["item"] = "dollarsroll", ["min"] = 100000, ["max"] = 130000 }
 		}
 	},
 	["45"] = {

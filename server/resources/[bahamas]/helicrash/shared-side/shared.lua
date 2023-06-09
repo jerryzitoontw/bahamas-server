@@ -60,14 +60,14 @@ Timers = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 Loots = {
 	{
-		["1"] = { item = "WEAPON_SNSPISTOL_MK2", amount = 1 },
-		["2"] = { item = "WEAPON_PISTOL_AMMO", amount = 25 },
-		["3"] = { item = "adrenaline", amount = 3 },
-		["4"] = { item = "medkit", amount = 1 }
+		["1"] = { item = "WEAPON_SNSPISTOL_MK2", amount = 2 },
+		["2"] = { item = "WEAPON_PISTOL_AMMO", amount = 50 },
+		["3"] = { item = "adrenaline", amount = 6 },
+		["4"] = { item = "medkit", amount = 2 }
 	},{
-		["1"] = { item = "WEAPON_SNSPISTOL_MK2", amount = 1 },
-		["2"] = { item = "WEAPON_PISTOL_AMMO", amount = 25 },
-		["3"] = { item = "adrenaline", amount = 3 },
-		["4"] = { item = "medkit", amount = 1 }
+		["1"] = { item = "WEAPON_SNSPISTOL_MK2", amount = 2 },
+		["2"] = { item = "WEAPON_PISTOL_AMMO", amount = 50 },
+		["3"] = { item = "adrenaline", amount = 6 },
+		["4"] = { item = "medkit", amount = 2 }
 	}
 }

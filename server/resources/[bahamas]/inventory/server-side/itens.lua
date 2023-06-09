@@ -320,7 +320,6 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					TriggerClientEvent("Energetic",source,20,1.10)
 					vRP.UpgradeHunger(Passport,10)
 
 					if vCLIENT.Restaurant(source,"Pearls") then
@@ -429,7 +428,6 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					TriggerClientEvent("Energetic",source,20,1.10)
 					vRP.UpgradeHunger(Passport,10)
 
 					if vCLIENT.Restaurant(source,"Pearls") then
@@ -762,7 +760,7 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					Armors[Passport] = os.time() + 1800
+					Armors[Passport] = os.time() + 20
 					vRP.SetArmour(source,99)
 				end
 			end
@@ -910,7 +908,6 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					TriggerClientEvent("Energetic",source,20,1.10)
 					vRP.UpgradeHunger(Passport,5)
 				end
 			end
@@ -1023,7 +1020,7 @@ Use = {
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
 					TriggerClientEvent("Methamphetamine",source)
-					Armors[Passport] = os.time() + 30
+					Armors[Passport] = os.time() + 20
 					vRP.ChemicalTimer(Passport,10)
 					vRP.SetArmour(source,10)
 				end
@@ -1188,7 +1185,7 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					TriggerClientEvent("Energetic",source,10,1.10)
+					TriggerClientEvent("Energetic",source,20,1.10)
 					vRP.UpgradeThirst(Passport,25)
 				end
 			end
@@ -1308,7 +1305,7 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					TriggerClientEvent("Energetic",source,10,1.10)
+					TriggerClientEvent("Energetic",source,20,1.10)
 					vRP.UpgradeThirst(Passport,20)
 
 					if vCLIENT.Restaurant(source,"Pearls") then
@@ -1321,13 +1318,14 @@ Use = {
 		until not Active[Passport]
 	end,
 	
-	["energetic"] = function(source,Passport,Amount,Slot,Full,Item,Split)
+	["energetic"] = function(source,Passport,Amount,Slot,Full,Item,Split)	
 		vRPC.AnimActive(source)
-		Active[Passport] = os.time() + 10
+		Active[Passport] = os.time() + 15
 		Player(source)["state"]["Buttons"] = true
 		TriggerClientEvent("inventory:Close",source)
-		TriggerClientEvent("Progress",source,"Bebendo",10000)
-		vRPC.CreateObjects(source,"mp_player_intdrink","loop_bottle","prop_energy_drink",49,28422)
+		TriggerClientEvent("Progress",source,"Bebendo",15000)
+		TriggerClientEvent("inventory:Buttons",source,true)
+		vRPC.CreateObjects(source,"mp_player_intdrink","loop_bottle","prop_energy_drink",49,60309,0.0,0.0,-0.06,0.0,0.0,130.0)
 
 		repeat
 			if os.time() >= parseInt(Active[Passport]) then
@@ -1336,12 +1334,9 @@ Use = {
 				Player(source)["state"]["Buttons"] = false
 
 				if vRP.TakeItem(Passport,Full,1,true,Slot) then
-					TriggerClientEvent("Energetic",source,10,1.10)
-					vRP.UpgradeThirst(Passport,20)
+					TriggerClientEvent("setEnergetic",source,20,1.18)
+					vRP.UpgradeThirst(Passport,15)
 
-					if vCLIENT.Restaurant(source,"Pearls") then
-						TriggerEvent("inventory:BuffServer",source,Passport,"Dexterity",600)
-					end
 				end
 			end
 

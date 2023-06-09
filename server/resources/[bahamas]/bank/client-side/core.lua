@@ -13,9 +13,11 @@ vSERVER = Tunnel.getInterface("bank")
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNetEvent("Bank")
 AddEventHandler("Bank",function()
-	SetNuiFocus(true,true)
-	SendNUIMessage({ Action = "Open", name = LocalPlayer["state"]["Name"] })
-    vRP.playAnim(false,{"amb@prop_human_atm@male@idle_a","idle_a"},false)
+	if vSERVER.Verify() then
+		SetNuiFocus(true,true)
+		SendNUIMessage({ Action = "Open", name = LocalPlayer["state"]["Name"] })
+		vRP.playAnim(false,{"amb@prop_human_atm@male@idle_a","idle_a"},false)
+	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLOSE

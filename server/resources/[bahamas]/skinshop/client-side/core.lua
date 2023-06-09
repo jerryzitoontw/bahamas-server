@@ -135,7 +135,7 @@ end)
 CreateThread(function()
 	while true do
 		local TimeDistance = 999
-		if LocalPlayer["state"]["Route"] < 900000 then
+		if vSERVER.Verify() then
 			local Ped = PlayerPedId()
 			if not IsPedInAnyVehicle(Ped) then
 				local Coords = GetEntityCoords(Ped)

@@ -111,7 +111,7 @@ AddEventHandler("paramedic:Revive",function(entity)
 	local source = source
 	local Passport = vRP.Passport(source)
 	if Passport and vRP.GetHealth(entity) <= 100 then
-		if vRP.HasService(Passport,"Paramedic") then
+		if vRP.HasService(Passport,"Paramedic") or vRP.HasService(Passport,"Police") then
 			local OtherPassport = vRP.Passport(entity)
 			Player(source)["state"]["Cancel"] = true
 			TriggerClientEvent("Progress",source,"Tratando",10000)

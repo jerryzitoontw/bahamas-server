@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-South = {}
-Tunnel.bindInterface("barbershop",South)
+Bahamas = {}
+Tunnel.bindInterface("barbershop",Bahamas)
 vSERVER = Tunnel.getInterface("barbershop")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -168,28 +168,30 @@ end)
 -- OPENBARBERSHOP
 -----------------------------------------------------------------------------------------------------------------------------------------
 function OpenBarbershop(Mode)
-	for Number = 1,47 do
-		if not Barber[Number] then
-			Barber[Number] = 0
+	if vSERVER.Verify() then
+		for Number = 1,47 do
+			if not Barber[Number] then
+				Barber[Number] = 0
+			end
 		end
+
+		LocalPlayer["state"]:set("Barbershop",Barber,true)
+		vRP.playAnim(true,{"mp_sleep","bind_pose_180"},true)
+
+		local Ped = PlayerPedId()
+		local Heading = GetEntityHeading(Ped)
+		local Coords = GetOffsetFromEntityInWorldCoords(Ped,0.0,0.5,0)
+
+		Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA",true)
+		SetCamCoord(Camera,Coords["x"],Coords["y"],Coords["z"] + 0.6)
+		RenderScriptCams(true,true,100,true,true)
+		SetCamRot(Camera,0.0,0.0,Heading + 180)
+		SetEntityHeading(Ped,Heading)
+		SetCamActive(Camera,true)
+
+		SendNUIMessage({ name = "Open", payload = { Barber,GetNumberOfPedDrawableVariations(Ped,2) - 1 } })
+		SetNuiFocus(true,true)
 	end
-
-	LocalPlayer["state"]:set("Barbershop",Barber,true)
-	-- vRP.playAnim(true,{"mp_sleep","bind_pose_180"},true)
-
-	local Ped = PlayerPedId()
-	local Heading = GetEntityHeading(Ped)
-	local Coords = GetOffsetFromEntityInWorldCoords(Ped,0.0,0.5,0)
-
-	Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA",true)
-	SetCamCoord(Camera,Coords["x"],Coords["y"],Coords["z"] + 0.6)
-	RenderScriptCams(true,true,100,true,true)
-	SetCamRot(Camera,0.0,0.0,Heading + 180)
-	SetEntityHeading(Ped,Heading)
-	SetCamActive(Camera,true)
-
-	SendNUIMessage({ name = "Open", payload = { Barber,GetNumberOfPedDrawableVariations(Ped,2) - 1 } })
-	SetNuiFocus(true,true)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- LOCATIONS
