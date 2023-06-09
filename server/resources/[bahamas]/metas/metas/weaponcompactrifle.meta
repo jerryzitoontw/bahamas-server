@@ -54,7 +54,7 @@
 					<FireType>INSTANT_HIT</FireType>
 					<WheelSlot>WHEEL_RIFLE</WheelSlot>
 					<Group>GROUP_RIFLE</Group>
-					<AmmoInfo ref="AMMO_RIFLE" />
+					<AmmoInfo ref="AMMO_SMG" />
 					<AimingInfo ref="RIFLE_HI_BASE_STRAFE" />
 					<ClipSize value="30" />
 					<AccuracySpread value="3.500000" />

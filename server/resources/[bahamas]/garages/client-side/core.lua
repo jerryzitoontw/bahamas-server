@@ -729,26 +729,24 @@ end)
 CreateThread(function()
 	while true do
 		local TimeDistance = 999
-		if vSERVER.Verify() then
-			local Ped = PlayerPedId()
-			if not IsPedInAnyVehicle(Ped) then
-				local Coords = GetEntityCoords(Ped)
+		local Ped = PlayerPedId()
+		if not IsPedInAnyVehicle(Ped) then
+			local Coords = GetEntityCoords(Ped)
 
-				for Number,v in pairs(Garages) do
-					local Distance = #(Coords - vec3(v["x"],v["y"],v["z"]))
-					if Distance <= 15 then
-						DrawMarker(23,v["x"],v["y"],v["z"] - 0.95,0.0,0.0,0.0,0.0,0.0,0.0,1.75,1.75,0.0,245,10,70,100,0,0,0,0)
-						TimeDistance = 1
-
-						if Distance <= 1.25 and IsControlJustPressed(1,38) and not exports["hud"]:Wanted() then
-							local garagem = vSERVER.Vehicles(Number)
-							if garagem then
-								Opened = Number
-								SetNuiFocus(true,true)
-								SendNUIMessage({ action = "Visible", data = true })
-								SendNUIMessage({ action = "OpenGarage", data = garagem })
-							end	
-						end
+			for Number,v in pairs(Garages) do
+				local Distance = #(Coords - vec3(v["x"],v["y"],v["z"]))
+				if Distance <= 15 then
+					DrawMarker(23,v["x"],v["y"],v["z"] - 0.95,0.0,0.0,0.0,0.0,0.0,0.0,1.75,1.75,0.0,245,10,70,100,0,0,0,0)
+					TimeDistance = 1
+			
+					if Distance <= 1.25 and IsControlJustPressed(1,38) and not exports["hud"]:Wanted() and vSERVER.Verify() then
+						local garagem = vSERVER.Vehicles(Number)
+						if garagem then
+							Opened = Number
+							SetNuiFocus(true,true)
+							SendNUIMessage({ action = "Visible", data = true })
+							SendNUIMessage({ action = "OpenGarage", data = garagem })
+						end	
 					end
 				end
 			end

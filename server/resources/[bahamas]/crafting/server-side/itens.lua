@@ -975,17 +975,6 @@ List = {
 					["smgbody"] = 2
 				}
 			},
-			["WEAPON_SMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 2,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
 			["WEAPON_GUSENBERG"] = {
 				["amount"] = 1,
 				["destroy"] = false,
@@ -997,17 +986,28 @@ List = {
 					["smgbody"] = 1
 				}
 			},
-			-- ["WEAPON_COMPACTRIFLE"] = {
-			-- 	["amount"] = 1,
-			-- 	["destroy"] = false,
-			-- 	["craftable"] = true,
-			-- 	["time"] = 2,
-			-- 	["require"] = {
-			-- 		["copper_pure"] = 40,
-			-- 		["iron_pure"] = 40,
-			-- 		["riflebody"] = 2
-			-- 	}
-			-- },
+			["WEAPON_COMPACTRIFLE"] = {
+				["amount"] = 1,
+				["destroy"] = false,
+				["craftable"] = true,
+				["time"] = 2,
+				["require"] = {
+					["copper_pure"] = 40,
+					["iron_pure"] = 40,
+					["smgbody"] = 1
+				}
+			},
+		    ["WEAPON_ASSAULTSMG"] = {
+			 	["amount"] = 1,
+			 	["destroy"] = false,
+			 	["craftable"] = true,
+			 	["time"] = 2,
+			 	["require"] = {
+			 		["copper_pure"] = 40,
+			 		["iron_pure"] = 40,
+			 		["smgbody"] = 2
+			 	}
+			},
 			-- ["WEAPON_ASSAULTRIFLE"] = {
 			-- 	["amount"] = 1,
 			-- 	["destroy"] = false,
@@ -1050,17 +1050,6 @@ List = {
 			-- 		["copper_pure"] = 50,
 			-- 		["iron_pure"] = 50,
 			-- 		["riflebody"] = 4
-			-- 	}
-			-- },
-			-- ["WEAPON_ASSAULTSMG"] = {
-			-- 	["amount"] = 1,
-			-- 	["destroy"] = false,
-			-- 	["craftable"] = true,
-			-- 	["time"] = 2,
-			-- 	["require"] = {
-			-- 		["copper_pure"] = 50,
-			-- 		["iron_pure"] = 50,
-			-- 		["riflebody"] = 2
 			-- 	}
 			-- },
 			-- ["WEAPON_ADVANCEDRIFLE"] = {
@@ -1227,17 +1216,6 @@ List = {
 					["smgbody"] = 2
 				}
 			},
-			["WEAPON_SMG"] = {
-				["amount"] = 1,
-				["destroy"] = false,
-				["craftable"] = true,
-				["time"] = 2,
-				["require"] = {
-					["copper_pure"] = 30,
-					["iron_pure"] = 30,
-					["smgbody"] = 2
-				}
-			},
 			["WEAPON_GUSENBERG"] = {
 				["amount"] = 1,
 				["destroy"] = false,
@@ -1249,17 +1227,28 @@ List = {
 					["smgbody"] = 1
 				}
 			},
-			-- ["WEAPON_COMPACTRIFLE"] = {
-			-- 	["amount"] = 1,
-			-- 	["destroy"] = false,
-			-- 	["craftable"] = true,
-			-- 	["time"] = 2,
-			-- 	["require"] = {
-			-- 		["copper_pure"] = 40,
-			-- 		["iron_pure"] = 40,
-			-- 		["riflebody"] = 2
-			-- 	}
-			-- },
+			["WEAPON_COMPACTRIFLE"] = {
+				["amount"] = 1,
+				["destroy"] = false,
+				["craftable"] = true,
+				["time"] = 2,
+				["require"] = {
+					["copper_pure"] = 40,
+					["iron_pure"] = 40,
+					["smgbody"] = 1
+				}
+			},
+		    ["WEAPON_ASSAULTSMG"] = {
+			 	["amount"] = 1,
+			 	["destroy"] = false,
+			 	["craftable"] = true,
+			 	["time"] = 2,
+			 	["require"] = {
+			 		["copper_pure"] = 40,
+			 		["iron_pure"] = 40,
+			 		["smgbody"] = 2
+			 	}
+			},
 			-- ["WEAPON_ASSAULTRIFLE"] = {
 			-- 	["amount"] = 1,
 			-- 	["destroy"] = false,
@@ -1302,17 +1291,6 @@ List = {
 			-- 		["copper_pure"] = 50,
 			-- 		["iron_pure"] = 50,
 			-- 		["riflebody"] = 4
-			-- 	}
-			-- },
-			-- ["WEAPON_ASSAULTSMG"] = {
-			-- 	["amount"] = 1,
-			-- 	["destroy"] = false,
-			-- 	["craftable"] = true,
-			-- 	["time"] = 2,
-			-- 	["require"] = {
-			-- 		["copper_pure"] = 50,
-			-- 		["iron_pure"] = 50,
-			-- 		["riflebody"] = 2
 			-- 	}
 			-- },
 			-- ["WEAPON_ADVANCEDRIFLE"] = {

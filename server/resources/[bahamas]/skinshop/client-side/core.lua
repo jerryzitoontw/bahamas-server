@@ -7,8 +7,8 @@ vRP = Proxy.getInterface("vRP")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Creative = {}
-Tunnel.bindInterface("skinshop",Creative)
+Bahamas = {}
+Tunnel.bindInterface("skinshop",Bahamas)
 vSERVER = Tunnel.getInterface("skinshop")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
@@ -67,7 +67,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GETCUSTOMIZATION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.getCustomization()
+function Bahamas.getCustomization()
 	return Dataset
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -135,19 +135,17 @@ end)
 CreateThread(function()
 	while true do
 		local TimeDistance = 999
-		if vSERVER.Verify() then
-			local Ped = PlayerPedId()
-			if not IsPedInAnyVehicle(Ped) then
-				local Coords = GetEntityCoords(Ped)
+		local Ped = PlayerPedId()
+		if not IsPedInAnyVehicle(Ped) then
+			local Coords = GetEntityCoords(Ped)
 
-				for Number = 1,#Skinshops do
-					local Distance = #(Coords - vec3(Skinshops[Number][1],Skinshops[Number][2],Skinshops[Number][3]))
-					if Distance <= 2 then
-						TimeDistance = 1
+			for Number = 1,#Skinshops do
+				local Distance = #(Coords - vec3(Skinshops[Number][1],Skinshops[Number][2],Skinshops[Number][3]))
+				if Distance <= 2 then
+					TimeDistance = 1
 
-						if IsControlJustPressed(0,38) then
-							OpenSkinshop()
-						end
+					if IsControlJustPressed(0,38) and vSERVER.Verify() then
+						OpenSkinshop()
 					end
 				end
 			end
@@ -166,10 +164,6 @@ AddEventHandler("skinshop:Open",function(Boolean,Variable)
 	if Variable then
 		OpenSkinshop()		
 		return
-	end
-
-	if not vSERVER.Check() then
-		OpenSkinshop()
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -614,7 +608,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKSHOES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.checkShoes()
+function Bahamas.checkShoes()
 	local Number = 34
 	local Ped = PlayerPedId()
 	if GetEntityModel(Ped) == GetHashKey("mp_f_freemode_01") then
@@ -634,6 +628,6 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CUSTOMIZATION
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Creative.Customization()
+function Bahamas.Customization()
 	return Dataset
 end
